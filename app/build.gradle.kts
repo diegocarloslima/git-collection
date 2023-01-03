@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.diegocarloslima.gitcollection"
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.diegocarloslima.gitcollection"
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -23,7 +23,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -37,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
     packagingOptions {
         resources {
@@ -47,17 +50,20 @@ android {
 }
 
 dependencies {
+    val bom = libs.androidx.compose.bom
+    add("implementation", platform(bom))
+    add("androidTestImplementation", platform(bom))
 
-    implementation ("androidx.core:core-ktx:1.7.0")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation ("androidx.activity:activity-compose:1.3.1")
-    implementation ("androidx.compose.ui:ui:1.1.1")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.1.1")
-    implementation ("androidx.compose.material3:material3:1.0.0-alpha02")
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.1.1")
-    debugImplementation ("androidx.compose.ui:ui-tooling:1.1.1")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.1.1")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.junit.ktx)
 }
