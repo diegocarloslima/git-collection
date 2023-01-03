@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Git Collection"
-include ':app'
+include(":app")
