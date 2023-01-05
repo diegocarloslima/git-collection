@@ -16,6 +16,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-    // TODO
+        register("androidApplication") {
+            id = "gitcollection.android.application"
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
     }
 }
