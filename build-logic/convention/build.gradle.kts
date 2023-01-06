@@ -20,5 +20,9 @@ gradlePlugin {
             id = "gitcollection.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "gitcollection.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
     }
 }
