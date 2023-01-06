@@ -24,5 +24,9 @@ gradlePlugin {
             id = "gitcollection.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidCompose") {
+            id = "gitcollection.android.compose"
+            implementationClass = "AndroidComposeConventionPlugin"
+        }
     }
 }

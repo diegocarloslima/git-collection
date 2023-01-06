@@ -1,3 +1,9 @@
 package com.diegocarloslima.gitcollection.core.ui
 
-fun testCoreUi() = "Test Core Ui"
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun TestCoreUiGreeting(name: String) {
+    Text(text = "UI Hello $name!")
+}

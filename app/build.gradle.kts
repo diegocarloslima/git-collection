@@ -1,5 +1,6 @@
 plugins {
     id("gitcollection.android.application")
+    id("gitcollection.android.compose")
 }
 
 android {
@@ -25,19 +26,9 @@ android {
             )
         }
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
-    }
 }
 
 dependencies {
-    val bom = libs.androidx.compose.bom
-    add("implementation", platform(bom))
-    add("androidTestImplementation", platform(bom))
-
     implementation(project(":core:ui"))
 
     implementation(libs.androidx.activity.compose)

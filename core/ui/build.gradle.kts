@@ -1,5 +1,6 @@
 plugins {
     id("gitcollection.android.library")
+    id("gitcollection.android.compose")
 }
 
 android {
@@ -11,4 +12,5 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.material3)
 }
