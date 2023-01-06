@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.diegocarloslima.gitcollection.buildlogic.AndroidConfig
+import com.diegocarloslima.gitcollection.buildlogic.configureBaseKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -12,8 +13,17 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.android")
             }
             extensions.configure<ApplicationExtension> {
-            }
-            extensions.configure<ApplicationAndroidComponentsExtension> {
+                configureBaseKotlinAndroid(this)
+
+                defaultConfig {
+                    targetSdk = AndroidConfig.TARGET_SDK
+                }
+
+                packagingOptions {
+                    resources {
+                        excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+                    }
+                }
             }
         }
     }
