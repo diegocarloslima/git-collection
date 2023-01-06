@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Git Collection"
 include(":app")
+include(":core:ui")
