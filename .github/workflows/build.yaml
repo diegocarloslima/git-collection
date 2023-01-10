@@ -14,29 +14,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '11'
-          
+
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
-      
+
       - name: Copy CI gradle.properties
         run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
-        
+
+      - name: Check spotless
+        run: ./gradlew spotlessCheck --init-script gradle/init.gradle.kts --no-configuration-cache
+
       - name: Gradle assemble task
         run: ./gradlew assemble
-        
+
       - name: Upload build reports
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: build-reports
           path: app/build/reports
-        
+
       - name: Upload APK build outputs
         uses: actions/upload-artifact@v3
         with:
