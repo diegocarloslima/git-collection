@@ -40,7 +40,7 @@ rootProject {
             format("kts") {
                 target("**/*.kts")
                 targetExclude("**/build/**/*.kts")
-                // Look for the first line that doesn't have a block comment (assumed to be the license)
+                // Look for the first line that starts with a word character (not a comment)
                 licenseHeaderFile(rootProject.file("spotless/copyright.kts"), "(^\\w)")
             }
             format("xml") {
