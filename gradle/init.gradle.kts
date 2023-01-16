@@ -16,6 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+val ktlintVersion = "0.43.0"
+
 initscript {
     val spotlessVersion = "6.13.0"
 
@@ -35,11 +37,15 @@ rootProject {
             kotlin {
                 target("**/*.kt")
                 targetExclude("**/build/**/*.kt")
+                // ktlint should be before licenseHeaderFile
+                ktlint(ktlintVersion).userData(mapOf("android" to "true"))
                 licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
             }
-            format("kts") {
+            kotlinGradle {
                 target("**/*.kts")
                 targetExclude("**/build/**/*.kts")
+                // ktlint should be before licenseHeaderFile
+                ktlint(ktlintVersion).userData(mapOf("android" to "true"))
                 // Look for the first line that starts with a word character (not a comment)
                 licenseHeaderFile(rootProject.file("spotless/copyright.kts"), "(^\\w)")
             }
