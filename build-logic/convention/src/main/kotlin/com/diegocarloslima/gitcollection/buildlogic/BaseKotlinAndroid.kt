@@ -24,10 +24,10 @@ import org.gradle.api.Project
 
 internal fun Project.configureBaseKotlinAndroid(commonExtension: CommonExtension<*, *, *, *>) {
     commonExtension.apply {
-        compileSdk = AndroidConfig.COMPILE_SDK
+        compileSdk = Config.Android.COMPILE_SDK
 
         defaultConfig {
-            minSdk = AndroidConfig.MIN_SDK
+            minSdk = Config.Android.MIN_SDK
         }
 
         compileOptions {
