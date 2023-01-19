@@ -33,8 +33,8 @@ allprojects {
             // ktlint should be before licenseHeaderFile
             ktlint(libs.versions.ktlint.get()).userData(
                 mapOf(
-                    "ktlint_code_style" to "android"
-                )
+                    "ktlint_code_style" to "android",
+                ),
             )
             licenseHeaderFile(rootProject.file("spotless/copyright.kt.txt"))
         }
@@ -44,8 +44,8 @@ allprojects {
             // ktlint should be before licenseHeaderFile
             ktlint(libs.versions.ktlint.get()).userData(
                 mapOf(
-                    "ktlint_code_style" to "android"
-                )
+                    "ktlint_code_style" to "android",
+                ),
             )
             // Look for the first line that starts with a word character (not a comment)
             licenseHeaderFile(rootProject.file("spotless/copyright.kts.txt"), "(^\\w)")
