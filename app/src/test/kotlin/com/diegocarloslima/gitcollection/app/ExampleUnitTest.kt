@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection
+package com.diegocarloslima.gitcollection.app
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
