@@ -16,27 +16,28 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.buildlogic
-
-import com.android.build.api.dsl.CommonExtension
+import com.diegocarloslima.gitcollection.buildlogic.implementation
+import com.diegocarloslima.gitcollection.buildlogic.kapt
+import com.diegocarloslima.gitcollection.buildlogic.kaptAndroidTest
+import com.diegocarloslima.gitcollection.buildlogic.libs
+import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-internal fun Project.configureAndroidCompose(commonExtension: CommonExtension<*, *, *, *>) {
-    commonExtension.apply {
-        buildFeatures {
-            compose = true
-        }
+class AndroidHiltConventionPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            with(pluginManager) {
+                apply("dagger.hilt.android.plugin")
+                // KAPT must go last to avoid build warnings
+                apply("org.jetbrains.kotlin.kapt")
+            }
 
-        composeOptions {
-            kotlinCompilerExtensionVersion =
-                libs.findVersion("androidxComposeCompiler").get().toString()
-        }
-
-        dependencies {
-            val bom = libs.findLibrary("androidx-compose-bom").get()
-            implementation(platform(bom))
-            androidTestImplementation(platform(bom))
+            dependencies {
+                implementation(libs.findLibrary("hilt.android").get())
+                kapt(libs.findLibrary("hilt.compiler").get())
+                kaptAndroidTest(libs.findLibrary("hilt.compiler").get())
+            }
         }
     }
 }

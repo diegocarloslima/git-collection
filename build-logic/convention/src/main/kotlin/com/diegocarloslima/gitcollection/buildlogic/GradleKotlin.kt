@@ -33,3 +33,6 @@ internal fun DependencyHandler.implementation(dependencyNotation: Any): Dependen
 
 fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
     add("testImplementation", dependencyNotation)
+
+fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
+    add("kapt", dependencyNotation)

@@ -17,15 +17,31 @@
  */
 
 import com.android.build.api.dsl.CommonExtension
-import com.diegocarloslima.gitcollection.buildlogic.configureAndroidCompose
+import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
+import com.diegocarloslima.gitcollection.buildlogic.implementation
+import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 class AndroidComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             extensions.configure<CommonExtension<*, *, *, *>>("android") {
-                configureAndroidCompose(this)
+                buildFeatures {
+                    compose = true
+                }
+
+                composeOptions {
+                    kotlinCompilerExtensionVersion =
+                        libs.findVersion("androidxComposeCompiler").get().toString()
+                }
+
+                dependencies {
+                    val bom = libs.findLibrary("androidx-compose-bom").get()
+                    implementation(platform(bom))
+                    androidTestImplementation(platform(bom))
+                }
             }
         }
     }

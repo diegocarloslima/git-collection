@@ -46,5 +46,9 @@ gradlePlugin {
             id = "gitcollection.android.compose"
             implementationClass = "AndroidComposeConventionPlugin"
         }
+        register("androidHilt") {
+            id = "gitcollection.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }
