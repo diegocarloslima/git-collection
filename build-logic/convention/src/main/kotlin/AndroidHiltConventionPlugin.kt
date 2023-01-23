@@ -16,6 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import com.diegocarloslima.gitcollection.buildlogic.getLibrary
 import com.diegocarloslima.gitcollection.buildlogic.implementation
 import com.diegocarloslima.gitcollection.buildlogic.kapt
 import com.diegocarloslima.gitcollection.buildlogic.kaptAndroidTest
@@ -34,9 +35,9 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                implementation(libs.findLibrary("hilt.android").get())
-                kapt(libs.findLibrary("hilt.compiler").get())
-                kaptAndroidTest(libs.findLibrary("hilt.compiler").get())
+                implementation(libs.getLibrary("hilt.android"))
+                kapt(libs.getLibrary("hilt.compiler"))
+                kaptAndroidTest(libs.getLibrary("hilt.compiler"))
             }
         }
     }

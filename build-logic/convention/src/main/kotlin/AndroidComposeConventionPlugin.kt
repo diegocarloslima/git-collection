@@ -18,6 +18,8 @@
 
 import com.android.build.api.dsl.CommonExtension
 import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
+import com.diegocarloslima.gitcollection.buildlogic.getLibrary
+import com.diegocarloslima.gitcollection.buildlogic.getVersion
 import com.diegocarloslima.gitcollection.buildlogic.implementation
 import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
@@ -34,11 +36,11 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
 
                 composeOptions {
                     kotlinCompilerExtensionVersion =
-                        libs.findVersion("androidxComposeCompiler").get().toString()
+                        libs.getVersion("androidxComposeCompiler").toString()
                 }
 
                 dependencies {
-                    val bom = libs.findLibrary("androidx-compose-bom").get()
+                    val bom = libs.getLibrary("androidx-compose-bom")
                     implementation(platform(bom))
                     androidTestImplementation(platform(bom))
                 }
