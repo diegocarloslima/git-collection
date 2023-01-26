@@ -57,6 +57,15 @@ allprojects {
             targetExclude(".idea/**/*.xml")
             // Look for the first XML tag that isn't a comment (<!--) or the xml declaration (<?xml)
             licenseHeaderFile(rootProject.file("spotless/copyright.xml.txt"), "(<[^!?])")
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+        format("markdown") {
+            target("**/*.md")
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
         }
     }
 }
