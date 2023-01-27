@@ -58,7 +58,7 @@ jobs:
         run: ./gradlew assemble --stacktrace
 
       - name: Run unit tests
-          run: ./gradlew testDebug --stacktrace
+        run: ./gradlew testDebug --stacktrace
 
       - name: Upload APK build outputs
         uses: actions/upload-artifact@v3
