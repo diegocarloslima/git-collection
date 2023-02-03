@@ -17,6 +17,7 @@
  */
 
 import com.android.build.gradle.LibraryExtension
+import com.diegocarloslima.gitcollection.buildlogic.Config
 import com.diegocarloslima.gitcollection.buildlogic.configureBaseKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -32,6 +33,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureBaseKotlinAndroid(this)
+
+                defaultConfig {
+                    targetSdk = Config.Android.TARGET_SDK
+                }
             }
 
 //            dependencies {
