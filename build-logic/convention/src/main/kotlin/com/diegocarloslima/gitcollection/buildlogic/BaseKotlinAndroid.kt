@@ -19,7 +19,6 @@
 package com.diegocarloslima.gitcollection.buildlogic
 
 import com.android.build.api.dsl.CommonExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 
 internal fun Project.configureBaseKotlinAndroid(commonExtension: CommonExtension<*, *, *, *>) {
@@ -31,12 +30,12 @@ internal fun Project.configureBaseKotlinAndroid(commonExtension: CommonExtension
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = Config.Java.VERSION
+            targetCompatibility = Config.Java.VERSION
         }
 
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            jvmTarget = Config.Java.VERSION.toString()
         }
     }
 }
