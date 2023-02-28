@@ -4,6 +4,7 @@ androidxActivity = "1.6.1"
 androidxComposeBom = "2023.01.00"
 androidxComposeCompiler = "1.4.2"
 androidxCore = "1.9.0"
+androidxCoreSplashscreen = "1.0.0"
 androidxEspresso = "3.5.1"
 androidxTestExt = "1.1.5"
 hilt = "2.45"
@@ -21,6 +22,7 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 androidx-test-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
