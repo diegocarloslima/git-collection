@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.diegocarloslima.gitcollection.app.ui.theme.GitCollectionTheme
 import com.diegocarloslima.gitcollection.core.ui.TestCoreUiGreeting
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             GitCollectionTheme {
@@ -46,6 +48,9 @@ class MainActivity : ComponentActivity() {
                     TestCoreUiGreeting("Android")
                 }
             }
+        }
+        splashScreen.setKeepOnScreenCondition {
+            true
         }
     }
 }
