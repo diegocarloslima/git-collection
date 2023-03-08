@@ -49,9 +49,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        splashScreen.setKeepOnScreenCondition {
-            true
-        }
+//        splashScreen.setKeepOnScreenCondition {
+//            true
+//        }
     }
 }
 

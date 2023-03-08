@@ -16,24 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.core.preferences
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+data class ThemePreferences(
+    val theme: Theme,
+    val useDynamicColor: Boolean,
+)
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":core:ui")
+enum class Theme {
+    SYSTEM_DEFAULT,
+    LIGHT,
+    DARK,
+}
