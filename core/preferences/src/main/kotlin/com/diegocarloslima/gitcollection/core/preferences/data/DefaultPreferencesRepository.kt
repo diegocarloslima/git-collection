@@ -16,18 +16,23 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.android.hilt")
-}
+package com.diegocarloslima.gitcollection.core.preferences.data
 
-android {
-    namespace = "com.google.samples.apps.nowinandroid.core.preferences"
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class DefaultPreferencesRepository @Inject constructor(
+    private val preferencesDataSource: PreferencesDataSource,
+) : PreferencesRepository {
+
+    override val preferences: Flow<Preferences>
+        get() = preferencesDataSource.preferences
+
+    override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {
+        preferencesDataSource.setUseDynamicColor(useDynamicColor)
     }
-}
 
-dependencies {
-    implementation(libs.kotlinx.coroutines.android)
+    override suspend fun setTheme(theme: ThemePreference) {
+        preferencesDataSource.setTheme(theme)
+    }
 }
