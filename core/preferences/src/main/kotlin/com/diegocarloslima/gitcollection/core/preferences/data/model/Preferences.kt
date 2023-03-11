@@ -16,23 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data
+package com.diegocarloslima.gitcollection.core.preferences.data.model
 
-import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-
-class DefaultPreferencesRepository @Inject constructor(
-    private val preferencesDataSource: PreferencesDataSource,
-) : PreferencesRepository {
-
-    override val preferences: Flow<Preferences>
-        get() = preferencesDataSource.preferences
-
-    override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {
-        preferencesDataSource.setUseDynamicColor(useDynamicColor)
-    }
-
-    override suspend fun setTheme(theme: ThemePreference) {
-        preferencesDataSource.setTheme(theme)
-    }
-}
+data class Preferences(
+    val useDynamicColor: Boolean,
+    val theme: ThemePreference,
+)

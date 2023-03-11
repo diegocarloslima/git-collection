@@ -18,6 +18,8 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.data
 
+import com.diegocarloslima.gitcollection.core.preferences.data.model.Preferences
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
 
 interface PreferencesDataSource {

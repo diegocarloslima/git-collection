@@ -16,19 +16,6 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.android.hilt")
-}
+package com.diegocarloslima.gitcollection.core.preferences.data.datastore
 
-android {
-    namespace = "com.google.samples.apps.nowinandroid.core.preferences"
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-}
-
-dependencies {
-    implementation(libs.androidx.dataStore)
-    implementation(libs.kotlinx.coroutines.android)
-}
+class PreferencesDataSourceDataStore

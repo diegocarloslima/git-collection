@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data
+package com.diegocarloslima.gitcollection.core.preferences.data.model
 
 enum class ThemePreference {
     SYSTEM_DEFAULT,
