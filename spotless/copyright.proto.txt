@@ -16,14 +16,3 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-syntax = "proto3";
-
-option java_package = "com.diegocarloslima.gitcollection.core.preferences.data.datastore";
-option java_multiple_files = true;
-
-enum ThemePreferenceProto {
-  UNSPECIFIED = 0;
-  SYSTEM_DEFAULT = 1;
-  LIGHT = 2;
-  DARK = 3;
-}

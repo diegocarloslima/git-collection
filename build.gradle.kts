@@ -52,14 +52,22 @@ allprojects {
                 ),
             )
             // Look for the first line that starts with a word character (not a comment)
-            licenseHeaderFile(rootProject.file("spotless/copyright.kts.txt"), "(^\\w)")
+            licenseHeaderFile(rootProject.file("spotless/copyright.kts.txt"), "^\\w")
+        }
+        format("proto") {
+            target("**/*.proto")
+            targetExclude("**/build/**/*.proto")
+            licenseHeaderFile(rootProject.file("spotless/copyright.proto.txt"), "syntax")
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
         }
         format("xml") {
             target("**/*.xml")
             targetExclude("**/build/**/*.xml")
             targetExclude(".idea/**/*.xml")
             // Look for the first XML tag that isn't a comment (<!--) or the xml declaration (<?xml)
-            licenseHeaderFile(rootProject.file("spotless/copyright.xml.txt"), "(<[^!?])")
+            licenseHeaderFile(rootProject.file("spotless/copyright.xml.txt"), "<[^!?]")
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
