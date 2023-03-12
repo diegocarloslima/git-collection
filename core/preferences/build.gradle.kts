@@ -19,6 +19,7 @@
 plugins {
     id("gitcollection.android.library")
     id("gitcollection.android.hilt")
+    id("gitcollection.android.datastore")
 }
 
 android {
@@ -29,6 +30,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.dataStore)
     implementation(libs.kotlinx.coroutines.android)
 }

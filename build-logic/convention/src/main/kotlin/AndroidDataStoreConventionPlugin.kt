@@ -16,34 +16,45 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.android.build.api.dsl.CommonExtension
-import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
 import com.diegocarloslima.gitcollection.buildlogic.getLibrary
-import com.diegocarloslima.gitcollection.buildlogic.getVersion
 import com.diegocarloslima.gitcollection.buildlogic.implementation
 import com.diegocarloslima.gitcollection.buildlogic.libs
+import com.google.protobuf.gradle.ProtobufExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
-class AndroidComposeConventionPlugin : Plugin<Project> {
+class AndroidDataStoreConventionPlugin : Plugin<Project> {
+
     override fun apply(target: Project) {
         with(target) {
-            extensions.configure<CommonExtension<*, *, *, *>>("android") {
-                buildFeatures {
-                    compose = true
+            with(pluginManager) {
+                apply("com.google.protobuf")
+            }
+
+            extensions.configure<ProtobufExtension> {
+                protoc {
+                    artifact = libs.getLibrary("protobuf.protoc").get().toString()
                 }
 
-                composeOptions {
-                    kotlinCompilerExtensionVersion =
-                        libs.getVersion("androidxComposeCompiler").toString()
+                generateProtoTasks {
+                    all().forEach { task ->
+                        task.builtins {
+                            register("java") {
+                                option("lite")
+                            }
+                            register("kotlin") {
+                                option("lite")
+                            }
+                        }
+                    }
                 }
+            }
 
-                dependencies {
-                    val bom = libs.getLibrary("androidx.compose.bom")
-                    implementation(platform(bom))
-                    androidTestImplementation(platform(bom))
-                }
+            dependencies {
+                implementation(libs.getLibrary("androidx.datastore"))
+                implementation(libs.getLibrary("protobuf.kotlin.lite"))
             }
         }
     }

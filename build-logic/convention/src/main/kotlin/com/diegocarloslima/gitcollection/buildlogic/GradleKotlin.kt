@@ -44,8 +44,8 @@ internal fun VersionCatalog.getPlugin(alias: String): Provider<PluginDependency>
 internal fun DependencyHandler.implementation(dependencyNotation: Any): Dependency? =
     add("implementation", dependencyNotation)
 
-fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
+internal fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
     add("testImplementation", dependencyNotation)
 
-fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
+internal fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
     add("kapt", dependencyNotation)

@@ -18,4 +18,25 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.data.datastore
 
-class PreferencesDataSourceDataStore
+import androidx.datastore.core.DataStore
+import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesDataSource
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class PreferencesDataSourceDataStore @Inject constructor(
+    private val dataStore: DataStore<AppPreferencesProto>,
+) : PreferencesDataSource {
+
+    override val preferences: Flow<AppPreferences>
+        get() = TODO("Not yet implemented")
+
+    override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setTheme(theme: ThemePreference) {
+        TODO("Not yet implemented")
+    }
+}

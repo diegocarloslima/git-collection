@@ -18,13 +18,13 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.data
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.Preferences
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
 
 interface PreferencesRepository {
 
-    val preferences: Flow<Preferences>
+    val preferences: Flow<AppPreferences>
 
     suspend fun setUseDynamicColor(useDynamicColor: Boolean)
 

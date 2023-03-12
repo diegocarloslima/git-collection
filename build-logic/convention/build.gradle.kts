@@ -30,6 +30,7 @@ java {
 dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.protobuf.gradlePlugin)
 }
 
 gradlePlugin {
@@ -45,6 +46,10 @@ gradlePlugin {
         register("androidCompose") {
             id = "gitcollection.android.compose"
             implementationClass = "AndroidComposeConventionPlugin"
+        }
+        register("androidDatastore") {
+            id = "gitcollection.android.datastore"
+            implementationClass = "AndroidDataStoreConventionPlugin"
         }
         register("androidHilt") {
             id = "gitcollection.android.hilt"
