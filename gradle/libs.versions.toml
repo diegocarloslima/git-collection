@@ -15,7 +15,7 @@ kotlinxCoroutines = "1.6.4"
 ktlint = "0.48.2"
 protobuf = "3.22.2"
 protobufGradlePlugin = "0.9.1"
-spotless = "6.16.0"
+spotless = "6.17.0"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
