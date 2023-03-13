@@ -18,12 +18,12 @@
 
 syntax = "proto3";
 
+import "com/diegocarloslima/gitcollection/core/preferences/data/datastore/theme_preference_proto.proto";
+
 option java_package = "com.diegocarloslima.gitcollection.core.preferences.data.datastore";
 option java_multiple_files = true;
 
-enum ThemePreferenceProto {
-  UNSPECIFIED = 0;
-  SYSTEM_DEFAULT = 1;
-  LIGHT = 2;
-  DARK = 3;
+message AppPreferencesProto {
+  bool use_dynamic_color = 1;
+  ThemePreferenceProto theme_preference = 2;
 }
