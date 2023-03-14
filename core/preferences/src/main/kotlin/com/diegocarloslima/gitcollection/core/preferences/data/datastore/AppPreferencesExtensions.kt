@@ -18,14 +18,10 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.data.datastore
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 
-internal fun ThemePreferenceProto.mapToThemePreference(): ThemePreference =
-    when (this) {
-        ThemePreferenceProto.UNRECOGNIZED,
-        ThemePreferenceProto.SYSTEM_DEFAULT,
-        -> ThemePreference.SYSTEM_DEFAULT
-
-        ThemePreferenceProto.LIGHT -> ThemePreference.LIGHT
-        ThemePreferenceProto.DARK -> ThemePreference.DARK
-    }
+internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
+    AppPreferences(
+        this.useDynamicColor,
+        this.theme.mapToThemePreference(),
+    )

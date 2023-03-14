@@ -23,20 +23,28 @@ import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesDataSo
 import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class PreferencesDataSourceDataStore @Inject constructor(
     private val dataStore: DataStore<AppPreferencesProto>,
 ) : PreferencesDataSource {
 
-    override val preferences: Flow<AppPreferences>
-        get() = TODO("Not yet implemented")
+    override val preferences: Flow<AppPreferences> = dataStore.data.map { it.mapToAppPreferences() }
 
     override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {
-        TODO("Not yet implemented")
+        updatePreferences {
+            this.useDynamicColor = useDynamicColor
+        }
     }
 
     override suspend fun setTheme(theme: ThemePreference) {
-        TODO("Not yet implemented")
+        updatePreferences {
+            this.theme = theme.mapToThemePreferenceProto()
+        }
+    }
+
+    private suspend fun updatePreferences(block: AppPreferencesProtoKt.Dsl.() -> Unit) {
+        dataStore.updateData { it.copy(block) }
     }
 }
