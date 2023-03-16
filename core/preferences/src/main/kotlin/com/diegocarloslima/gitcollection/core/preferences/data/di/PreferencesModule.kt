@@ -22,8 +22,13 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
+import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesDataSource
+import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
+import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepositoryDefault
 import com.diegocarloslima.gitcollection.core.preferences.data.datastore.AppPreferencesProto
 import com.diegocarloslima.gitcollection.core.preferences.data.datastore.AppPreferencesSerializer
+import com.diegocarloslima.gitcollection.core.preferences.data.datastore.PreferencesDataSourceDataStore
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,17 +38,29 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class PreferencesModule {
+interface PreferencesModule {
 
-    @Provides
-    @Singleton
-    fun providesAppPreferencesDataStore(
-        @ApplicationContext context: Context,
-        appPreferencesSerializer: AppPreferencesSerializer,
-    ): DataStore<AppPreferencesProto> =
-        DataStoreFactory.create(
-            serializer = appPreferencesSerializer,
-        ) {
-            context.dataStoreFile("app_preferences.pb")
-        }
+    @Binds
+    fun bindsPreferencesRepository(
+        preferencesRepositoryDefault: PreferencesRepositoryDefault,
+    ): PreferencesRepository
+
+    @Binds
+    fun bindsPreferencesDataSource(
+        preferencesDataSourceDataStore: PreferencesDataSourceDataStore,
+    ): PreferencesDataSource
+
+    companion object {
+        @Provides
+        @Singleton
+        fun providesAppPreferencesDataStore(
+            @ApplicationContext context: Context,
+            appPreferencesSerializer: AppPreferencesSerializer,
+        ): DataStore<AppPreferencesProto> =
+            DataStoreFactory.create(
+                serializer = appPreferencesSerializer,
+            ) {
+                context.dataStoreFile("app_preferences.pb")
+            }
+    }
 }

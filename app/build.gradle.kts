@@ -48,6 +48,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:preferences"))
     implementation(project(":core:ui"))
 
     implementation(libs.androidx.activity.compose)
