@@ -26,7 +26,6 @@ import javax.inject.Inject
 class PreferencesRepositoryDefault @Inject constructor(
     private val preferencesDataSource: PreferencesDataSource,
 ) : PreferencesRepository {
-
     override val preferences: Flow<AppPreferences>
         get() = preferencesDataSource.preferences
 

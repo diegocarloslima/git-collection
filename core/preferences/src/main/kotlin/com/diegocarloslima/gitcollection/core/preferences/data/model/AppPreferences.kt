@@ -21,4 +21,5 @@ package com.diegocarloslima.gitcollection.core.preferences.data.model
 data class AppPreferences(
     val useDynamicColor: Boolean,
     val theme: ThemePreference,
+    val onboardingCompleted: Boolean,
 )

@@ -23,7 +23,6 @@ import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePrefer
 import kotlinx.coroutines.flow.Flow
 
 interface PreferencesRepository {
-
     val preferences: Flow<AppPreferences>
 
     suspend fun setUseDynamicColor(useDynamicColor: Boolean)

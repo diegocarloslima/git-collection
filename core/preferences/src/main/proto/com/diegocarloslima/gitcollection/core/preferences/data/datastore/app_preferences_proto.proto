@@ -26,4 +26,5 @@ option java_multiple_files = true;
 message AppPreferencesProto {
   bool use_dynamic_color = 1;
   ThemePreferenceProto theme = 2;
+  bool onboarding_completed = 3;
 }

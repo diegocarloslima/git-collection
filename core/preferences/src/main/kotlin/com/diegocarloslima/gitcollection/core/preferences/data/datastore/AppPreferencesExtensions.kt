@@ -24,4 +24,5 @@ internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
     AppPreferences(
         this.useDynamicColor,
         this.theme.mapToThemePreference(),
+        this.onboardingCompleted,
     )

@@ -29,7 +29,6 @@ import javax.inject.Inject
 class PreferencesDataSourceDataStore @Inject constructor(
     private val dataStore: DataStore<AppPreferencesProto>,
 ) : PreferencesDataSource {
-
     override val preferences: Flow<AppPreferences> = dataStore.data.map { it.mapToAppPreferences() }
 
     override suspend fun setUseDynamicColor(useDynamicColor: Boolean) {

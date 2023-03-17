@@ -18,18 +18,22 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.data.datastore
 
+import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
+import com.google.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
 
 class AppPreferencesSerializer @Inject constructor() : Serializer<AppPreferencesProto> {
-
     override val defaultValue: AppPreferencesProto = AppPreferencesProto.getDefaultInstance()
 
-    override suspend fun readFrom(input: InputStream): AppPreferencesProto {
-        return AppPreferencesProto.parseFrom(input)
-    }
+    override suspend fun readFrom(input: InputStream): AppPreferencesProto =
+        try {
+            AppPreferencesProto.parseFrom(input)
+        } catch (exception: InvalidProtocolBufferException) {
+            throw CorruptionException("Cannot read proto.", exception)
+        }
 
     override suspend fun writeTo(t: AppPreferencesProto, output: OutputStream) {
         t.writeTo(output)

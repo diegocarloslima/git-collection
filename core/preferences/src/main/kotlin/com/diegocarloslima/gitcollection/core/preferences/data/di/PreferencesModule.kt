@@ -39,7 +39,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 interface PreferencesModule {
-
     @Binds
     fun bindsPreferencesRepository(
         preferencesRepositoryDefault: PreferencesRepositoryDefault,
