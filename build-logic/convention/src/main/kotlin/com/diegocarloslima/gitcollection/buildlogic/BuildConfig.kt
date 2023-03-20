@@ -20,7 +20,7 @@ package com.diegocarloslima.gitcollection.buildlogic
 
 import org.gradle.api.JavaVersion
 
-internal object Config {
+internal object BuildConfig {
 
     object Android {
         const val COMPILE_SDK = 33

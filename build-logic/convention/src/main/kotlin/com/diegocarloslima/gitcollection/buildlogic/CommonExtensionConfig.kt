@@ -21,21 +21,21 @@ package com.diegocarloslima.gitcollection.buildlogic
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 
-internal fun Project.configureBaseKotlinAndroid(commonExtension: CommonExtension<*, *, *, *>) {
+internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, *, *, *>) {
     commonExtension.apply {
-        compileSdk = Config.Android.COMPILE_SDK
+        compileSdk = BuildConfig.Android.COMPILE_SDK
 
         defaultConfig {
-            minSdk = Config.Android.MIN_SDK
+            minSdk = BuildConfig.Android.MIN_SDK
         }
 
         compileOptions {
-            sourceCompatibility = Config.Java.VERSION
-            targetCompatibility = Config.Java.VERSION
+            sourceCompatibility = BuildConfig.Java.VERSION
+            targetCompatibility = BuildConfig.Java.VERSION
         }
 
         kotlinOptions {
-            jvmTarget = Config.Java.VERSION.toString()
+            jvmTarget = BuildConfig.Java.VERSION.toString()
         }
     }
 }

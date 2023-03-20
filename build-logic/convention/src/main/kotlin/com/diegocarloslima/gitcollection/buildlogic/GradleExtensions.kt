@@ -20,6 +20,7 @@ package com.diegocarloslima.gitcollection.buildlogic
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
+import org.gradle.api.artifacts.ExternalModuleDependencyBundle
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -37,6 +38,9 @@ internal fun VersionCatalog.getVersion(alias: String): VersionConstraint =
 
 internal fun VersionCatalog.getLibrary(alias: String): Provider<MinimalExternalModuleDependency> =
     this.findLibrary(alias).get()
+
+internal fun VersionCatalog.getBundle(alias: String): Provider<ExternalModuleDependencyBundle> =
+    this.findBundle(alias).get()
 
 internal fun VersionCatalog.getPlugin(alias: String): Provider<PluginDependency> =
     this.findPlugin(alias).get()

@@ -17,8 +17,8 @@
  */
 
 import com.android.build.api.dsl.ApplicationExtension
-import com.diegocarloslima.gitcollection.buildlogic.Config
-import com.diegocarloslima.gitcollection.buildlogic.configureBaseKotlinAndroid
+import com.diegocarloslima.gitcollection.buildlogic.BuildConfig
+import com.diegocarloslima.gitcollection.buildlogic.configureCommonAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -32,10 +32,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<ApplicationExtension> {
-                configureBaseKotlinAndroid(this)
+                configureCommonAndroid(this)
 
                 defaultConfig {
-                    targetSdk = Config.Android.TARGET_SDK
+                    targetSdk = BuildConfig.Android.TARGET_SDK
                 }
 
                 packagingOptions {

@@ -17,9 +17,9 @@
  */
 
 import com.android.build.gradle.LibraryExtension
-import com.diegocarloslima.gitcollection.buildlogic.Config
+import com.diegocarloslima.gitcollection.buildlogic.BuildConfig
 import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
-import com.diegocarloslima.gitcollection.buildlogic.configureBaseKotlinAndroid
+import com.diegocarloslima.gitcollection.buildlogic.configureCommonAndroid
 import com.diegocarloslima.gitcollection.buildlogic.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -36,10 +36,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<LibraryExtension> {
-                configureBaseKotlinAndroid(this)
+                configureCommonAndroid(this)
 
                 defaultConfig {
-                    targetSdk = Config.Android.TARGET_SDK
+                    targetSdk = BuildConfig.Android.TARGET_SDK
                 }
             }
 
