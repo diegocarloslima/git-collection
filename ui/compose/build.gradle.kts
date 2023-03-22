@@ -22,7 +22,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.core.ui"
+    namespace = "com.google.samples.apps.nowinandroid.ui.compose"
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,4 +30,5 @@ android {
 
 dependencies {
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.core.ktx)
 }

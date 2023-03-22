@@ -33,11 +33,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.diegocarloslima.gitcollection.app.ui.theme.GitCollectionTheme
-import com.diegocarloslima.gitcollection.core.ui.TestCoreUiGreeting
+import com.diegocarloslima.gitcollection.ui.compose.TestCoreUiGreeting
+import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -48,8 +49,17 @@ class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        // Should be called before onCreate and setContent
+        installSplashScreen().setKeepOnScreenCondition {
+            viewModel.uiState.value == MainUiState.Loading
+        }
+
         super.onCreate(savedInstanceState)
+
+        // Turn off the decor fitting system windows, which allows us to handle window insets,
+        // including IME animations
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             GitCollectionTheme {
                 // A surface container using the 'background' color from the theme
@@ -57,7 +67,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    TestCoreUiGreeting("Android")
+                    TestCoreUiGreeting("Android\na\na\na\na\na\na")
                 }
             }
         }
@@ -69,13 +79,12 @@ class MainActivity : ComponentActivity() {
                 viewModel.uiState.onEach { uiState = it }.collect()
             }
         }
+    }
+}
 
-        splashScreen.setKeepOnScreenCondition {
-            when (uiState) {
-                MainUiState.Loading -> true
-                is MainUiState.Success -> false
-            }
-        }
+@Composable
+private fun MainContent() {
+    GitCollectionTheme() {
     }
 }
 

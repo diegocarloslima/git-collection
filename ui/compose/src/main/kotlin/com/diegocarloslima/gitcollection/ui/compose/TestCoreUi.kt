@@ -16,24 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.ui.compose
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":ui:compose")
+@Composable
+fun TestCoreUiGreeting(name: String) {
+    Text(text = "UI Hello $name!")
+}

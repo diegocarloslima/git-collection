@@ -36,8 +36,8 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
 
             dependencies {
                 implementation(libs.getLibrary("hilt.android"))
-                kapt(libs.getLibrary("hilt.compiler"))
-                kaptAndroidTest(libs.getLibrary("hilt.compiler"))
+                kapt(libs.getLibrary("hilt.android.compiler"))
+                kaptAndroidTest(libs.getLibrary("hilt.android.compiler"))
             }
         }
     }

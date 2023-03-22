@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui.theme
+package com.diegocarloslima.gitcollection.ui.compose.theme
 
 import androidx.compose.ui.graphics.Color
 
