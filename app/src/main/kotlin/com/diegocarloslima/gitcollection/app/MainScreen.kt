@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.app
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -25,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.TestCoreUiGreeting
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 
@@ -33,7 +35,10 @@ internal fun MainScreen(
     mainUiState: MainUiState,
     modifier: Modifier = Modifier,
 ) {
-    GitCollectionTheme {
+    GitCollectionTheme(
+        darkTheme = darkTheme(mainUiState),
+        dynamicColor = dynamicColor(mainUiState),
+    ) {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -56,3 +61,21 @@ fun MainPreview() {
         Greeting("Android")
     }
 }
+
+@Composable
+private fun dynamicColor(mainUiState: MainUiState): Boolean =
+    when (mainUiState) {
+        MainUiState.Loading -> true
+        is MainUiState.Success -> mainUiState.appPreferences.useDynamicColor
+    }
+
+@Composable
+private fun darkTheme(mainUiState: MainUiState): Boolean =
+    when (mainUiState) {
+        MainUiState.Loading -> isSystemInDarkTheme()
+        is MainUiState.Success -> when (mainUiState.appPreferences.theme) {
+            ThemePreference.SYSTEM_DEFAULT -> isSystemInDarkTheme()
+            ThemePreference.DARK -> true
+            ThemePreference.LIGHT -> false
+        }
+    }
