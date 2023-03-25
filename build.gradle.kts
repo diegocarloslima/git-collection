@@ -51,13 +51,14 @@ allprojects {
                     "ktlint_code_style" to "android",
                 ),
             )
-            // Look for the first line that starts with a word character (not a comment)
-            licenseHeaderFile(rootProject.file("spotless/copyright.kts.txt"), "^\\w")
+            // Look for the first line that starts with a word or a '@' character (not a comment)
+            licenseHeaderFile(rootProject.file("spotless/copyright.kts.txt"), """^[\w@]""")
         }
         format("proto") {
             target("**/*.proto")
             targetExclude("**/build/**/*.proto")
-            licenseHeaderFile(rootProject.file("spotless/copyright.proto.txt"), "syntax")
+            // Look for the line with syntax definition
+            licenseHeaderFile(rootProject.file("spotless/copyright.proto.txt"), """syntax""")
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
@@ -67,7 +68,7 @@ allprojects {
             targetExclude("**/build/**/*.xml")
             targetExclude(".idea/**/*.xml")
             // Look for the first XML tag that isn't a comment (<!--) or the xml declaration (<?xml)
-            licenseHeaderFile(rootProject.file("spotless/copyright.xml.txt"), "<[^!?]")
+            licenseHeaderFile(rootProject.file("spotless/copyright.xml.txt"), """<[^!?]""")
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
