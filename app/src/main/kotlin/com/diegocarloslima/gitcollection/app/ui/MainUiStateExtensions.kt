@@ -16,18 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.model
+package com.diegocarloslima.gitcollection.app.ui
 
-data class AppPreferences(
-    val useDynamicColor: Boolean,
-    val theme: ThemePreference,
-    val onboardingCompleted: Boolean,
-) {
-    companion object {
-        val DEFAULT = AppPreferences(
-            true,
-            ThemePreference.SYSTEM_DEFAULT,
-            false,
-        )
+import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
+import com.diegocarloslima.gitcollection.app.ui.MainUiState.Success
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+
+internal val MainUiState.useDynamicColor: Boolean
+    get() = when (this) {
+        Loading -> AppPreferences.DEFAULT.useDynamicColor
+        is Success -> this.appPreferences.useDynamicColor
     }
-}
+
+internal val MainUiState.theme: ThemePreference
+    get() = when (this) {
+        Loading -> AppPreferences.DEFAULT.theme
+        is Success -> this.appPreferences.theme
+    }

@@ -26,3 +26,10 @@ internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
         this.theme.mapToThemePreference(),
         this.onboardingCompleted,
     )
+
+internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
+    AppPreferencesProto.newBuilder()
+        .setUseDynamicColor(this.useDynamicColor)
+        .setTheme(this.theme.mapToThemePreferenceProto())
+        .setOnboardingCompleted(this.onboardingCompleted)
+        .build()

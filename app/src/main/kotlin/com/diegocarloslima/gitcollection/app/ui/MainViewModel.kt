@@ -16,10 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app
+package com.diegocarloslima.gitcollection.app.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
+import com.diegocarloslima.gitcollection.app.ui.MainUiState.Success
 import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -29,14 +31,14 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+internal class MainViewModel @Inject constructor(
     preferencesRepository: PreferencesRepository,
 ) : ViewModel() {
     val uiState: StateFlow<MainUiState> = preferencesRepository.preferences.map {
-        MainUiState.Success(it)
+        Success(it)
     }.stateIn(
         scope = viewModelScope,
-        initialValue = MainUiState.Loading,
+        initialValue = Loading,
         started = SharingStarted.WhileSubscribed(5_000),
     )
 }

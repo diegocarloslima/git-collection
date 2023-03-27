@@ -16,11 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app
+package com.diegocarloslima.gitcollection.app.ui
 
 import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 
-sealed interface MainUiState {
+internal sealed interface MainUiState {
     object Loading : MainUiState
     data class Success(val appPreferences: AppPreferences) : MainUiState
 }

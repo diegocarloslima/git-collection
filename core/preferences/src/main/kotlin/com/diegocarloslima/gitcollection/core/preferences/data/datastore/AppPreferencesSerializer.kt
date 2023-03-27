@@ -20,13 +20,15 @@ package com.diegocarloslima.gitcollection.core.preferences.data.datastore
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 import com.google.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream
 import javax.inject.Inject
 
 class AppPreferencesSerializer @Inject constructor() : Serializer<AppPreferencesProto> {
-    override val defaultValue: AppPreferencesProto = AppPreferencesProto.getDefaultInstance()
+    override val defaultValue: AppPreferencesProto =
+        AppPreferences.DEFAULT.mapToAppPreferencesProto()
 
     override suspend fun readFrom(input: InputStream): AppPreferencesProto =
         try {
