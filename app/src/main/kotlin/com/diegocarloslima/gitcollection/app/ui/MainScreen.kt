@@ -24,21 +24,29 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.TestCoreUiGreeting
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 internal fun MainScreen(
     mainUiState: MainUiState,
-    modifier: Modifier = Modifier,
 ) {
+    val systemUiController = rememberSystemUiController()
     val darkTheme = when (mainUiState.theme) {
         ThemePreference.SYSTEM_DEFAULT -> isSystemInDarkTheme()
         ThemePreference.DARK -> true
         ThemePreference.LIGHT -> false
+    }
+
+    // Update the dark content of the system bars to match the theme
+    DisposableEffect(systemUiController, darkTheme) {
+        systemUiController.systemBarsDarkContentEnabled = !darkTheme
+        onDispose {}
     }
 
     GitCollectionTheme(
