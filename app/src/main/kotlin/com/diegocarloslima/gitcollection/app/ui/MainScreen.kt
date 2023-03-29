@@ -19,16 +19,21 @@
 package com.diegocarloslima.gitcollection.app.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import com.diegocarloslima.gitcollection.ui.compose.TestCoreUiGreeting
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -53,25 +58,45 @@ internal fun MainScreen(
         darkTheme = darkTheme,
         dynamicColor = mainUiState.useDynamicColor,
     ) {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background,
-        ) {
-            TestCoreUiGreeting("Android\na\na\na\na\na\na")
-        }
+        MainContent()
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+private fun MainContent() {
+    // A surface container using the 'background' color from the theme
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
+    ) {
+        Scaffold(
+            topBar = {
+                TopAppBar(title = {
+                    Text("TopBarTitle")
+                })
+            },
+            bottomBar = {
+              BottomAppBar {
+                  Text("BottomAppBar")
+              }
+            },
+        ) { paddingValues ->
+            Row(
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+                Text("Hello World!")
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun MainPreview() {
     GitCollectionTheme {
-        Greeting("Android")
+        MainContent()
     }
 }
