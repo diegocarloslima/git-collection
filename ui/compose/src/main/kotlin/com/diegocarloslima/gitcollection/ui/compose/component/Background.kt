@@ -16,12 +16,25 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose
+package com.diegocarloslima.gitcollection.ui.compose.component
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
-fun TestCoreUiGreeting(name: String) {
-    Text(text = "UI Hello $name!")
+fun BackgroundComponent(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.background,
+    content: @Composable () -> Unit,
+) {
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = color,
+    ) {
+        content()
+    }
 }
