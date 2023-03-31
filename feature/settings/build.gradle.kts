@@ -16,25 +16,19 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+plugins {
+    id("gitcollection.android.library")
+    id("gitcollection.android.compose")
+}
+
+android {
+    namespace = "com.google.samples.apps.nowinandroid.feature.settings"
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+dependencies {
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.core.ktx)
 }
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:settings")
-include(":ui:compose")

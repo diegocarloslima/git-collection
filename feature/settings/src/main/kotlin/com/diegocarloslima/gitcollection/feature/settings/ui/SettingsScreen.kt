@@ -16,25 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.feature.settings.ui
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.compose.runtime.Composable
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:settings")
-include(":ui:compose")
+@Composable
+fun SettingsScreen() {
+}

@@ -41,7 +41,7 @@ fun TopAppBarComponent(
     actionIconContentDescription: String?,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.smallTopAppBarColors(),
-    onActionClick: () -> Unit = {}
+    onActionClick: () -> Unit = {},
 ) {
     TopAppBar(
         title = { Text(text = stringResource(id = titleRes)) },
@@ -51,7 +51,7 @@ fun TopAppBarComponent(
                 Icon(
                     imageVector = actionImageVector,
                     contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onSurface
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
             }
         },

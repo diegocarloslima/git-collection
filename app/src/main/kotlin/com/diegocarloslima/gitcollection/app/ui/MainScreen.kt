@@ -74,7 +74,7 @@ private fun MainScreenInternal() {
                     titleRes = R.string.app_name,
                     actionImageVector = GitCollectionIcon.Settings,
                     actionIconContentDescription = stringResource(id = R.string.settings),
-                    onActionClick = {}
+                    onActionClick = {},
                 )
             },
             bottomBar = {
@@ -84,7 +84,7 @@ private fun MainScreenInternal() {
             Row(
                 Modifier
                     .fillMaxSize()
-                    .padding(paddingValues)
+                    .padding(paddingValues),
             ) {
                 MainContent()
             }
