@@ -18,8 +18,63 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.font.FontWeight
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SettingsScreen() {
+    LazyColumn {
+        stickyHeader {
+            SettingsCategory(title = "Theming")
+        }
+        item {
+            SettingsItem(text = "Current theme mode", summary = "Default")
+        }
+        item {
+            SettingsItem(text = "Use dynamic colors")
+        }
+        stickyHeader {
+            SettingsCategory(title = "Git Collection")
+        }
+        item {
+            SettingsItem(text = "About")
+        }
+    }
+}
+
+@Composable
+fun SettingsCategory(
+    title: String,
+) {
+    Text(
+        text = title,
+        color = MaterialTheme.colorScheme.primary,
+        fontWeight = FontWeight.Bold,
+        style = MaterialTheme.typography.titleMedium,
+    )
+}
+
+@Composable
+fun SettingsItem(
+    text: String,
+    summary: String? = null,
+) {
+    Column {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleMedium,
+        )
+        summary?.let {
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+    }
 }

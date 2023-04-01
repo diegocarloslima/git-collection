@@ -49,6 +49,7 @@ android {
 
 dependencies {
     implementation(project(":core:preferences"))
+    implementation(project(":feature:settings"))
     implementation(project(":ui:compose"))
 
     implementation(libs.accompanist.systemuicontroller)
