@@ -18,6 +18,18 @@
   -->
 
 <resources>
+    <!-- App strings -->
     <string name="app_name">Git Collection</string>
-    <string name="settings">Settings</string>
+
+    <!-- Settings strings -->
+    <string name="settings_name">Settings</string>
+    <string name="settings_theme_category_title">Theming</string>
+    <string name="settings_theme_title">Select theme</string>
+    <string name="settings_theme_default">System default</string>
+    <string name="settings_theme_default_summary">Turn on dark theme when your device\'s dark theme or Battery Saver is on</string>
+    <string name="settings_theme_light">Light theme</string>
+    <string name="settings_theme_dark">Dark theme</string>
+    <string name="settings_dynamic_colors_title">Dynamic colors</string>
+    <string name="settings_dynamic_colors_summary">Personalize the app color scheme from your wallpaper</string>
+    <string name="settings_about_title">About</string>
 </resources>

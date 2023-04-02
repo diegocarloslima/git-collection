@@ -31,7 +31,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.diegocarloslima.gitcollection.R
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsScreen
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
@@ -39,6 +38,7 @@ import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.icon.GitCollectionIcon
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @Composable
 internal fun MainScreen(
@@ -72,9 +72,9 @@ private fun MainScreenInternal() {
         Scaffold(
             topBar = {
                 TopAppBarComponent(
-                    titleRes = R.string.app_name,
+                    titleRes = stringsR.string.app_name,
                     actionImageVector = GitCollectionIcon.Settings,
-                    actionIconContentDescription = stringResource(id = R.string.settings),
+                    actionIconContentDescription = stringResource(id = stringsR.string.settings_name),
                     onActionClick = {},
                 )
             },

@@ -23,7 +23,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.core.preferences"
+    namespace = "com.diegocarloslima.gitcollection.core.preferences"
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

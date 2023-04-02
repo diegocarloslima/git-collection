@@ -22,7 +22,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.ui.compose"
+    namespace = "com.diegocarloslima.gitcollection.ui.compose"
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

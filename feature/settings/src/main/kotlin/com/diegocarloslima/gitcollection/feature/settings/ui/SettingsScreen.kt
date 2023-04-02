@@ -34,7 +34,7 @@ fun SettingsScreen() {
             SettingsCategory(title = "Theming")
         }
         item {
-            SettingsItem(text = "Current theme mode", summary = "Default")
+            SettingsItem(text = "Choose theme", summary = "Default")
         }
         item {
             SettingsItem(text = "Use dynamic colors")

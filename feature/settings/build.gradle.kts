@@ -22,13 +22,15 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.nowinandroid.feature.settings"
+    namespace = "com.diegocarloslima.gitcollection.feature.settings"
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 }
 
 dependencies {
+    implementation(project(":ui:strings"))
+
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.core.ktx)
 }
