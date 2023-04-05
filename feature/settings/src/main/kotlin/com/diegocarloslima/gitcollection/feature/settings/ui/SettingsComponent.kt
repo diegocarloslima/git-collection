@@ -41,7 +41,7 @@ private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2
 @Composable
 internal fun SettingsCategory(
     title: String,
-    divider: Boolean = false
+    divider: Boolean = false,
 ) {
     Surface(modifier = Modifier.fillMaxWidth()) {
         Text(
@@ -72,18 +72,18 @@ internal fun SettingsSwitch(
 internal fun SettingsItem(
     text: String,
     summary: String? = null,
-    action: @Composable RowScope.() -> Unit = {}
+    action: @Composable RowScope.() -> Unit = {},
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(SETTINGS_ITEM_PADDING.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp)
+        horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
     ) {
         Column(
             modifier = Modifier.weight(1F),
-            verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp)
+            verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
         ) {
             Text(
                 text = text,

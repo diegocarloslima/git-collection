@@ -30,30 +30,30 @@ fun SettingsScreen() {
     LazyColumn {
         stickyHeader {
             SettingsCategory(
-                title = stringResource(id = stringsR.string.settings_theme_category_title)
+                title = stringResource(id = stringsR.string.settings_theme_category_title),
             )
         }
         item {
             SettingsItem(
                 text = stringResource(id = stringsR.string.settings_theme_title),
-                summary = stringResource(id = stringsR.string.settings_theme_default_summary)
+                summary = stringResource(id = stringsR.string.settings_theme_default_summary),
             )
         }
         item {
             SettingsSwitch(
                 text = stringResource(id = stringsR.string.settings_dynamic_colors_title),
-                summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary)
+                summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
             )
         }
         stickyHeader {
             SettingsCategory(
                 title = stringResource(id = stringsR.string.settings_app_category_title),
-                divider = true
+                divider = true,
             )
         }
         item {
             SettingsItem(
-                text = stringResource(id = stringsR.string.settings_about_title)
+                text = stringResource(id = stringsR.string.settings_about_title),
             )
         }
         stickyHeader {
