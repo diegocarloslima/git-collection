@@ -16,25 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.android.compose")
-    id("gitcollection.android.hilt")
-}
+package com.diegocarloslima.gitcollection.feature.settings.ui
 
-android {
-    namespace = "com.diegocarloslima.gitcollection.feature.settings"
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-}
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
 
-dependencies {
-    implementation(project(":core:preferences"))
-    implementation(project(":ui:strings"))
-
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+internal sealed interface SettingsUiState {
+    object Loading : SettingsUiState
+    data class Success(val appPreferences: AppPreferences) : SettingsUiState
 }

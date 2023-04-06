@@ -22,11 +22,19 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
+
+@Composable
+internal fun SettingsRoute(
+    onBackClick: () -> Unit,
+    viewModel: SettingsViewModel = hiltViewModel(),
+) {
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SettingsScreen() {
+internal fun SettingsScreen() {
     LazyColumn {
         stickyHeader {
             SettingsCategory(

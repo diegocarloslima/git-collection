@@ -16,27 +16,25 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-@HiltViewModel
-internal class MainViewModel @Inject constructor(
-    preferencesRepository: PreferencesRepository,
+internal class SettingsViewModel @Inject constructor(
+    private val preferencesRepository: PreferencesRepository,
 ) : ViewModel() {
-    val uiState: StateFlow<MainUiState> = preferencesRepository.preferences.map {
-        MainUiState.Success(it)
+    val uiState: StateFlow<SettingsUiState> = preferencesRepository.preferences.map {
+        SettingsUiState.Success(it)
     }.stateIn(
         scope = viewModelScope,
-        initialValue = MainUiState.Loading,
+        initialValue = SettingsUiState.Loading,
         started = SharingStarted.WhileSubscribed(5_000),
     )
 }
