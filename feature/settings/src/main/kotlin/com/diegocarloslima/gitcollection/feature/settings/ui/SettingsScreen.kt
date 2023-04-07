@@ -21,8 +21,12 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @Composable
@@ -30,11 +34,18 @@ internal fun SettingsRoute(
     onBackClick: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun SettingsScreen() {
+internal fun SettingsScreen(
+    uiState: SettingsUiState,
+    supportsDynamicColor: Boolean = supportsDynamicColor(),
+    onBackClick: () -> Unit,
+    onSelectTheme: (theme: ThemePreference) -> Unit,
+    onSelectUseDynamicColor: (useDynamicColor: Boolean) -> Unit,
+) {
     LazyColumn {
         stickyHeader {
             SettingsCategory(
@@ -47,11 +58,13 @@ internal fun SettingsScreen() {
                 summary = stringResource(id = stringsR.string.settings_theme_default_summary),
             )
         }
-        item {
-            SettingsSwitch(
-                text = stringResource(id = stringsR.string.settings_dynamic_colors_title),
-                summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
-            )
+        if (supportsDynamicColor) {
+            item {
+                SettingsSwitch(
+                    text = stringResource(id = stringsR.string.settings_dynamic_colors_title),
+                    summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
+                )
+            }
         }
         stickyHeader {
             SettingsCategory(

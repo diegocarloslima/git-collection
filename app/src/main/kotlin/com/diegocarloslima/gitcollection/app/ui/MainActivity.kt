@@ -46,8 +46,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val mainUiState by viewModel.uiState.collectAsStateWithLifecycle()
-            MainScreen(mainUiState = mainUiState)
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+            MainScreen(uiState = uiState)
         }
     }
 }

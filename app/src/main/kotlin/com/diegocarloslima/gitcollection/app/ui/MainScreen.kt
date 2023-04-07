@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsScreen
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.icon.GitCollectionIcon
@@ -42,10 +41,10 @@ import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @Composable
 internal fun MainScreen(
-    mainUiState: MainUiState,
+    uiState: MainUiState,
 ) {
     val systemUiController = rememberSystemUiController()
-    val darkTheme = when (mainUiState.theme) {
+    val darkTheme = when (uiState.theme) {
         ThemePreference.SYSTEM_DEFAULT -> isSystemInDarkTheme()
         ThemePreference.DARK -> true
         ThemePreference.LIGHT -> false
@@ -59,7 +58,7 @@ internal fun MainScreen(
 
     GitCollectionTheme(
         darkTheme = darkTheme,
-        dynamicColor = mainUiState.useDynamicColor,
+        dynamicColor = uiState.useDynamicColor,
     ) {
         MainScreenInternal()
     }
@@ -96,7 +95,6 @@ private fun MainScreenInternal() {
 @Composable
 private fun MainContent() {
 //    Text("Hello World!")
-    SettingsScreen()
 }
 
 @Composable

@@ -21,10 +21,12 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class SettingsViewModel @Inject constructor(
@@ -37,4 +39,16 @@ internal class SettingsViewModel @Inject constructor(
         initialValue = SettingsUiState.Loading,
         started = SharingStarted.WhileSubscribed(5_000),
     )
+
+    fun updateTheme(theme: ThemePreference) {
+        viewModelScope.launch {
+            preferencesRepository.setTheme(theme)
+        }
+    }
+
+    fun updateUseDynamicColor(useDynamicColor: Boolean) {
+        viewModelScope.launch {
+            preferencesRepository.setUseDynamicColor(useDynamicColor)
+        }
+    }
 }
