@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.app.main.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
@@ -31,6 +31,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
@@ -40,7 +41,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @Composable
-internal fun MainScreen(
+internal fun MainContent(
     uiState: MainUiState,
 ) {
     val systemUiController = rememberSystemUiController()
@@ -60,6 +61,8 @@ internal fun MainScreen(
         darkTheme = darkTheme,
         dynamicColor = uiState.useDynamicColor,
     ) {
+        val navController = rememberNavController()
+
         MainScreenInternal()
     }
 }

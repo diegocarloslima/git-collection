@@ -16,11 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.app
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-internal sealed interface MainUiState {
-    object Loading : MainUiState
-    data class Success(val appPreferences: AppPreferences) : MainUiState
-}
+@HiltAndroidApp
+class GitCollectionApplication : Application()
