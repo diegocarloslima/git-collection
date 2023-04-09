@@ -19,26 +19,16 @@
 package com.diegocarloslima.gitcollection.app.main.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.diegocarloslima.gitcollection.app.home.ui.HOME_DESTINATION
+import com.diegocarloslima.gitcollection.app.home.ui.homeGraph
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
-import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
-import com.diegocarloslima.gitcollection.ui.compose.icon.GitCollectionIcon
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @Composable
 internal fun MainContent(
@@ -62,55 +52,16 @@ internal fun MainContent(
         dynamicColor = uiState.useDynamicColor,
     ) {
         val navController = rememberNavController()
-
-        MainScreenInternal()
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun MainScreenInternal() {
-    BackgroundComponent {
-        Scaffold(
-            topBar = {
-                TopAppBarComponent(
-                    titleRes = stringsR.string.app_name,
-                    actionImageVector = GitCollectionIcon.Settings,
-                    actionIconContentDescription = stringResource(id = stringsR.string.settings_name),
-                    onActionClick = {},
-                )
-            },
-            bottomBar = {
-                MainBottomBar()
-            },
-        ) { paddingValues ->
-            Row(
-                Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-            ) {
-                MainContent()
-            }
-        }
+        MainNavHost(navHostController = navController)
     }
 }
 
 @Composable
-private fun MainContent() {
-//    Text("Hello World!")
-}
-
-@Composable
-private fun MainBottomBar() {
-    BottomAppBar {
-        Text("BottomAppBar")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun MainPreview() {
-    GitCollectionTheme {
-        MainScreenInternal()
+private fun MainNavHost(
+    navHostController: NavHostController,
+    startDestination: String = HOME_DESTINATION,
+) {
+    NavHost(navController = navHostController, startDestination = startDestination) {
+        homeGraph()
     }
 }
