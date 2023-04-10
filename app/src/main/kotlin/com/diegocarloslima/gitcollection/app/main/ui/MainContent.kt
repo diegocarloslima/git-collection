@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.diegocarloslima.gitcollection.app.home.ui.HOME_DESTINATION
 import com.diegocarloslima.gitcollection.app.home.ui.homeGraph
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.feature.settings.ui.settingsGraph
 import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -63,5 +64,6 @@ private fun MainNavHost(
 ) {
     NavHost(navController = navHostController, startDestination = startDestination) {
         homeGraph()
+        settingsGraph()
     }
 }

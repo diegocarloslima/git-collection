@@ -18,6 +18,8 @@
 
 package com.diegocarloslima.gitcollection.app.home.ui
 
+import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
@@ -27,4 +29,11 @@ fun NavGraphBuilder.homeGraph() {
     composable(route = HOME_DESTINATION) {
         HomeRoute()
     }
+}
+
+@Composable
+internal fun HomeRoute(
+    viewModel: HomeViewModel = hiltViewModel(),
+) {
+    HomeScreen()
 }

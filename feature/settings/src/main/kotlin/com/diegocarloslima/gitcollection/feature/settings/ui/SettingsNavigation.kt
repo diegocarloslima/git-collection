@@ -16,14 +16,32 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.home.ui
+package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+
+const val SETTINGS_DESTINATION = "settings_destination"
+
+fun NavGraphBuilder.settingsGraph() {
+    composable(route = SETTINGS_DESTINATION) {
+        SettingsRoute()
+    }
+}
 
 @Composable
-internal fun HomeRoute(
-    viewModel: HomeViewModel = hiltViewModel(),
+internal fun SettingsRoute(
+    viewModel: SettingsViewModel = hiltViewModel(),
 ) {
-    HomeScreen()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    SettingsScreen(
+        uiState = uiState,
+        onBackClick = { /*TODO*/ },
+        onSelectTheme = {},
+        onSelectUseDynamicColor = {},
+    )
 }

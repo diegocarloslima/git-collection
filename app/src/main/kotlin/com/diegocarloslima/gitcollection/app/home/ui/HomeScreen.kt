@@ -28,11 +28,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.icon.GitCollectionIcon
-import com.diegocarloslima.gitcollection.ui.compose.theme.GitCollectionTheme
 import com.diegocarloslima.gitcollection.ui.strings.R.string
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,13 +67,5 @@ private fun HomeTopAppBar() {
 private fun HomeBottomBar() {
     BottomAppBar {
         Text("BottomAppBar")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun HomePreview() {
-    GitCollectionTheme {
-        HomeScreen()
     }
 }
