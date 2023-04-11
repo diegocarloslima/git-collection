@@ -16,27 +16,22 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+package com.diegocarloslima.gitcollection.app.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import com.diegocarloslima.gitcollection.feature.discover.ui.DISCOVER_DESTINATION
+import com.diegocarloslima.gitcollection.feature.discover.ui.discoverGraph
+import com.diegocarloslima.gitcollection.feature.settings.ui.settingsGraph
+
+@Composable
+internal fun MainNavHost(
+    navHostController: NavHostController,
+    startDestination: String = DISCOVER_DESTINATION,
+) {
+    NavHost(navController = navHostController, startDestination = startDestination) {
+        discoverGraph()
+        settingsGraph()
     }
 }
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")

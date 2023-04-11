@@ -16,27 +16,24 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+package com.diegocarloslima.gitcollection.feature.discover.ui
+
+import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+
+const val DISCOVER_DESTINATION = "discover_destination"
+
+fun NavGraphBuilder.discoverGraph() {
+    composable(route = DISCOVER_DESTINATION) {
+        DiscoverRoute()
     }
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+@Composable
+private fun DiscoverRoute(
+    viewModel: DiscoverViewModel = hiltViewModel(),
+) {
+    DiscoverScreen()
 }
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")

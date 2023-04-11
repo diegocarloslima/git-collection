@@ -16,21 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.main.ui
+package com.diegocarloslima.gitcollection.app.ui
 
-import com.diegocarloslima.gitcollection.app.main.ui.MainUiState.Loading
-import com.diegocarloslima.gitcollection.app.main.ui.MainUiState.Success
 import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 
-internal val MainUiState.useDynamicColor: Boolean
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.useDynamicColor
-        is Success -> this.appPreferences.useDynamicColor
-    }
-
-internal val MainUiState.theme: ThemePreference
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.theme
-        is Success -> this.appPreferences.theme
-    }
+internal sealed interface MainUiState {
+    object Loading : MainUiState
+    data class Success(val appPreferences: AppPreferences) : MainUiState
+}

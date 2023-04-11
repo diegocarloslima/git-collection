@@ -17,58 +17,27 @@
  */
 
 plugins {
-    id("gitcollection.android.application")
+    id("gitcollection.android.library")
     id("gitcollection.android.compose")
     id("gitcollection.android.hilt")
 }
 
 android {
-    namespace = "com.diegocarloslima.gitcollection"
-
+    namespace = "com.diegocarloslima.gitcollection.feature.settings"
     defaultConfig {
-        applicationId = "com.diegocarloslima.gitcollection"
-        versionCode = 1
-        versionName = "0.1"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-        }
     }
 }
 
 dependencies {
     implementation(project(":core:preferences"))
-    implementation(project(":feature:discover"))
-    implementation(project(":feature:settings"))
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))
 
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.navigation.compose)
-
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.test.junit.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }

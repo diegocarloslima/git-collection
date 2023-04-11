@@ -16,11 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose.icon
+package com.diegocarloslima.gitcollection.feature.discover.ui
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 
-object GitCollectionIcon {
-    val Settings = Icons.Rounded.Settings
+@Composable
+internal fun DiscoverScreen() {
+    Text("Discover Screen")
 }

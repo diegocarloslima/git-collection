@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.main.ui
+package com.diegocarloslima.gitcollection.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -26,7 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.diegocarloslima.gitcollection.app.main.ui.MainUiState.Loading
+import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

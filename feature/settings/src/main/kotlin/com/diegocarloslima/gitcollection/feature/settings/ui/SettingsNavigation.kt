@@ -34,7 +34,7 @@ fun NavGraphBuilder.settingsGraph() {
 }
 
 @Composable
-internal fun SettingsRoute(
+private fun SettingsRoute(
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

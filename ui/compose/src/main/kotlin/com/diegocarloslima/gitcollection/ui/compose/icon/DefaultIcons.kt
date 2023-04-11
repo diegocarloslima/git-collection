@@ -16,24 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.home.ui
+package com.diegocarloslima.gitcollection.ui.compose.icon
 
-import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Settings
 
-const val HOME_DESTINATION = "home_destination"
-
-fun NavGraphBuilder.homeGraph() {
-    composable(route = HOME_DESTINATION) {
-        HomeRoute()
-    }
-}
-
-@Composable
-internal fun HomeRoute(
-    viewModel: HomeViewModel = hiltViewModel(),
-) {
-    HomeScreen()
+object DefaultIcons {
+    val Settings = Icons.Rounded.Settings
 }

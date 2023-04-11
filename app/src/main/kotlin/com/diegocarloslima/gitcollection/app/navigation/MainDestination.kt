@@ -16,11 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.main.ui
+package com.diegocarloslima.gitcollection.app.navigation
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-
-internal sealed interface MainUiState {
-    object Loading : MainUiState
-    data class Success(val appPreferences: AppPreferences) : MainUiState
+enum class MainDestination {
+    DISCOVER,
 }
