@@ -70,9 +70,18 @@ internal fun MainContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MainScaffold(appState: AppState) {
+    val mainDestination = appState.currentMainDestination
     Scaffold(
-        topBar = { MainTopAppBar() },
-        bottomBar = { MainBottomBar() },
+        topBar = {
+            if (mainDestination != null) {
+                MainTopAppBar()
+            }
+        },
+        bottomBar = {
+            if (mainDestination != null) {
+                MainBottomBar()
+            }
+        },
     ) { paddingValues ->
         Row(
             Modifier

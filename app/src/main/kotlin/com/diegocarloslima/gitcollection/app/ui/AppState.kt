@@ -34,7 +34,7 @@ class AppState(
         @Composable get() = navHostController
             .currentBackStackEntryAsState().value?.destination
 
-    val currentHomeDestination: MainDestination?
+    val currentMainDestination: MainDestination?
         @Composable get() = when (currentDestination?.route) {
             DISCOVER_DESTINATION -> MainDestination.DISCOVER
             else -> null
