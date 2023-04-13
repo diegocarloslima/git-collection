@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.feature.settings.ui.navigateToSettings
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
@@ -74,7 +75,7 @@ private fun MainScaffold(appState: AppState) {
     Scaffold(
         topBar = {
             if (mainDestination != null) {
-                MainTopAppBar()
+                MainTopAppBar(appState)
             }
         },
         bottomBar = {
@@ -95,12 +96,12 @@ private fun MainScaffold(appState: AppState) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun MainTopAppBar() {
+private fun MainTopAppBar(appState: AppState) {
     TopAppBarComponent(
         titleRes = R.string.app_name,
         actionImageVector = DefaultIcons.Settings,
         actionIconContentDescription = stringResource(id = R.string.settings_name),
-        onActionClick = {},
+        onActionClick = { appState.navHostController.navigateToSettings() },
     )
 }
 

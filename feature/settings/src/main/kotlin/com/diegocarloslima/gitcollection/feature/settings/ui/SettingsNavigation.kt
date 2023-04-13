@@ -22,10 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 const val SETTINGS_DESTINATION = "settings_destination"
+
+fun NavController.navigateToSettings() {
+    this.navigate(SETTINGS_DESTINATION)
+}
 
 fun NavGraphBuilder.settingsGraph() {
     composable(route = SETTINGS_DESTINATION) {
@@ -42,6 +47,6 @@ private fun SettingsRoute(
         uiState = uiState,
         onBackClick = { /*TODO*/ },
         onSelectTheme = {},
-        onSelectUseDynamicColor = {},
+        onSelectUseDynamicColor = viewModel::updateUseDynamicColor,
     )
 }

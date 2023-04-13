@@ -51,6 +51,7 @@ internal fun SettingsScreen(
             item {
                 SettingsSwitch(
                     text = stringResource(id = stringsR.string.settings_dynamic_colors_title),
+                    checked = uiState.useDynamicColor,
                     summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
                 ) { onSelectUseDynamicColor(it) }
             }

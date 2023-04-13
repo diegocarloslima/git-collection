@@ -60,6 +60,7 @@ internal fun SettingsCategory(
 @Composable
 internal fun SettingsSwitch(
     text: String,
+    checked: Boolean,
     summary: String? = null,
     onCheckedChange: (Boolean) -> Unit = {},
 ) {

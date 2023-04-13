@@ -16,11 +16,13 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.feature.discover.ui
+package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Loading
+import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Success
 
-@HiltViewModel
-internal class DiscoverViewModel @Inject constructor() : ViewModel()
+internal val SettingsUiState.useDynamicColor: Boolean
+    get() = when (this) {
+        Loading -> com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences.DEFAULT.useDynamicColor
+        is Success -> this.appPreferences.useDynamicColor
+    }
