@@ -49,6 +49,7 @@ internal class SettingsViewModel @Inject constructor(
     }
 
     fun updateUseDynamicColor(useDynamicColor: Boolean) {
+        android.util.Log.i("GITTEST", "updateUseDynamicColor $useDynamicColor")
         viewModelScope.launch {
             preferencesRepository.setUseDynamicColor(useDynamicColor)
         }

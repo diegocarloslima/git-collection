@@ -65,7 +65,7 @@ internal fun SettingsSwitch(
     onCheckedChange: (Boolean) -> Unit = {},
 ) {
     SettingsItem(text = text, summary = summary) {
-        Switch(checked = false, onCheckedChange = onCheckedChange)
+        Switch(checked = checked, onCheckedChange = onCheckedChange)
     }
 }
 
