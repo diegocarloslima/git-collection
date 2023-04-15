@@ -67,35 +67,5 @@ internal fun SettingsScreen(
                 text = stringResource(id = stringsR.string.settings_about_title),
             )
         }
-        stickyHeader {
-            SettingsCategory(title = "Test Category", divider = true)
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
-        item {
-            SettingsItem(text = "Test")
-        }
     }
 }
