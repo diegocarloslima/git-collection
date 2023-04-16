@@ -72,31 +72,34 @@ internal fun SettingsSwitch(
 @Composable
 internal fun SettingsItem(
     text: String,
+    modifier: Modifier = Modifier,
     summary: String? = null,
     action: @Composable RowScope.() -> Unit = {},
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(SETTINGS_ITEM_PADDING.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
-    ) {
-        Column(
-            modifier = Modifier.weight(1F),
-            verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
+    Surface {
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(SETTINGS_ITEM_PADDING.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
         ) {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleMedium,
-            )
-            summary?.let {
+            Column(
+                modifier = Modifier.weight(1F),
+                verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
+            ) {
                 Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = text,
+                    style = MaterialTheme.typography.titleMedium,
                 )
+                summary?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
+            action()
         }
-        action()
     }
 }
