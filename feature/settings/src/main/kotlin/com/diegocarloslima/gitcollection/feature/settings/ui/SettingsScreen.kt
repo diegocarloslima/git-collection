@@ -44,7 +44,7 @@ internal fun SettingsScreen(
         item {
             SettingsItem(
                 text = stringResource(id = stringsR.string.settings_theme_title),
-                summary = stringResource(id = stringsR.string.settings_theme_default_summary),
+                summary = stringResource(id = stringsR.string.settings_theme_summary),
             )
         }
         if (supportsDynamicColor) {
