@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
@@ -33,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 private const val SETTINGS_ITEM_PADDING = 16
@@ -74,32 +76,35 @@ internal fun SettingsItem(
     text: String,
     modifier: Modifier = Modifier,
     summary: String? = null,
+    icon: @Composable (() -> Unit)? = null,
     action: @Composable RowScope.() -> Unit = {},
 ) {
-    Surface {
-        Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(SETTINGS_ITEM_PADDING.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
-        ) {
-            Column(
-                modifier = Modifier.weight(1F),
-                verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
-            ) {
-                Text(
-                    text = text,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                summary?.let {
-                    Text(
-                        text = it,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
-            }
-            action()
+    Row(
+        modifier = modifier
+            .defaultMinSize(minHeight = Dp.Unspecified)
+            .fillMaxWidth()
+            .padding(SETTINGS_ITEM_PADDING.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
+    ) {
+        icon?.let {
+            it()
         }
+        Column(
+            modifier = Modifier.weight(1F),
+            verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
+        ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.titleMedium,
+            )
+            summary?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        }
+        action()
     }
 }
