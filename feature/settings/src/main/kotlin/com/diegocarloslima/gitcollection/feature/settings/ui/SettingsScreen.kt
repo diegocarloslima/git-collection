@@ -43,7 +43,7 @@ internal fun SettingsScreen(
         }
         item {
             SettingsItem(
-                text = stringResource(id = stringsR.string.settings_theme_title),
+                title = stringResource(id = stringsR.string.settings_theme_title),
                 summary = stringResource(id = stringsR.string.settings_theme_summary),
             )
         }
@@ -64,7 +64,7 @@ internal fun SettingsScreen(
         }
         item {
             SettingsItem(
-                text = stringResource(id = stringsR.string.settings_about_title),
+                title = stringResource(id = stringsR.string.settings_about_title),
             )
         }
     }

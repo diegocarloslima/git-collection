@@ -18,23 +18,19 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import androidx.compose.foundation.layout.Arrangement.spacedBy
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 private const val SETTINGS_ITEM_PADDING = 16
@@ -66,45 +62,24 @@ internal fun SettingsSwitch(
     summary: String? = null,
     onCheckedChange: (Boolean) -> Unit = {},
 ) {
-    SettingsItem(text = text, summary = summary) {
+    SettingsItem(title = text, summary = summary) {
         Switch(checked = checked, onCheckedChange = onCheckedChange)
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsItem(
-    text: String,
+    title: String,
     modifier: Modifier = Modifier,
     summary: String? = null,
     icon: @Composable (() -> Unit)? = null,
     action: @Composable RowScope.() -> Unit = {},
 ) {
-    Row(
-        modifier = modifier
-            .defaultMinSize(minHeight = Dp.Unspecified)
-            .fillMaxWidth()
-            .padding(SETTINGS_ITEM_PADDING.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = spacedBy(SETTINGS_ITEM_PADDING.dp),
-    ) {
-        icon?.let {
-            it()
-        }
-        Column(
-            modifier = Modifier.weight(1F),
-            verticalArrangement = spacedBy(SETTINGS_HALF_PADDING.dp),
-        ) {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleMedium,
-            )
-            summary?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
-        }
-        action()
-    }
+    ListItem(
+        headlineText = { Text(text = title) },
+        modifier = modifier,
+        supportingText = summary?.let { { Text(text = it) } },
+        leadingContent = icon?.let { { it() } },
+    )
 }
