@@ -18,7 +18,6 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
@@ -74,12 +73,13 @@ internal fun SettingsItem(
     modifier: Modifier = Modifier,
     summary: String? = null,
     icon: @Composable (() -> Unit)? = null,
-    action: @Composable RowScope.() -> Unit = {},
+    action: @Composable (() -> Unit)? = null,
 ) {
     ListItem(
         headlineText = { Text(text = title) },
         modifier = modifier,
         supportingText = summary?.let { { Text(text = it) } },
         leadingContent = icon?.let { { it() } },
+        trailingContent = action?.let { { it() } },
     )
 }
