@@ -18,39 +18,37 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 
 private const val SETTINGS_ITEM_PADDING = 16
 private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsCategory(
     title: String,
     divider: Boolean = false,
 ) {
-    Surface(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            modifier = Modifier.padding(SETTINGS_ITEM_PADDING.dp),
-            text = title,
-            color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.titleMedium,
-        )
-        if (divider) {
-            Divider()
-        }
+    ListItem(
+        headlineText = {
+            Text(
+                text = title,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleMedium,
+            )
+        },
+    )
+    if (divider) {
+        Divider()
     }
 }
 
