@@ -23,9 +23,6 @@ plugins {
 
 android {
     namespace = "com.diegocarloslima.gitcollection.ui.compose"
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 }
 
 dependencies {
