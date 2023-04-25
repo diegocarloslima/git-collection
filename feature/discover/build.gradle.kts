@@ -24,9 +24,6 @@ plugins {
 
 android {
     namespace = "com.diegocarloslima.gitcollection.feature.settings"
-    defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
 }
 
 dependencies {
