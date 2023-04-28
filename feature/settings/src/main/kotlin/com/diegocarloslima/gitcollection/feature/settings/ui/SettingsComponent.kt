@@ -53,6 +53,10 @@ internal fun SettingsCategory(
 }
 
 @Composable
+internal fun SettingsList() {
+}
+
+@Composable
 internal fun SettingsSwitch(
     text: String,
     checked: Boolean,
