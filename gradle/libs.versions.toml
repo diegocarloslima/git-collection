@@ -20,7 +20,7 @@ kotlinxCoroutines = "1.6.4"
 ktlint = "0.48.2"
 protobuf = "3.22.3"
 protobufGradlePlugin = "0.9.3"
-spotless = "6.18.0"
+spotless = "6.19.0"
 
 [libraries]
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
