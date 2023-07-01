@@ -19,7 +19,6 @@
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -31,14 +30,13 @@ import androidx.compose.ui.text.font.FontWeight
 private const val SETTINGS_ITEM_PADDING = 16
 private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsCategory(
     title: String,
     divider: Boolean = false,
 ) {
     ListItem(
-        headlineText = {
+        headlineContent = {
             Text(
                 text = title,
                 color = MaterialTheme.colorScheme.primary,
@@ -68,7 +66,6 @@ internal fun SettingsSwitch(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsItem(
     title: String,
@@ -78,9 +75,9 @@ internal fun SettingsItem(
     action: @Composable (() -> Unit)? = null,
 ) {
     ListItem(
-        headlineText = { Text(text = title) },
+        headlineContent = { Text(text = title) },
         modifier = modifier,
-        supportingText = summary?.let { { Text(text = it) } },
+        supportingContent = summary?.let { { Text(text = it) } },
         leadingContent = icon?.let { { it() } },
         trailingContent = action?.let { { it() } },
     )
