@@ -18,11 +18,8 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
+import androidx.compose.foundation.clickable
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,30 +28,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.font.FontWeight
-
-private const val SETTINGS_ITEM_PADDING = 16
-private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2
-
-@Composable
-internal fun SettingsCategory(
-    title: String,
-    divider: Boolean = false,
-) {
-    ListItem(
-        headlineContent = {
-            Text(
-                text = title,
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.titleMedium,
-            )
-        },
-    )
-    if (divider) {
-        Divider()
-    }
-}
 
 @Composable
 internal fun SettingsListSingle(
@@ -70,49 +43,26 @@ internal fun SettingsListSingle(
         throw IndexOutOfBoundsException("Selected entry index: $selectedEntryIndex is greater than entries size: ${entries.size}")
     }
     var showDialog by rememberSaveable { mutableStateOf(false) }
+    android.util.Log.i("GITTEST", "showDialog $showDialog")
     val listSummary = if (useSelectedAsSummary) {
         entries[selectedEntryIndex]
     } else {
         summary
     }
-    SettingsItem(title = title, summary = listSummary)
-}
-
-@Composable
-internal fun SettingsSwitch(
-    title: String,
-    checked: Boolean,
-    summary: String? = null,
-    enabled: Boolean = true,
-    onCheckedChange: (Boolean) -> Unit = {},
-) {
     SettingsItem(
         title = title,
-        modifier = Modifier.toggleable(
-            value = checked,
+        modifier = Modifier.clickable(
             enabled = enabled,
-            role = Role.Checkbox,
-            onValueChange = onCheckedChange
+            role = Role.DropdownList,
+            onClick = { showDialog = true },
         ),
-        summary = summary,
-    ) {
-        Switch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
-    }
-}
-
-@Composable
-internal fun SettingsItem(
-    title: String,
-    modifier: Modifier = Modifier,
-    summary: String? = null,
-    icon: @Composable (() -> Unit)? = null,
-    action: @Composable (() -> Unit)? = null,
-) {
-    ListItem(
-        headlineContent = { Text(text = title) },
-        modifier = modifier,
-        supportingContent = summary?.let { { Text(text = it) } },
-        leadingContent = icon?.let { { it() } },
-        trailingContent = action?.let { { it() } },
+        summary = listSummary,
+    )
+    if (!showDialog) return
+    AlertDialog(
+        onDismissRequest = {},
+        confirmButton = {},
+        title = { Text(title) },
+        text = { Text("This is text") },
     )
 }
