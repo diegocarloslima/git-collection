@@ -21,6 +21,7 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
@@ -42,15 +43,17 @@ internal fun SettingsScreen(
             )
         }
         item {
-            SettingsItem(
+            SettingsListSingle(
                 title = stringResource(id = stringsR.string.settings_theme_title),
-                summary = stringResource(id = stringsR.string.settings_theme_summary),
+                entries = stringArrayResource(id = stringsR.array.settings_theme_entries).toList(),
+                selectedEntryIndex = 0,
+                summary = stringResource(id = stringsR.string.settings_theme_default_summary),
             )
         }
         if (supportsDynamicColor) {
             item {
                 SettingsSwitch(
-                    text = stringResource(id = stringsR.string.settings_dynamic_colors_title),
+                    title = stringResource(id = stringsR.string.settings_dynamic_colors_title),
                     checked = uiState.useDynamicColor,
                     summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
                 ) { onSelectUseDynamicColor(it) }

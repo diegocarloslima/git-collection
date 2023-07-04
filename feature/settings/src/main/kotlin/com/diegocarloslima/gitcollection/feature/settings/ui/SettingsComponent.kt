@@ -18,13 +18,19 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 
 private const val SETTINGS_ITEM_PADDING = 16
@@ -51,18 +57,46 @@ internal fun SettingsCategory(
 }
 
 @Composable
-internal fun SettingsList() {
+internal fun SettingsListSingle(
+    title: String,
+    entries: List<String>,
+    selectedEntryIndex: Int,
+    summary: String? = null,
+    useSelectedAsSummary: Boolean = true,
+    enabled: Boolean = true,
+    onEntrySelected: ((Int, String) -> Unit)? = null,
+) {
+    if (selectedEntryIndex > entries.size) {
+        throw IndexOutOfBoundsException("Selected entry index: $selectedEntryIndex is greater than entries size: ${entries.size}")
+    }
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    val listSummary = if (useSelectedAsSummary) {
+        entries[selectedEntryIndex]
+    } else {
+        summary
+    }
+    SettingsItem(title = title, summary = listSummary)
 }
 
 @Composable
 internal fun SettingsSwitch(
-    text: String,
+    title: String,
     checked: Boolean,
     summary: String? = null,
+    enabled: Boolean = true,
     onCheckedChange: (Boolean) -> Unit = {},
 ) {
-    SettingsItem(title = text, summary = summary) {
-        Switch(checked = checked, onCheckedChange = onCheckedChange)
+    SettingsItem(
+        title = title,
+        modifier = Modifier.toggleable(
+            value = checked,
+            enabled = enabled,
+            role = Role.Checkbox,
+            onValueChange = onCheckedChange
+        ),
+        summary = summary,
+    ) {
+        Switch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled)
     }
 }
 
