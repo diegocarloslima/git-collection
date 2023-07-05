@@ -19,7 +19,11 @@
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,7 +41,7 @@ internal fun SettingsListSingle(
     summary: String? = null,
     useSelectedAsSummary: Boolean = true,
     enabled: Boolean = true,
-    onEntrySelected: ((Int, String) -> Unit)? = null,
+    onEntrySelected: ((Int, String) -> Unit),
 ) {
     if (selectedEntryIndex > entries.size) {
         throw IndexOutOfBoundsException("Selected entry index: $selectedEntryIndex is greater than entries size: ${entries.size}")
@@ -58,11 +62,66 @@ internal fun SettingsListSingle(
         ),
         summary = listSummary,
     )
-    if (!showDialog) return
+    if (showDialog) {
+        SettingsListSingleDialog(
+            title = title,
+            entries = entries,
+            selectedEntryIndex = selectedEntryIndex,
+            onDismissRequest = { showDialog = false },
+            onEntrySelected = onEntrySelected,
+        )
+    }
+}
+
+@Composable
+private fun SettingsListSingleDialog(
+    title: String,
+    entries: List<String>,
+    selectedEntryIndex: Int,
+    onDismissRequest: () -> Unit,
+    onEntrySelected: ((Int, String) -> Unit),
+) {
     AlertDialog(
-        onDismissRequest = {},
+        onDismissRequest = onDismissRequest,
         confirmButton = {},
         title = { Text(title) },
-        text = { Text("This is text") },
+        text = {
+            LazyColumn {
+                itemsIndexed(entries) { index, item ->
+                    val selected = index == selectedEntryIndex
+                    SettingsItem(
+                        title = item,
+                        modifier = Modifier.selectable(
+                            selected = selected,
+                            role = Role.RadioButton,
+                            onClick = { onEntrySelected(index, item) },
+                        ),
+                        icon = {
+                            RadioButton(
+                                selected = selected,
+                                onClick = null,
+                            )
+                        },
+                    )
+//                    Row(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .selectable(
+//                                selected = selected,
+//                                role = Role.RadioButton,
+//                                onClick = { onEntrySelected(index, item) }),
+//                        verticalAlignment = Alignment.CenterVertically,
+//                    ) {
+//                        RadioButton(
+//                            selected = selected,
+//                            onClick = null
+//                        )
+//                        Text(
+//                            text = item
+//                        )
+//                    }
+                }
+            }
+        },
     )
 }

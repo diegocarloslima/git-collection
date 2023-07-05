@@ -18,11 +18,19 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
+import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Loading
 import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Success
 
 internal val SettingsUiState.useDynamicColor: Boolean
     get() = when (this) {
-        Loading -> com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences.DEFAULT.useDynamicColor
+        Loading -> AppPreferences.DEFAULT.useDynamicColor
         is Success -> this.appPreferences.useDynamicColor
+    }
+
+internal val SettingsUiState.theme: ThemePreference
+    get() = when (this) {
+        Loading -> AppPreferences.DEFAULT.theme
+        is Success -> this.appPreferences.theme
     }

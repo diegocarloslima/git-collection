@@ -48,7 +48,7 @@ internal fun SettingsScreen(
                 entries = stringArrayResource(id = stringsR.array.settings_theme_entries).toList(),
                 selectedEntryIndex = 0,
                 summary = stringResource(id = stringsR.string.settings_theme_default_summary),
-            )
+            ) { index, entry -> }
         }
         if (supportsDynamicColor) {
             item {
