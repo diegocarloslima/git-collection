@@ -43,11 +43,10 @@ private fun SettingsRoute(
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    android.util.Log.i("GITTEST", "${uiState.useDynamicColor}")
     SettingsScreen(
         uiState = uiState,
         onBackClick = { /*TODO*/ },
-        onSelectTheme = {},
+        onSelectTheme = viewModel::updateTheme,
         onSelectUseDynamicColor = viewModel::updateUseDynamicColor,
     )
 }

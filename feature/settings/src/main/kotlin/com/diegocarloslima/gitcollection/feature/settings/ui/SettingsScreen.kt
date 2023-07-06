@@ -21,7 +21,6 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
@@ -45,10 +44,12 @@ internal fun SettingsScreen(
         item {
             SettingsListSingle(
                 title = stringResource(id = stringsR.string.settings_theme_title),
-                entries = stringArrayResource(id = stringsR.array.settings_theme_entries).toList(),
-                selectedEntryIndex = 0,
+                entries = ThemePreference.values().map { stringResource(id = it.stringRes) },
+                selectedEntryIndex = uiState.theme.ordinal,
                 summary = stringResource(id = stringsR.string.settings_theme_default_summary),
-            ) { index, entry -> }
+            ) { index, _ ->
+                onSelectTheme(ThemePreference.values()[index])
+            }
         }
         if (supportsDynamicColor) {
             item {
@@ -72,3 +73,10 @@ internal fun SettingsScreen(
         }
     }
 }
+
+private val ThemePreference.stringRes: Int
+    get() = when (this) {
+        ThemePreference.SYSTEM_DEFAULT -> stringsR.string.settings_theme_system_default
+        ThemePreference.LIGHT -> stringsR.string.settings_theme_light
+        ThemePreference.DARK -> stringsR.string.settings_theme_dark
+    }

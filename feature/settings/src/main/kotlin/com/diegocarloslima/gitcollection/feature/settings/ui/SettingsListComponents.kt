@@ -47,7 +47,6 @@ internal fun SettingsListSingle(
         throw IndexOutOfBoundsException("Selected entry index: $selectedEntryIndex is greater than entries size: ${entries.size}")
     }
     var showDialog by rememberSaveable { mutableStateOf(false) }
-    android.util.Log.i("GITTEST", "showDialog $showDialog")
     val listSummary = if (useSelectedAsSummary) {
         entries[selectedEntryIndex]
     } else {
@@ -103,23 +102,6 @@ private fun SettingsListSingleDialog(
                             )
                         },
                     )
-//                    Row(
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .selectable(
-//                                selected = selected,
-//                                role = Role.RadioButton,
-//                                onClick = { onEntrySelected(index, item) }),
-//                        verticalAlignment = Alignment.CenterVertically,
-//                    ) {
-//                        RadioButton(
-//                            selected = selected,
-//                            onClick = null
-//                        )
-//                        Text(
-//                            text = item
-//                        )
-//                    }
                 }
             }
         },
