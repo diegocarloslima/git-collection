@@ -20,6 +20,7 @@
 <resources>
     <!-- App strings -->
     <string name="app_name">Git Collection</string>
+    <string name="action_cancel">Cancel</string>
 
     <!-- Settings strings -->
     <string name="settings_name">Settings</string>
