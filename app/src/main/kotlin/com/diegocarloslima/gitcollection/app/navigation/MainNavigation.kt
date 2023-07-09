@@ -32,6 +32,8 @@ internal fun MainNavHost(
 ) {
     NavHost(navController = navHostController, startDestination = startDestination) {
         discoverGraph()
-        settingsGraph()
+        settingsGraph(
+            onBackClick = navHostController::popBackStack,
+        )
     }
 }

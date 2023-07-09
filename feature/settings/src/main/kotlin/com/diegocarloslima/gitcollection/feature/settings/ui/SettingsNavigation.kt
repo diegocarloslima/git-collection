@@ -32,20 +32,21 @@ fun NavController.navigateToSettings() {
     this.navigate(SETTINGS_DESTINATION)
 }
 
-fun NavGraphBuilder.settingsGraph() {
+fun NavGraphBuilder.settingsGraph(onBackClick: () -> Unit) {
     composable(route = SETTINGS_DESTINATION) {
-        SettingsRoute()
+        SettingsRoute(onBackClick)
     }
 }
 
 @Composable
 private fun SettingsRoute(
+    onBackClick: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     SettingsScreen(
         uiState = uiState,
-        onBackClick = { /*TODO*/ },
+        onBackClick = onBackClick,
         onSelectTheme = viewModel::updateTheme,
         onSelectUseDynamicColor = viewModel::updateUseDynamicColor,
     )
