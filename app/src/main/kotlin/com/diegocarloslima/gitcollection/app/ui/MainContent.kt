@@ -25,10 +25,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
@@ -83,12 +86,21 @@ private fun MainScaffold(appState: AppState) {
             }
         },
     ) { paddingValues ->
-        Row(
-            Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            MainNavHost(navHostController = appState.navHostController)
+        android.util.Log.i("GITTEST", "paddingMain: $paddingValues")
+        Surface(color = Color.Cyan) {
+            var modifier = Modifier.fillMaxSize()
+//            if (mainDestination != null) {
+//                modifier = modifier.padding(paddingValues)
+//            }
+            modifier = modifier.padding(paddingValues)
+            Row(
+                modifier,
+            ) {
+//                if (mainDestination != null) {
+//                    MainTopAppBar(appState)
+//                }
+                MainNavHost(navHostController = appState.navHostController)
+            }
         }
     }
 }
@@ -101,6 +113,7 @@ private fun MainTopAppBar(appState: AppState) {
         actionImageVector = DefaultIcons.Settings,
         actionIconContentDescription = stringResource(id = R.string.settings_name),
         onActionClick = { appState.navHostController.navigateToSettings() },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Red),
     )
 }
 

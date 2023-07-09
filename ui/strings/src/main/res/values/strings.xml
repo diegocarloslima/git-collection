@@ -20,6 +20,7 @@
 <resources>
     <!-- App strings -->
     <string name="app_name">Git Collection</string>
+    <string name="action_back">Back</string>
     <string name="action_cancel">Cancel</string>
 
     <!-- Settings strings -->
