@@ -21,14 +21,14 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
@@ -43,65 +43,53 @@ internal fun SettingsScreen(
 ) {
     Scaffold(
         topBar = {
-//            Text(text = "TopBar")
-//            TopAppBarComponent(
-//                titleRes = stringsR.string.settings_name,
-//                actionImageVector = DefaultIcons.ArrowBack,
-//                actionIconContentDescription = stringResource(id = stringsR.string.action_back),
-//                onActionClick = onBackClick,
-// //                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Yellow)
-//            )
+            TopAppBarComponent(
+                title = stringResource(id = stringsR.string.settings_name),
+                onNavigationClick = onBackClick,
+            )
         },
     ) { paddingValues ->
-        android.util.Log.i("GITTEST", "paddingSettings: $paddingValues")
-        Surface(color = Color.Magenta) {
-            Text(
-                text = "Hello World",
-                modifier = Modifier
-                    .fillMaxSize().padding(paddingValues),
-            )
-//            LazyColumn(
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .padding(paddingValues)
-//            ) {
-//                stickyHeader {
-//                    SettingsCategory(
-//                        title = stringResource(id = stringsR.string.settings_theme_category_title),
-//                    )
-//                }
-//                item {
-//                    SettingsListSingle(
-//                        title = stringResource(id = stringsR.string.settings_theme_title),
-//                        entries = ThemePreference.values()
-//                            .map { stringResource(id = it.stringRes) },
-//                        selectedEntryIndex = uiState.theme.ordinal,
-//                        summary = stringResource(id = stringsR.string.settings_theme_default_summary),
-//                    ) { index, _ ->
-//                        onSelectTheme(ThemePreference.values()[index])
-//                    }
-//                }
-//                if (supportsDynamicColor) {
-//                    item {
-//                        SettingsSwitch(
-//                            title = stringResource(id = stringsR.string.settings_dynamic_colors_title),
-//                            checked = uiState.useDynamicColor,
-//                            summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
-//                        ) { onSelectUseDynamicColor(it) }
-//                    }
-//                }
-//                stickyHeader {
-//                    SettingsCategory(
-//                        title = stringResource(id = stringsR.string.settings_app_category_title),
-//                        divider = true,
-//                    )
-//                }
-//                item {
-//                    SettingsItem(
-//                        title = stringResource(id = stringsR.string.settings_about_title),
-//                    )
-//                }
-//            }
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            stickyHeader {
+                SettingsCategory(
+                    title = stringResource(id = stringsR.string.settings_theme_category_title),
+                )
+            }
+            item {
+                SettingsListSingle(
+                    title = stringResource(id = stringsR.string.settings_theme_title),
+                    entries = ThemePreference.values()
+                        .map { stringResource(id = it.stringRes) },
+                    selectedEntryIndex = uiState.theme.ordinal,
+                    summary = stringResource(id = stringsR.string.settings_theme_default_summary),
+                ) { index, _ ->
+                    onSelectTheme(ThemePreference.values()[index])
+                }
+            }
+            if (supportsDynamicColor) {
+                item {
+                    SettingsSwitch(
+                        title = stringResource(id = stringsR.string.settings_dynamic_colors_title),
+                        checked = uiState.useDynamicColor,
+                        summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
+                    ) { onSelectUseDynamicColor(it) }
+                }
+            }
+            stickyHeader {
+                SettingsCategory(
+                    title = stringResource(id = stringsR.string.settings_app_category_title),
+                    divider = true,
+                )
+            }
+            item {
+                SettingsItem(
+                    title = stringResource(id = stringsR.string.settings_about_title),
+                )
+            }
         }
     }
 }

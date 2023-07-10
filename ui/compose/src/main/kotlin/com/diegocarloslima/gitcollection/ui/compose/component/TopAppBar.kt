@@ -18,7 +18,6 @@
 
 package com.diegocarloslima.gitcollection.ui.compose.component
 
-import androidx.annotation.StringRes
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -32,29 +31,49 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopAppBarComponent(
-    @StringRes titleRes: Int,
-    actionImageVector: ImageVector,
-    actionIconContentDescription: String?,
+    title: String,
     modifier: Modifier = Modifier,
-    colors: TopAppBarColors = TopAppBarDefaults.smallTopAppBarColors(),
-    onActionClick: () -> Unit = {},
+    action: TopAppBarAction? = null,
+    colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(),
+    onNavigationClick: (() -> Unit)? = null,
 ) {
     TopAppBar(
-        title = { Text(text = stringResource(id = titleRes)) },
+        title = { Text(text = title) },
         modifier = modifier.testTag("TopAppBarComponent"),
+        navigationIcon = {
+            onNavigationClick?.let {
+                IconButton(onClick = it) {
+                    Icon(
+                        imageVector = DefaultIcons.ArrowBack,
+                        contentDescription = stringResource(id = stringsR.string.action_back),
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        },
         actions = {
-            IconButton(onClick = onActionClick) {
-                Icon(
-                    imageVector = actionImageVector,
-                    contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onSurface,
-                )
+            action?.let {
+                IconButton(onClick = it.onClick) {
+                    Icon(
+                        imageVector = it.image,
+                        contentDescription = it.contentDescription,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
             }
         },
         colors = colors,
     )
 }
+
+data class TopAppBarAction(
+    internal val image: ImageVector,
+    internal val contentDescription: String,
+    internal val onClick: () -> Unit,
+)
