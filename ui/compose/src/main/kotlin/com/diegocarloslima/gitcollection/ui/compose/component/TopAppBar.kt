@@ -52,7 +52,7 @@ fun TopAppBarComponent(
                     Icon(
                         imageVector = DefaultIcons.ArrowBack,
                         contentDescription = stringResource(id = stringsR.string.action_back),
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }

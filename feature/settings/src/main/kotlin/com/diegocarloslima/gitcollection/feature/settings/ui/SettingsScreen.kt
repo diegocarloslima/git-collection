@@ -52,7 +52,7 @@ internal fun SettingsScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(paddingValues),
         ) {
             stickyHeader {
                 SettingsCategory(
