@@ -19,6 +19,7 @@
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
@@ -88,6 +90,10 @@ internal fun SettingsScreen(
             item {
                 SettingsItem(
                     title = stringResource(id = stringsR.string.settings_about_title),
+                    modifier = Modifier.clickable(
+                        role = Role.Button,
+                        onClick = { android.util.Log.i("GITTEST", "TODO: navigate to about") },
+                    ),
                 )
             }
         }

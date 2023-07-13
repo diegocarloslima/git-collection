@@ -19,36 +19,23 @@
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-private const val SETTINGS_DESTINATION = "settings_main_destination"
+private const val ABOUT_DESTINATION = "settings_about_destination"
 
-fun NavController.navigateToSettings() {
-    this.navigate(SETTINGS_DESTINATION)
+internal fun NavController.navigateToAbout() {
+    this.navigate(ABOUT_DESTINATION)
 }
 
-fun NavGraphBuilder.settingsGraph(onBackClick: () -> Unit) {
-    composable(route = SETTINGS_DESTINATION) {
-        SettingsRoute(onBackClick)
+internal fun NavGraphBuilder.aboutGraph(onBackClick: () -> Unit) {
+    composable(route = ABOUT_DESTINATION) {
+        AboutRoute(onBackClick)
     }
-    aboutGraph(onBackClick)
 }
 
 @Composable
-private fun SettingsRoute(
-    onBackClick: () -> Unit,
-    viewModel: SettingsViewModel = hiltViewModel(),
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    SettingsScreen(
-        uiState = uiState,
-        onBackClick = onBackClick,
-        onSelectTheme = viewModel::updateTheme,
-        onSelectUseDynamicColor = viewModel::updateUseDynamicColor,
-    )
+private fun AboutRoute(onBackClick: () -> Unit) {
+    AboutScreen(onBackClick)
 }
