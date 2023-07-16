@@ -18,19 +18,42 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 
 private const val SETTINGS_ITEM_PADDING = 16
 private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun SettingsScaffold(
+    title: String,
+    onBackClick: () -> Unit,
+    content: @Composable (PaddingValues) -> Unit,
+) {
+    Scaffold(
+        topBar = {
+            TopAppBarComponent(
+                title = title,
+                onNavigationClick = onBackClick,
+            )
+        },
+    ) { paddingValues ->
+        content(paddingValues)
+    }
+}
 
 @Composable
 internal fun SettingsCategory(

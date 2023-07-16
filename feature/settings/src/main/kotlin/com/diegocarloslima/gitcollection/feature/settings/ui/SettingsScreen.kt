@@ -23,18 +23,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
 import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun SettingsScreen(
     uiState: SettingsUiState,
@@ -43,13 +40,9 @@ internal fun SettingsScreen(
     onSelectTheme: (theme: ThemePreference) -> Unit,
     onSelectUseDynamicColor: (useDynamicColor: Boolean) -> Unit,
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBarComponent(
-                title = stringResource(id = stringsR.string.settings_name),
-                onNavigationClick = onBackClick,
-            )
-        },
+    SettingsScaffold(
+        title = stringResource(id = stringsR.string.settings_name),
+        onBackClick = onBackClick,
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
