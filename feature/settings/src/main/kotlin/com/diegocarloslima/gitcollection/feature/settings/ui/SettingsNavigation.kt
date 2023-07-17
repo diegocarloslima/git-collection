@@ -24,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 
 private const val SETTINGS_DESTINATION = "settings_main_destination"
@@ -32,23 +33,28 @@ fun NavController.navigateToSettings() {
     this.navigate(SETTINGS_DESTINATION)
 }
 
-fun NavGraphBuilder.settingsGraph(onBackClick: () -> Unit) {
+fun NavGraphBuilder.settingsGraph(navHostController: NavHostController) {
     composable(route = SETTINGS_DESTINATION) {
-        SettingsRoute(onBackClick)
+        SettingsRoute(
+            onBackClick = navHostController::popBackStack,
+            onAboutClick = { navHostController.navigateToAbout() },
+        )
     }
-    aboutGraph(onBackClick)
+    aboutGraph(navHostController)
 }
 
 @Composable
 private fun SettingsRoute(
     onBackClick: () -> Unit,
+    onAboutClick: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     SettingsScreen(
         uiState = uiState,
         onBackClick = onBackClick,
-        onSelectTheme = viewModel::updateTheme,
-        onSelectUseDynamicColor = viewModel::updateUseDynamicColor,
+        onThemeSelect = viewModel::updateTheme,
+        onUseDynamicColorSelect = viewModel::updateUseDynamicColor,
+        onAboutClick = onAboutClick,
     )
 }

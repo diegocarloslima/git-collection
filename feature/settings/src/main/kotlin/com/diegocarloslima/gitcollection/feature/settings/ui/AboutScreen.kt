@@ -18,10 +18,25 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.diegocarloslima.gitcollection.ui.strings.R.string
 
 @Composable
 internal fun AboutScreen(onBackClick: () -> Unit) {
-    Text(text = "About screen")
+    SettingsScaffold(
+        title = stringResource(id = string.settings_about_title),
+        onBackClick = onBackClick,
+    ) { paddingValues ->
+        Text(
+            text = "About screen",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+        )
+    }
 }

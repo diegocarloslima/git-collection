@@ -21,6 +21,7 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 
 private const val ABOUT_DESTINATION = "settings_about_destination"
@@ -29,9 +30,9 @@ internal fun NavController.navigateToAbout() {
     this.navigate(ABOUT_DESTINATION)
 }
 
-internal fun NavGraphBuilder.aboutGraph(onBackClick: () -> Unit) {
+internal fun NavGraphBuilder.aboutGraph(navHostController: NavHostController) {
     composable(route = ABOUT_DESTINATION) {
-        AboutRoute(onBackClick)
+        AboutRoute(onBackClick = navHostController::popBackStack)
     }
 }
 

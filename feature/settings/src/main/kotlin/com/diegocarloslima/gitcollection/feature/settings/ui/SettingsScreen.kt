@@ -37,11 +37,12 @@ internal fun SettingsScreen(
     uiState: SettingsUiState,
     supportsDynamicColor: Boolean = supportsDynamicColor(),
     onBackClick: () -> Unit,
-    onSelectTheme: (theme: ThemePreference) -> Unit,
-    onSelectUseDynamicColor: (useDynamicColor: Boolean) -> Unit,
+    onThemeSelect: (theme: ThemePreference) -> Unit,
+    onUseDynamicColorSelect: (useDynamicColor: Boolean) -> Unit,
+    onAboutClick: () -> Unit,
 ) {
     SettingsScaffold(
-        title = stringResource(id = stringsR.string.settings_name),
+        title = stringResource(id = stringsR.string.settings_title),
         onBackClick = onBackClick,
     ) { paddingValues ->
         LazyColumn(
@@ -62,7 +63,7 @@ internal fun SettingsScreen(
                     selectedEntryIndex = uiState.theme.ordinal,
                     summary = stringResource(id = stringsR.string.settings_theme_default_summary),
                 ) { index, _ ->
-                    onSelectTheme(ThemePreference.values()[index])
+                    onThemeSelect(ThemePreference.values()[index])
                 }
             }
             if (supportsDynamicColor) {
@@ -71,7 +72,7 @@ internal fun SettingsScreen(
                         title = stringResource(id = stringsR.string.settings_dynamic_colors_title),
                         checked = uiState.useDynamicColor,
                         summary = stringResource(id = stringsR.string.settings_dynamic_colors_summary),
-                    ) { onSelectUseDynamicColor(it) }
+                    ) { onUseDynamicColorSelect(it) }
                 }
             }
             stickyHeader {
@@ -85,7 +86,7 @@ internal fun SettingsScreen(
                     title = stringResource(id = stringsR.string.settings_about_title),
                     modifier = Modifier.clickable(
                         role = Role.Button,
-                        onClick = { android.util.Log.i("GITTEST", "TODO: navigate to about") },
+                        onClick = onAboutClick,
                     ),
                 )
             }

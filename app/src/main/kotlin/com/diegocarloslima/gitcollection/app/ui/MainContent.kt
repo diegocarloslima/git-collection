@@ -102,7 +102,7 @@ private fun MainTopAppBar(appState: AppState) {
         title = stringResource(id = stringsR.string.app_name),
         action = TopAppBarAction(
             image = DefaultIcons.Settings,
-            contentDescription = stringResource(id = stringsR.string.settings_name),
+            contentDescription = stringResource(id = stringsR.string.settings_title),
             onClick = { appState.navHostController.navigateToSettings() },
         ),
     )
