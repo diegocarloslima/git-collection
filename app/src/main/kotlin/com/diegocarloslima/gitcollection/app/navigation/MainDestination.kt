@@ -18,6 +18,27 @@
 
 package com.diegocarloslima.gitcollection.app.navigation
 
-enum class MainDestination {
-    DISCOVER,
+import androidx.annotation.StringRes
+import androidx.compose.ui.graphics.vector.ImageVector
+import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
+
+enum class MainDestination(
+    val selectedIcon: ImageVector,
+    @StringRes val iconStringRes: Int,
+    @StringRes val titleStringRes: Int = iconStringRes,
+) {
+    DISCOVER(
+        DefaultIcons.Settings,
+        stringsR.string.discover_title,
+        titleStringRes = stringsR.string.app_name,
+    ),
+    SAVED(
+        DefaultIcons.Settings,
+        stringsR.string.saved_title,
+    ),
+    SEARCH(
+        DefaultIcons.Settings,
+        stringsR.string.search_title,
+    ),
 }

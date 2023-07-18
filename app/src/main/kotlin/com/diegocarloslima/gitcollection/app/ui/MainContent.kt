@@ -22,14 +22,16 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.diegocarloslima.gitcollection.app.navigation.MainDestination
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.navigateToSettings
@@ -110,7 +112,18 @@ private fun MainTopAppBar(appState: AppState) {
 
 @Composable
 private fun MainBottomBar() {
-    BottomAppBar {
-        Text("BottomAppBar")
+    NavigationBar {
+        MainDestination.values().forEach { destination ->
+            NavigationBarItem(
+                selected = false,
+                onClick = { /*TODO*/ },
+                icon = {
+                    Icon(
+                        imageVector = destination.selectedIcon,
+                        contentDescription = stringResource(id = destination.iconStringRes),
+                    )
+                },
+            )
+        }
     }
 }
