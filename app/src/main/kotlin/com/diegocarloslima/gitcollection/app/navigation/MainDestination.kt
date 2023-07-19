@@ -29,16 +29,16 @@ enum class MainDestination(
     @StringRes val titleStringRes: Int = iconStringRes,
 ) {
     DISCOVER(
-        DefaultIcons.Settings,
+        DefaultIcons.Home,
         stringsR.string.discover_title,
         titleStringRes = stringsR.string.app_name,
     ),
     SAVED(
-        DefaultIcons.Settings,
+        DefaultIcons.Favorite,
         stringsR.string.saved_title,
     ),
     SEARCH(
-        DefaultIcons.Settings,
+        DefaultIcons.Search,
         stringsR.string.search_title,
     ),
 }
