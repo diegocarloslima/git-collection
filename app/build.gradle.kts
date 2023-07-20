@@ -50,6 +50,7 @@ android {
 dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":feature:discover"))
+    implementation(project(":feature:saved"))
     implementation(project(":feature:settings"))
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))

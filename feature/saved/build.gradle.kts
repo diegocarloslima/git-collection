@@ -16,28 +16,25 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+plugins {
+    id("gitcollection.android.library")
+    id("gitcollection.android.compose")
+    id("gitcollection.android.hilt")
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+android {
+    namespace = "com.diegocarloslima.gitcollection.feature.saved"
 }
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
+dependencies {
+    implementation(project(":core:preferences"))
+    implementation(project(":ui:compose"))
+    implementation(project(":ui:strings"))
+
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+}
