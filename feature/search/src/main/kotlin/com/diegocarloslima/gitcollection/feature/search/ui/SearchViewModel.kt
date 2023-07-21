@@ -16,29 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.feature.search.ui
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
+@HiltViewModel
+internal class SearchViewModel @Inject constructor() : ViewModel()
