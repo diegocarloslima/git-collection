@@ -19,9 +19,16 @@
 package com.diegocarloslima.gitcollection.app.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -71,6 +78,7 @@ internal fun MainContent(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun MainScaffold(appState: AppState) {
     val mainDestination = appState.currentMainDestination
@@ -86,12 +94,17 @@ private fun MainScaffold(appState: AppState) {
             }
         },
     ) { paddingValues ->
-        var modifier = Modifier.fillMaxSize()
-        // Only apply padding if it's a main destination
-        if (mainDestination != null) {
-            modifier = modifier.padding(paddingValues)
-        }
-        Row(modifier = modifier) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .consumeWindowInsets(paddingValues)
+                .windowInsetsPadding(
+                    WindowInsets.safeDrawing.only(
+                        WindowInsetsSides.Horizontal,
+                    ),
+                ),
+        ) {
             MainNavHost(navHostController = appState.navHostController)
         }
     }
