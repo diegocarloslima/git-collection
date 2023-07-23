@@ -16,30 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+plugins {
+    id("gitcollection.android.library")
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+android {
+    namespace = "com.diegocarloslima.shortkuts"
 }
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+dependencies {
+    implementation(libs.androidx.core.ktx)
+}

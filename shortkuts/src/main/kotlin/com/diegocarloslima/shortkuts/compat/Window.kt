@@ -16,30 +16,17 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.shortkuts.compat
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import android.view.Window
+import androidx.core.view.WindowCompat
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+/**
+ * Uses [WindowCompat] to set whether the decor view should fit root-level content views for
+ * [WindowInsets]
+ *
+ * @see WindowCompat.setDecorFitsSystemWindows
+ */
+inline fun Window.setDecorFitsSystemWindowsCompat(decorFitsSystemWindows: Boolean) {
+    WindowCompat.setDecorFitsSystemWindows(this, decorFitsSystemWindows)
+}

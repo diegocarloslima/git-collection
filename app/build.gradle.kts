@@ -56,6 +56,8 @@ dependencies {
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))
 
+    implementation(project(":shortkuts"))
+
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

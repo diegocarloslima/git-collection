@@ -24,9 +24,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
+import com.diegocarloslima.shortkuts.compat.setDecorFitsSystemWindowsCompat
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,9 +41,10 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-        // Turn off the decor fitting system windows, which allows us to handle window insets,
-        // including IME animations
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        // Turning off the decor view fitting system windows.
+        // This makes the app in control on how to handle window insets, allowing us to draw behind
+        // the system UI and animate synchronously with the software keyboard.
+        window.setDecorFitsSystemWindowsCompat(false)
 
         setContent {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
