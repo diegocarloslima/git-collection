@@ -25,20 +25,24 @@ import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 enum class MainDestination(
     val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
     @StringRes val iconStringRes: Int,
     @StringRes val titleStringRes: Int = iconStringRes,
 ) {
     DISCOVER(
         DefaultIcons.Home,
+        DefaultIcons.HomeOutlined,
         stringsR.string.discover_title,
         titleStringRes = stringsR.string.app_name,
     ),
     SAVED(
         DefaultIcons.Favorite,
+        DefaultIcons.FavoriteOutlined,
         stringsR.string.saved_title,
     ),
     SEARCH(
         DefaultIcons.Search,
+        DefaultIcons.SearchOutlined,
         stringsR.string.search_title,
     ),
 }

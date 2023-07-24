@@ -19,6 +19,9 @@
 package com.diegocarloslima.gitcollection.ui.compose.icon
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Home
@@ -28,7 +31,10 @@ import androidx.compose.material.icons.rounded.Settings
 object DefaultIcons {
     val ArrowBack = Icons.Rounded.ArrowBack
     val Home = Icons.Rounded.Home
+    val HomeOutlined = Icons.Outlined.Home
     val Favorite = Icons.Rounded.Favorite
+    val FavoriteOutlined = Icons.Outlined.Favorite
     val Search = Icons.Rounded.Search
+    val SearchOutlined = Icons.Outlined.Search
     val Settings = Icons.Rounded.Settings
 }
