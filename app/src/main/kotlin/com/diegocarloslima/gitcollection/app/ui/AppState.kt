@@ -37,7 +37,7 @@ class AppState(
     val currentMainDestination: MainDestination?
         @Composable get() = when (currentDestination?.route) {
             DISCOVER_DESTINATION -> MainDestination.DISCOVER
-            else -> null
+            else -> null // TODO
         }
 }
 

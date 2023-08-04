@@ -38,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import com.diegocarloslima.gitcollection.app.navigation.MainDestination
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
@@ -81,16 +82,21 @@ internal fun MainContent(
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun MainScaffold(appState: AppState) {
-    val mainDestination = appState.currentMainDestination
+    val mainDestinations = MainDestination.values().asList()
+    val currentMainDestination = appState.currentMainDestination
     Scaffold(
         topBar = {
-            if (mainDestination != null) {
+            if (currentMainDestination != null) {
                 MainTopAppBar(appState)
             }
         },
         bottomBar = {
-            if (mainDestination != null) {
-                MainBottomBar()
+            if (currentMainDestination != null) {
+                MainBottomBar(
+                    mainDestinations,
+                    currentMainDestination,
+                    appState.navHostController::navigateToMainDestination
+                )
             }
         },
     ) { paddingValues ->
@@ -124,19 +130,34 @@ private fun MainTopAppBar(appState: AppState) {
 }
 
 @Composable
-private fun MainBottomBar() {
+private fun MainBottomBar(
+    mainDestinations: List<MainDestination>,
+    currentMainDestination: MainDestination,
+    onDestinationClick: (MainDestination) -> Unit
+) {
     NavigationBar {
-        MainDestination.values().forEach { destination ->
+        mainDestinations.forEach { mainDestination ->
+            val selected = mainDestination == currentMainDestination
             NavigationBarItem(
-                selected = false,
-                onClick = { /*TODO*/ },
+                selected = selected,
+                onClick = { onDestinationClick(mainDestination) },
                 icon = {
                     Icon(
-                        imageVector = destination.selectedIcon,
-                        contentDescription = stringResource(id = destination.iconStringRes),
+                        imageVector = mainDestination.icon(selected),
+                        contentDescription = stringResource(id = mainDestination.iconStringRes),
                     )
                 },
             )
         }
     }
 }
+
+private fun NavHostController.navigateToMainDestination(mainDestination: MainDestination) {
+}
+
+private fun MainDestination.icon(selected: Boolean) =
+    if (selected) {
+        this.selectedIcon
+    } else {
+        this.unselectedIcon
+    }
