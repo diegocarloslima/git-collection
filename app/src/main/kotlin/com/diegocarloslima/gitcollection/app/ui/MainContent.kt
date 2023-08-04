@@ -95,7 +95,7 @@ private fun MainScaffold(appState: AppState) {
                 MainBottomBar(
                     mainDestinations,
                     currentMainDestination,
-                    appState.navHostController::navigateToMainDestination
+                    appState.navHostController::navigateToMainDestination,
                 )
             }
         },
@@ -133,7 +133,7 @@ private fun MainTopAppBar(appState: AppState) {
 private fun MainBottomBar(
     mainDestinations: List<MainDestination>,
     currentMainDestination: MainDestination,
-    onDestinationClick: (MainDestination) -> Unit
+    onDestinationClick: (MainDestination) -> Unit,
 ) {
     NavigationBar {
         mainDestinations.forEach { mainDestination ->
