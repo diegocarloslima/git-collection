@@ -26,6 +26,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.diegocarloslima.gitcollection.app.navigation.MainDestination
 import com.diegocarloslima.gitcollection.feature.discover.ui.DISCOVER_DESTINATION
+import com.diegocarloslima.gitcollection.feature.saved.ui.SAVED_DESTINATION
+import com.diegocarloslima.gitcollection.feature.search.ui.SEARCH_DESTINATION
 
 class AppState(
     val navHostController: NavHostController,
@@ -37,7 +39,9 @@ class AppState(
     val currentMainDestination: MainDestination?
         @Composable get() = when (currentDestination?.route) {
             DISCOVER_DESTINATION -> MainDestination.DISCOVER
-            else -> null // TODO
+            SEARCH_DESTINATION -> MainDestination.SEARCH
+            SAVED_DESTINATION -> MainDestination.SAVED
+            else -> null
         }
 }
 

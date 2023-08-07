@@ -38,9 +38,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavHostController
 import com.diegocarloslima.gitcollection.app.navigation.MainDestination
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
+import com.diegocarloslima.gitcollection.app.navigation.navigateToMainDestination
 import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.navigateToSettings
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
@@ -150,9 +150,6 @@ private fun MainBottomBar(
             )
         }
     }
-}
-
-private fun NavHostController.navigateToMainDestination(mainDestination: MainDestination) {
 }
 
 private fun MainDestination.icon(selected: Boolean) =

@@ -20,10 +20,15 @@ package com.diegocarloslima.gitcollection.feature.saved.ui
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 const val SAVED_DESTINATION = "saved_main_destination"
+
+fun NavController.navigateToSaved() {
+    this.navigate(SAVED_DESTINATION)
+}
 
 fun NavGraphBuilder.savedGraph() {
     composable(route = SAVED_DESTINATION) {

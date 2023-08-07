@@ -20,10 +20,15 @@ package com.diegocarloslima.gitcollection.feature.search.ui
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 const val SEARCH_DESTINATION = "search_main_destination"
+
+fun NavController.navigateToSearch() {
+    this.navigate(SEARCH_DESTINATION)
+}
 
 fun NavGraphBuilder.searchGraph() {
     composable(route = SEARCH_DESTINATION) {

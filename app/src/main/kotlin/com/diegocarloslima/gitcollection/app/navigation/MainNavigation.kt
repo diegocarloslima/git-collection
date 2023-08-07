@@ -23,6 +23,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.diegocarloslima.gitcollection.feature.discover.ui.DISCOVER_DESTINATION
 import com.diegocarloslima.gitcollection.feature.discover.ui.discoverGraph
+import com.diegocarloslima.gitcollection.feature.discover.ui.navigateToDiscover
+import com.diegocarloslima.gitcollection.feature.saved.ui.navigateToSaved
+import com.diegocarloslima.gitcollection.feature.saved.ui.savedGraph
+import com.diegocarloslima.gitcollection.feature.search.ui.navigateToSearch
+import com.diegocarloslima.gitcollection.feature.search.ui.searchGraph
 import com.diegocarloslima.gitcollection.feature.settings.ui.settingsGraph
 
 @Composable
@@ -32,6 +37,16 @@ internal fun MainNavHost(
 ) {
     NavHost(navController = navHostController, startDestination = startDestination) {
         discoverGraph()
+        savedGraph()
+        searchGraph()
         settingsGraph(navHostController)
+    }
+}
+
+internal fun NavHostController.navigateToMainDestination(mainDestination: MainDestination) {
+    when (mainDestination) {
+        MainDestination.DISCOVER -> this.navigateToDiscover()
+        MainDestination.SAVED -> this.navigateToSaved()
+        MainDestination.SEARCH -> this.navigateToSearch()
     }
 }

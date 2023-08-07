@@ -20,10 +20,15 @@ package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
 const val DISCOVER_DESTINATION = "discover_destination"
+
+fun NavController.navigateToDiscover() {
+    this.navigate(DISCOVER_DESTINATION)
+}
 
 fun NavGraphBuilder.discoverGraph() {
     composable(route = DISCOVER_DESTINATION) {
