@@ -22,12 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 
 const val SAVED_DESTINATION = "saved_main_destination"
 
-fun NavController.navigateToSaved() {
-    this.navigate(SAVED_DESTINATION)
+fun NavController.navigateToSaved(navOptions: NavOptions? = null) {
+    this.navigate(SAVED_DESTINATION, navOptions)
 }
 
 fun NavGraphBuilder.savedGraph() {
