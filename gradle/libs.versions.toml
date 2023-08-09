@@ -18,7 +18,7 @@ junit = "4.13.2"
 kotlin = "1.9.0"
 kotlinxCoroutines = "1.7.3"
 ktlint = "0.50.0"
-protobuf = "3.23.4"
+protobuf = "3.24.0"
 protobufGradlePlugin = "0.9.4"
 spotless = "6.20.0"
 
