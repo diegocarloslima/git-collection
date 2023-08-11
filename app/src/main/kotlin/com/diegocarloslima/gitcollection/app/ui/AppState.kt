@@ -32,12 +32,12 @@ import com.diegocarloslima.gitcollection.feature.search.ui.SEARCH_DESTINATION
 class AppState(
     val navHostController: NavHostController,
 ) {
-    val currentDestination: NavDestination?
+    val currentNavDestination: NavDestination?
         @Composable get() = navHostController
             .currentBackStackEntryAsState().value?.destination
 
     val currentMainDestination: MainDestination?
-        @Composable get() = when (currentDestination?.route) {
+        @Composable get() = when (currentNavDestination?.route) {
             DISCOVER_DESTINATION -> MainDestination.DISCOVER
             SEARCH_DESTINATION -> MainDestination.SEARCH
             SAVED_DESTINATION -> MainDestination.SAVED

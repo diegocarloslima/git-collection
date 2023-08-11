@@ -47,9 +47,8 @@ internal fun MainNavHost(
 
 internal fun NavHostController.navigateToMainDestination(mainDestination: MainDestination) {
     val navOptions = navOptions {
-        // Pop up to the start destination of the graph to
-        // avoid building up a large stack of destinations
-        // on the back stack as users select items
+        // Pop up to the start destination of the graph to avoid building up a large stack of
+        // destinations on the back stack as users select items
         popUpTo(this@navigateToMainDestination.graph.findStartDestination().id) {
             saveState = true
         }
@@ -58,7 +57,6 @@ internal fun NavHostController.navigateToMainDestination(mainDestination: MainDe
         // Restore state when re-selecting a previously selected item
         restoreState = true
     }
-
     when (mainDestination) {
         MainDestination.DISCOVER -> this.navigateToDiscover(navOptions)
         MainDestination.SAVED -> this.navigateToSaved(navOptions)
