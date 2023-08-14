@@ -16,31 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+plugins {
+    id("gitcollection.android.library")
+    id("gitcollection.android.hilt")
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+android {
+    namespace = "com.diegocarloslima.gitcollection.data.repositories"
 }
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":data:gitrepos")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+dependencies {
+}

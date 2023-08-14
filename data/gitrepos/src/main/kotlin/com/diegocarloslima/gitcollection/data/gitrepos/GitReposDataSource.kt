@@ -16,31 +16,6 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.data.gitrepos
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:preferences")
-include(":data:gitrepos")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+interface GitReposDataSource
