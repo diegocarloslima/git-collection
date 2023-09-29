@@ -16,11 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos.github
+package com.diegocarloslima.gitcollection.core.network.model.github
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class GithubRepository(
+data class Repository(
     val description: String,
 )

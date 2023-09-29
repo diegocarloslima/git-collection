@@ -16,20 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.datastore
+plugins {
+    id("gitcollection.android.library")
+}
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+android {
+    namespace = "com.diegocarloslima.gitcollection.core.network"
+}
 
-internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
-    AppPreferences(
-        this.useDynamicColor,
-        this.theme.mapToThemePreference(),
-        this.onboardingCompleted,
-    )
-
-internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
-    AppPreferencesProto.newBuilder()
-        .setUseDynamicColor(this.useDynamicColor)
-        .setTheme(this.theme.mapToThemePreferenceProto())
-        .setOnboardingCompleted(this.onboardingCompleted)
-        .build()
+dependencies {
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+}

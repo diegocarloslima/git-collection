@@ -16,12 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.datastore
+package com.diegocarloslima.gitcollection.core.preferences.datastore
 
 import androidx.datastore.core.DataStore
-import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesDataSource
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesDataSource
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProtoKt.Dsl
+import com.diegocarloslima.gitcollection.core.preferences.datastore.copy
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -43,7 +46,7 @@ class PreferencesDataSourceDataStore @Inject constructor(
         }
     }
 
-    private suspend fun updatePreferences(block: AppPreferencesProtoKt.Dsl.() -> Unit) {
+    private suspend fun updatePreferences(block: Dsl.() -> Unit) {
         dataStore.updateData { it.copy(block) }
     }
 }

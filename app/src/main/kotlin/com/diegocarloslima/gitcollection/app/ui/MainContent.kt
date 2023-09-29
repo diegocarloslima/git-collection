@@ -41,7 +41,7 @@ import androidx.compose.ui.res.stringResource
 import com.diegocarloslima.gitcollection.app.navigation.MainDestination
 import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.app.navigation.navigateToMainDestination
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.navigateToSettings
 import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
 import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarAction

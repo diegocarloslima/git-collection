@@ -16,18 +16,18 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.di
+package com.diegocarloslima.gitcollection.core.preferences.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.DataStoreFactory
 import androidx.datastore.dataStoreFile
-import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesDataSource
-import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
-import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepositoryDefault
-import com.diegocarloslima.gitcollection.core.preferences.data.datastore.AppPreferencesProto
-import com.diegocarloslima.gitcollection.core.preferences.data.datastore.AppPreferencesSerializer
-import com.diegocarloslima.gitcollection.core.preferences.data.datastore.PreferencesDataSourceDataStore
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesDataSource
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepository
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepositoryDefault
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesSerializer
+import com.diegocarloslima.gitcollection.core.preferences.datastore.PreferencesDataSourceDataStore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

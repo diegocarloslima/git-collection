@@ -16,10 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data
+package com.diegocarloslima.gitcollection.core.preferences
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

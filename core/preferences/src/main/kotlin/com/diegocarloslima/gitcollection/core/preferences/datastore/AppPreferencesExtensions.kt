@@ -16,18 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.model
+package com.diegocarloslima.gitcollection.core.preferences.datastore
 
-data class AppPreferences(
-    val useDynamicColor: Boolean,
-    val theme: ThemePreference,
-    val onboardingCompleted: Boolean,
-) {
-    companion object {
-        val DEFAULT = AppPreferences(
-            true,
-            ThemePreference.SYSTEM_DEFAULT,
-            false,
-        )
-    }
-}
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+
+internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
+    AppPreferences(
+        this.useDynamicColor,
+        this.theme.mapToThemePreference(),
+        this.onboardingCompleted,
+    )
+
+internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
+    AppPreferencesProto.newBuilder()
+        .setUseDynamicColor(this.useDynamicColor)
+        .setTheme(this.theme.mapToThemePreferenceProto())
+        .setOnboardingCompleted(this.onboardingCompleted)
+        .build()

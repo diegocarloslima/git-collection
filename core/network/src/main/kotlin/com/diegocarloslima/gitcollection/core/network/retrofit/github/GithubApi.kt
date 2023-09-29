@@ -16,16 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data
+package com.diegocarloslima.gitcollection.core.network.retrofit.github
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import kotlinx.coroutines.flow.Flow
+import com.diegocarloslima.gitcollection.core.network.model.github.RepositoryResults
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-interface PreferencesRepository {
-    val preferences: Flow<AppPreferences>
+interface GithubApi {
 
-    suspend fun setUseDynamicColor(useDynamicColor: Boolean)
-
-    suspend fun setTheme(theme: ThemePreference)
+    @GET(value = "search/repositories")
+    suspend fun searchRepositories(
+        @Query("q") query: String,
+        @Query("sort") sort: String,
+        @Query("order") order: String,
+        @Query("per_page") perPage: Int,
+        @Query("page") page: Int,
+    ): Response<RepositoryResults>
 }

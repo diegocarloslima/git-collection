@@ -16,15 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-syntax = "proto3";
+package com.diegocarloslima.gitcollection.core.preferences.model
 
-import "com/diegocarloslima/gitcollection/core/preferences/data/datastore/theme_preference_proto.proto";
-
-option java_package = "com.diegocarloslima.gitcollection.core.preferences.data.datastore";
-option java_multiple_files = true;
-
-message AppPreferencesProto {
-  bool use_dynamic_color = 1;
-  ThemePreferenceProto theme = 2;
-  bool onboarding_completed = 3;
+enum class ThemePreference {
+    SYSTEM_DEFAULT,
+    LIGHT,
+    DARK,
 }

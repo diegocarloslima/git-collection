@@ -16,11 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.datastore
+package com.diegocarloslima.gitcollection.core.preferences.datastore
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 import com.google.protobuf.InvalidProtocolBufferException
 import java.io.InputStream
 import java.io.OutputStream

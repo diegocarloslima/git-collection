@@ -16,16 +16,20 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data
+package com.diegocarloslima.gitcollection.core.preferences.model
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
-import kotlinx.coroutines.flow.Flow
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference.SYSTEM_DEFAULT
 
-interface PreferencesDataSource {
-    val preferences: Flow<AppPreferences>
-
-    suspend fun setUseDynamicColor(useDynamicColor: Boolean)
-
-    suspend fun setTheme(theme: ThemePreference)
+data class AppPreferences(
+    val useDynamicColor: Boolean,
+    val theme: ThemePreference,
+    val onboardingCompleted: Boolean,
+) {
+    companion object {
+        val DEFAULT = AppPreferences(
+            true,
+            SYSTEM_DEFAULT,
+            false,
+        )
+    }
 }

@@ -16,21 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.core.network.model.github
 
-import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
-import com.diegocarloslima.gitcollection.app.ui.MainUiState.Success
-import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
+import kotlinx.serialization.Serializable
 
-internal val MainUiState.useDynamicColor: Boolean
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.useDynamicColor
-        is Success -> this.appPreferences.useDynamicColor
-    }
-
-internal val MainUiState.theme: ThemePreference
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.theme
-        is Success -> this.appPreferences.theme
-    }
+@Serializable
+data class RepositoryResults(
+    val items: List<Repository>
+)

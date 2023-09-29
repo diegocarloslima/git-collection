@@ -18,8 +18,8 @@
 
 package com.diegocarloslima.gitcollection.feature.settings.ui
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Loading
 import com.diegocarloslima.gitcollection.feature.settings.ui.SettingsUiState.Success
 

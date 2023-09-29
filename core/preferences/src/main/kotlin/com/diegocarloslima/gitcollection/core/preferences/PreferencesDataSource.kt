@@ -16,10 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.model
+package com.diegocarloslima.gitcollection.core.preferences
 
-enum class ThemePreference {
-    SYSTEM_DEFAULT,
-    LIGHT,
-    DARK,
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
+import kotlinx.coroutines.flow.Flow
+
+interface PreferencesDataSource {
+    val preferences: Flow<AppPreferences>
+
+    suspend fun setUseDynamicColor(useDynamicColor: Boolean)
+
+    suspend fun setTheme(theme: ThemePreference)
 }

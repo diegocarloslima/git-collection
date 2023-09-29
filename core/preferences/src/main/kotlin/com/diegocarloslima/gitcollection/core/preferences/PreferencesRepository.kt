@@ -16,21 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.core.preferences
 
-import com.diegocarloslima.gitcollection.app.ui.MainUiState.Loading
-import com.diegocarloslima.gitcollection.app.ui.MainUiState.Success
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
+import kotlinx.coroutines.flow.Flow
 
-internal val MainUiState.useDynamicColor: Boolean
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.useDynamicColor
-        is Success -> this.appPreferences.useDynamicColor
-    }
+interface PreferencesRepository {
+    val preferences: Flow<AppPreferences>
 
-internal val MainUiState.theme: ThemePreference
-    get() = when (this) {
-        Loading -> AppPreferences.DEFAULT.theme
-        is Success -> this.appPreferences.theme
-    }
+    suspend fun setUseDynamicColor(useDynamicColor: Boolean)
+
+    suspend fun setTheme(theme: ThemePreference)
+}

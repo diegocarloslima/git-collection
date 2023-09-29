@@ -18,7 +18,7 @@
 
 syntax = "proto3";
 
-option java_package = "com.diegocarloslima.gitcollection.core.preferences.data.datastore";
+option java_package = "com.diegocarloslima.gitcollection.core.preferences.datastore";
 option java_multiple_files = true;
 
 enum ThemePreferenceProto {

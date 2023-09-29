@@ -20,8 +20,8 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diegocarloslima.gitcollection.core.preferences.data.PreferencesRepository
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepository
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

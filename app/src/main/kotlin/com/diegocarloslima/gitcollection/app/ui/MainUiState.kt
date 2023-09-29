@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.app.ui
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 
 internal sealed interface MainUiState {
     object Loading : MainUiState

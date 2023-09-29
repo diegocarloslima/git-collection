@@ -16,23 +16,28 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.data.datastore
+package com.diegocarloslima.gitcollection.core.preferences.datastore
 
-import com.diegocarloslima.gitcollection.core.preferences.data.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.DARK
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.LIGHT
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.SYSTEM_DEFAULT
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.UNRECOGNIZED
+import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 
 internal fun ThemePreferenceProto.mapToThemePreference(): ThemePreference =
     when (this) {
-        ThemePreferenceProto.UNRECOGNIZED,
-        ThemePreferenceProto.SYSTEM_DEFAULT,
+        UNRECOGNIZED,
+        SYSTEM_DEFAULT,
         -> ThemePreference.SYSTEM_DEFAULT
 
-        ThemePreferenceProto.LIGHT -> ThemePreference.LIGHT
-        ThemePreferenceProto.DARK -> ThemePreference.DARK
+        LIGHT -> ThemePreference.LIGHT
+        DARK -> ThemePreference.DARK
     }
 
 internal fun ThemePreference.mapToThemePreferenceProto(): ThemePreferenceProto =
     when (this) {
-        ThemePreference.SYSTEM_DEFAULT -> ThemePreferenceProto.SYSTEM_DEFAULT
-        ThemePreference.LIGHT -> ThemePreferenceProto.LIGHT
-        ThemePreference.DARK -> ThemePreferenceProto.DARK
+        ThemePreference.SYSTEM_DEFAULT -> SYSTEM_DEFAULT
+        ThemePreference.LIGHT -> LIGHT
+        ThemePreference.DARK -> DARK
     }
