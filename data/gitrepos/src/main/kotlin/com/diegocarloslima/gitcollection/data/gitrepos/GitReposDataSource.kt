@@ -18,5 +18,9 @@
 
 package com.diegocarloslima.gitcollection.data.gitrepos
 
-interface GitReposDataSource
+import com.diegocarloslima.gitcollection.data.gitrepos.model.GitRepo
 
+internal interface GitReposDataSource {
+
+    suspend fun getPopularRepositories(page: Int = 1): Result<GitRepo>
+}

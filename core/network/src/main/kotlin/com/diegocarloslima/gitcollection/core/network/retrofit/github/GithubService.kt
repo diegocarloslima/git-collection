@@ -16,11 +16,24 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.model.github
+package com.diegocarloslima.gitcollection.core.network.retrofit.github
 
-import kotlinx.serialization.Serializable
+import com.diegocarloslima.gitcollection.core.network.model.github.RepositoryResults
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-@Serializable
-data class RepositoryResults(
-    val items: List<Repository>,
-)
+interface GithubService {
+    @GET(value = "search/repositories")
+    suspend fun searchRepositories(
+        @Query("q") query: String,
+        @Query("sort") sort: String,
+        @Query("order") order: String,
+        @Query("per_page") perPage: Int,
+        @Query("page") page: Int,
+    ): Response<RepositoryResults>
+
+    companion object {
+        internal const val BASE_URL = "https://api.github.com/"
+    }
+}

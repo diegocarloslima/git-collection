@@ -16,21 +16,23 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.retrofit.github
+package com.diegocarloslima.gitcollection.data.gitrepos.retrofit.github
 
 import com.diegocarloslima.gitcollection.core.network.model.github.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.retrofit.github.GithubService
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import javax.inject.Inject
 
-interface GithubApi {
+class GitHubReposDataSourceRetrofit @Inject constructor(
+    private val service: GithubService,
+) {
 
-    @GET(value = "search/repositories")
-    suspend fun searchRepositories(
-        @Query("q") query: String,
-        @Query("sort") sort: String,
-        @Query("order") order: String,
-        @Query("per_page") perPage: Int,
-        @Query("page") page: Int,
-    ): Response<RepositoryResults>
+    // TODO: Adjust return type
+    suspend fun getPopularRepositories(page: Int): Response<RepositoryResults> =
+        service.searchRepositories(QUERY_TRENDING, SORT_STARS, ORDER_DESC, PER_PAGE, page)
 }
+
+private const val QUERY_TRENDING = "android+language:java,android+language:kotlin"
+private const val SORT_STARS = "stars"
+private const val ORDER_DESC = "desc"
+private const val PER_PAGE = 25

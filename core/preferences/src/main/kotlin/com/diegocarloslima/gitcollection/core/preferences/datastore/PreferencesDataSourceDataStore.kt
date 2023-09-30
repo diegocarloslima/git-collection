@@ -20,9 +20,7 @@ package com.diegocarloslima.gitcollection.core.preferences.datastore
 
 import androidx.datastore.core.DataStore
 import com.diegocarloslima.gitcollection.core.preferences.PreferencesDataSource
-import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
 import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProtoKt.Dsl
-import com.diegocarloslima.gitcollection.core.preferences.datastore.copy
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import kotlinx.coroutines.flow.Flow

@@ -18,7 +18,6 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.datastore
 
-import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 
 internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =

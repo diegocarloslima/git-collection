@@ -18,7 +18,6 @@
 
 package com.diegocarloslima.gitcollection.core.preferences.datastore
 
-import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.DARK
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.LIGHT
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.SYSTEM_DEFAULT

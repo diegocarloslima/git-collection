@@ -26,4 +26,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:network"))
+
+    implementation(libs.retrofit)
 }

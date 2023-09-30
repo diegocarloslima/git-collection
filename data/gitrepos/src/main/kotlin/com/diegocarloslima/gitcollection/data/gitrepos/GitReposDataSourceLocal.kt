@@ -16,11 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.model.github
+package com.diegocarloslima.gitcollection.data.gitrepos
 
-import kotlinx.serialization.Serializable
+import com.diegocarloslima.gitcollection.data.gitrepos.model.GitRepo
 
-@Serializable
-data class RepositoryResults(
-    val items: List<Repository>,
-)
+internal interface GitReposDataSourceLocal : GitReposDataSource {
+
+    suspend fun savePopularRepositories(repos: GitRepo)
+}
