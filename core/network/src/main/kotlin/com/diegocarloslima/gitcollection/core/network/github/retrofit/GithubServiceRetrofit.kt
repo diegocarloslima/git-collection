@@ -16,14 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.retrofit.github
+package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
-import com.diegocarloslima.gitcollection.core.network.model.github.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GithubService {
+interface GithubServiceRetrofit {
     @GET(value = "search/repositories")
     suspend fun searchRepositories(
         @Query("q") query: String,

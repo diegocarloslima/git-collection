@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.di
 
-import com.diegocarloslima.gitcollection.core.network.retrofit.github.GithubService
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -35,12 +35,12 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGithubService(): GithubService =
+    fun provideGithubService(): GithubServiceRetrofit =
         Retrofit.Builder()
-            .baseUrl(GithubService.BASE_URL)
+            .baseUrl(GithubServiceRetrofit.BASE_URL)
             .addConverterFactory(
                 Json.asConverterFactory(MediaType.get("application/json")),
             )
             .build()
-            .create(GithubService::class.java)
+            .create(GithubServiceRetrofit::class.java)
 }

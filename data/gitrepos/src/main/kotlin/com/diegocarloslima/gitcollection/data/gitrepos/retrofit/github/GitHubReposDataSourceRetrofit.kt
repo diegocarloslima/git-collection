@@ -18,13 +18,13 @@
 
 package com.diegocarloslima.gitcollection.data.gitrepos.retrofit.github
 
-import com.diegocarloslima.gitcollection.core.network.model.github.RepositoryResults
-import com.diegocarloslima.gitcollection.core.network.retrofit.github.GithubService
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import retrofit2.Response
 import javax.inject.Inject
 
 class GitHubReposDataSourceRetrofit @Inject constructor(
-    private val service: GithubService,
+    private val service: GithubServiceRetrofit,
 ) {
 
     // TODO: Adjust return type

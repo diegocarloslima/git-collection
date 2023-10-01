@@ -16,11 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.model.github
+package com.diegocarloslima.gitcollection.core.network.github
 
-import kotlinx.serialization.Serializable
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import retrofit2.Response
 
-@Serializable
-data class Repository(
-    val description: String,
-)
+interface GithubService {
+
+    suspend fun searchRepositories(): Response<RepositoryResults>
+
+    companion object {
+        internal const val BASE_URL = "https://api.github.com/"
+    }
+}
