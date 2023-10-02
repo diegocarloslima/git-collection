@@ -18,11 +18,10 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.model
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RepositoryResults(
-    @SerialName("total_count") val totalCount: Long,
-    val items: List<Repository>,
+data class RepositoryLicense(
+    val name: String,
+    val url: String?,
 )

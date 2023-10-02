@@ -35,6 +35,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Git Collection"
 include(":app")
+include(":core:common")
 include(":core:network")
 include(":core:preferences")
 include(":data:gitrepos")

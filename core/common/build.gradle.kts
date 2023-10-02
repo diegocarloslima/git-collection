@@ -16,13 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+plugins {
+    id("gitcollection.android.library")
+//    id("kotlinx-serialization")
+}
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+android {
+    namespace = "com.diegocarloslima.gitcollection.core.common"
+}
 
-@Serializable
-data class RepositoryResults(
-    @SerialName("total_count") val totalCount: Long,
-    val items: List<Repository>,
-)
+dependencies {
+//    implementation(libs.kotlinx.serialization.json)
+}

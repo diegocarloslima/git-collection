@@ -39,7 +39,7 @@ object NetworkModule {
         Retrofit.Builder()
             .baseUrl(GithubServiceRetrofit.BASE_URL)
             .addConverterFactory(
-                Json.asConverterFactory(MediaType.get("application/json")),
+                Json { ignoreUnknownKeys = true }.asConverterFactory(MediaType.get("application/json")),
             )
             .build()
             .create(GithubServiceRetrofit::class.java)

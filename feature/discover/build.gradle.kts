@@ -27,6 +27,11 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:network"))
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+
     implementation(project(":core:preferences"))
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))

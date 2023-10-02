@@ -19,6 +19,7 @@
 plugins {
     id("gitcollection.android.library")
     id("gitcollection.android.hilt")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -26,6 +27,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:common"))
+
+    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization.converter)
