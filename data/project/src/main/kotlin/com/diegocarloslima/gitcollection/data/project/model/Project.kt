@@ -16,6 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos
+package com.diegocarloslima.gitcollection.data.project.model
 
-interface GitReposRepository
+data class Project(
+    val description: String,
+)

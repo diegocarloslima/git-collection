@@ -18,30 +18,40 @@
 
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 internal class DiscoverViewModel @Inject constructor(
-    private val service: GithubServiceRetrofit,
+    private val service: GithubService,
 ) : ViewModel() {
 
     init {
+        android.util.Log.i("GITTEST", "searchRepositories V1")
         viewModelScope.launch {
-            val response =
-                service.searchRepositories(QUERY_TRENDING, SORT_STARS, ORDER_DESC, PER_PAGE, 1)
-            android.util.Log.i("GITTEST", "response V1: ${response.isSuccessful}")
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    android.util.Log.i("GITTEST", "${it.items.size} total: ${it.totalCount}")
-                    it.items.forEach { item ->
-                        android.util.Log.i("GITTEST", "${item.fullName} ==> ${item.stargazersCount}")
-                    }
+            try {
+                val response =
+                    service.searchRepositories(QUERY_TRENDING, SORT_STARS, ORDER_DESC, PER_PAGE, 1)
+//            android.util.Log.i("GITTEST", "response V2: ${response.isSuccessful}")
+//            if (response.isSuccessful) {
+//                response.body()?.let {
+//                    android.util.Log.i("GITTEST", "${it.items.size} total: ${it.totalCount}")
+//                    it.items.forEach { item ->
+                response.items.forEach { item ->
+                    android.util.Log.i(
+                        "GITTEST",
+                        "${item.fullName} ==> ${item.stargazersCount}",
+                    )
                 }
+//                }
+//            }
+            } catch (t: Throwable) {
+                android.util.Log.e("GITTEST", "${t::class.java.name} error happened: ${Log.getStackTraceString(t)}")
             }
         }
     }
@@ -52,4 +62,4 @@ internal class DiscoverViewModel @Inject constructor(
 private const val QUERY_TRENDING = "android language:kotlin OR android language:java"
 private const val SORT_STARS = "stars"
 private const val ORDER_DESC = "desc"
-private const val PER_PAGE = 100
+private const val PER_PAGE = 20

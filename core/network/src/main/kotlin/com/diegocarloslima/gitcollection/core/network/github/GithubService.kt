@@ -19,11 +19,16 @@
 package com.diegocarloslima.gitcollection.core.network.github
 
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
-import retrofit2.Response
 
 interface GithubService {
 
-    suspend fun searchRepositories(): Response<RepositoryResults>
+    suspend fun searchRepositories(
+        query: String,
+        sort: String,
+        order: String,
+        perPage: Int,
+        page: Int,
+    ): RepositoryResults
 
     companion object {
         internal const val BASE_URL = "https://api.github.com/"

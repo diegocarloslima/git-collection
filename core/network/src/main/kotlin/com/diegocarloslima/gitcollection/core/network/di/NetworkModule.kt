@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.di
 
+import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -35,11 +36,18 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGithubService(): GithubServiceRetrofit =
+    fun provideJson(): Json =
+        Json {
+            ignoreUnknownKeys = true
+        }
+
+    @Provides
+    @Singleton
+    fun provideGithubService(json: Json): GithubService =
         Retrofit.Builder()
-            .baseUrl(GithubServiceRetrofit.BASE_URL)
+            .baseUrl(GithubService.BASE_URL)
             .addConverterFactory(
-                Json { ignoreUnknownKeys = true }.asConverterFactory(MediaType.get("application/json")),
+                json.asConverterFactory(MediaType.get("application/json")),
             )
             .build()
             .create(GithubServiceRetrofit::class.java)

@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos.retrofit.github
+package com.diegocarloslima.gitcollection.data.project.retrofit.github
 
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit

@@ -18,22 +18,18 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
+import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GithubServiceRetrofit {
+interface GithubServiceRetrofit : GithubService {
     @GET(value = "search/repositories")
-    suspend fun searchRepositories(
+    override suspend fun searchRepositories(
         @Query("q") query: String,
         @Query("sort") sort: String,
         @Query("order") order: String,
         @Query("per_page") perPage: Int,
         @Query("page") page: Int,
-    ): Response<RepositoryResults>
-
-    companion object {
-        internal const val BASE_URL = "https://api.github.com/"
-    }
+    ): RepositoryResults
 }

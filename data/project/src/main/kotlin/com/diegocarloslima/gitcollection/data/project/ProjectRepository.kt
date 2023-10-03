@@ -16,11 +16,6 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos
+package com.diegocarloslima.gitcollection.data.project
 
-import com.diegocarloslima.gitcollection.data.gitrepos.model.GitRepo
-
-internal interface GitReposDataSourceLocal : GitReposDataSource {
-
-    suspend fun savePopularRepositories(repos: GitRepo)
-}
+interface ProjectRepository

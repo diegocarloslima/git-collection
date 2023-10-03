@@ -16,8 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos.model
+package com.diegocarloslima.gitcollection.data.project
 
-data class GitRepo(
-    val description: String,
-)
+import com.diegocarloslima.gitcollection.data.project.model.Project
+
+internal interface ProjectDataSourceLocal : ProjectDataSource {
+
+    suspend fun savePopularProjects(projects: List<Project>)
+}

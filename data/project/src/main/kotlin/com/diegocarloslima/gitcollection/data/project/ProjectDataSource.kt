@@ -16,6 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.gitrepos
+package com.diegocarloslima.gitcollection.data.project
 
-internal interface GitReposDataSourceRemote : GitReposDataSource
+import com.diegocarloslima.gitcollection.data.project.model.Project
+
+internal interface ProjectDataSource {
+
+    suspend fun getPopularProjects(page: Int = 1): Result<Project>
+}
