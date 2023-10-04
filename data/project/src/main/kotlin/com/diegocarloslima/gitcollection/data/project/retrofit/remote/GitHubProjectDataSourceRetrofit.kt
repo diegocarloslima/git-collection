@@ -16,19 +16,18 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.retrofit.github
+package com.diegocarloslima.gitcollection.data.project.retrofit.remote
 
+import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
-import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
-import retrofit2.Response
 import javax.inject.Inject
 
-class GitHubReposDataSourceRetrofit @Inject constructor(
-    private val service: GithubServiceRetrofit,
+class GitHubProjectDataSourceRetrofit @Inject constructor(
+    private val service: GithubService,
 ) {
 
     // TODO: Adjust return type
-    suspend fun getPopularRepositories(page: Int): Response<RepositoryResults> =
+    suspend fun getPopularRepositories(page: Int): RepositoryResults =
         service.searchRepositories(QUERY_TRENDING, SORT_STARS, ORDER_DESC, PER_PAGE, page)
 }
 
