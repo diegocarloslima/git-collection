@@ -16,20 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.retrofit
+package com.diegocarloslima.gitcollection.core.network.util
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
-import retrofit2.http.GET
-import retrofit2.http.Query
-
-internal interface GithubServiceRetrofit : GithubService {
-    @GET(value = "search/repositories")
-    override suspend fun searchRepositories(
-        @Query("q") query: String,
-        @Query("sort") sort: String,
-        @Query("order") order: String,
-        @Query("per_page") perPage: Int,
-        @Query("page") page: Int,
-    ): RepositoryResults
+internal object HttpHeader {
+    const val AUTHORIZATION = "Authorization"
 }

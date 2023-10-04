@@ -24,6 +24,10 @@ plugins {
 
 android {
     namespace = "com.diegocarloslima.gitcollection.core.network"
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -31,6 +35,7 @@ dependencies {
 
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.logging.interceptor)
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization.converter)
 }

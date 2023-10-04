@@ -18,21 +18,38 @@
 
 package com.diegocarloslima.gitcollection.core.network.di
 
+import com.diegocarloslima.gitcollection.core.network.BuildConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
+import com.diegocarloslima.gitcollection.core.network.util.MediaType
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
+import okhttp3.Call
+import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+internal object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideGithubService(json: Json): GithubService =
+        Retrofit.Builder()
+            .baseUrl(GithubService.BASE_URL)
+            .addConverterFactory(json.toConverterFactory())
+            .build()
+            .create(GithubServiceRetrofit::class.java)
 
     @Provides
     @Singleton
@@ -43,12 +60,19 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGithubService(json: Json): GithubService =
-        Retrofit.Builder()
-            .baseUrl(GithubService.BASE_URL)
-            .addConverterFactory(
-                json.asConverterFactory(MediaType.get("application/json")),
-            )
+    fun provideCallFactory(): Call.Factory =
+        OkHttpClient.Builder()
+            .addInterceptor(interceptor())
             .build()
-            .create(GithubServiceRetrofit::class.java)
+
+    private fun interceptor(): Interceptor =
+        HttpLoggingInterceptor().apply {
+            redactHeader(HttpHeader.AUTHORIZATION)
+            if (BuildConfig.DEBUG) {
+                setLevel(HttpLoggingInterceptor.Level.BODY)
+            }
+        }
+
+    private fun Json.toConverterFactory(): Converter.Factory =
+        this.asConverterFactory(MediaType.APPLICATION_JSON.toMediaType())
 }
