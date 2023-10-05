@@ -20,6 +20,11 @@ package com.diegocarloslima.gitcollection.core.network.github
 
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
 
+/**
+ * Interface that establishes a contract for the GitHub REST API service.
+ *
+ * @see <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28>GitHub REST API documentation</a>
+ */
 interface GithubService {
 
     suspend fun searchRepositories(

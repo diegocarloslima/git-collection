@@ -22,7 +22,7 @@ import com.diegocarloslima.gitcollection.core.network.BuildConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
-import com.diegocarloslima.gitcollection.core.network.util.MediaType
+import com.diegocarloslima.gitcollection.core.network.util.HttpMediaType
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -38,6 +38,9 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
+/**
+ * Hilt dependency injection for the network module.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
@@ -74,5 +77,5 @@ internal object NetworkModule {
         }
 
     private fun Json.toConverterFactory(): Converter.Factory =
-        this.asConverterFactory(MediaType.APPLICATION_JSON.toMediaType())
+        this.asConverterFactory(HttpMediaType.APPLICATION_JSON.toMediaType())
 }

@@ -21,6 +21,9 @@ package com.diegocarloslima.gitcollection.core.network.github.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This class holds the data for a repository owner in GitHub.
+ */
 @Serializable
 data class RepositoryOwner(
     val login: String,

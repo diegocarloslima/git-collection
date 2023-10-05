@@ -20,6 +20,9 @@ package com.diegocarloslima.gitcollection.core.network.github.model
 
 import kotlinx.serialization.Serializable
 
+/**
+ * This class holds the data for a repository license in GitHub.
+ */
 @Serializable
 data class RepositoryLicense(
     val name: String,

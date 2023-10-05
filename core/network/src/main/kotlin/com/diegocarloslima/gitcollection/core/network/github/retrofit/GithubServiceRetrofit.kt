@@ -23,7 +23,11 @@ import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryRes
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Using Retrofit for generating the implementation of the GitHub REST API service.
+ */
 internal interface GithubServiceRetrofit : GithubService {
+
     @GET(value = "search/repositories")
     override suspend fun searchRepositories(
         @Query("q") query: String,

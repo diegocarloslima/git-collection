@@ -21,6 +21,11 @@ package com.diegocarloslima.gitcollection.core.network.github.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This class represents the results of repositories search in GitHub.
+ *
+ * @see <a href="https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories>Search repositories</a>
+ */
 @Serializable
 data class RepositoryResults(
     @SerialName("total_count") val totalCount: Long,

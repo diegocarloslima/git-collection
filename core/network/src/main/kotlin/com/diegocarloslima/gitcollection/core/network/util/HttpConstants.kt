@@ -18,6 +18,16 @@
 
 package com.diegocarloslima.gitcollection.core.network.util
 
+/**
+ * Object that holds constants for HTTP header fields.
+ */
 internal object HttpHeader {
     const val AUTHORIZATION = "Authorization"
+}
+
+/**
+ * Object that holds constants for HTTP media types.
+ */
+internal object HttpMediaType {
+    const val APPLICATION_JSON = "application/json"
 }
