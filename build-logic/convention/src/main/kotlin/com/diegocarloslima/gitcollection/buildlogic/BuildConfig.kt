@@ -23,9 +23,9 @@ import org.gradle.api.JavaVersion
 internal object BuildConfig {
 
     object Android {
-        const val COMPILE_SDK = 33
+        const val COMPILE_SDK = 34
         const val MIN_SDK = 21
-        const val TARGET_SDK = 33
+        const val TARGET_SDK = 34
     }
 
     object Java {
