@@ -23,7 +23,7 @@ plugins {
 }
 
 android {
-    namespace = "com.diegocarloslima.gitcollection.feature.settings"
+    namespace = "com.diegocarloslima.gitcollection.feature.discover"
 }
 
 dependencies {

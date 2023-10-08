@@ -22,7 +22,7 @@ plugins {
 }
 
 android {
-    namespace = "com.diegocarloslima.gitcollection.data.repositories"
+    namespace = "com.diegocarloslima.gitcollection.data.project"
 }
 
 dependencies {
