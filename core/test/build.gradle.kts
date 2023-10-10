@@ -18,32 +18,14 @@
 
 plugins {
     id("gitcollection.android.library")
-    id("gitcollection.android.hilt")
-    id("kotlinx-serialization")
+//    id("gitcollection.android.hilt")
 }
 
 android {
-    namespace = "com.diegocarloslima.gitcollection.core.network"
-
-    defaultConfig {
-        testInstrumentationRunner = "com.diegocarloslima.gitcollection.core.test.runner.TestRunner"
-    }
-
-    buildFeatures {
-        buildConfig = true
-    }
+    namespace = "com.diegocarloslima.gitcollection.core.test"
 }
 
 dependencies {
-    implementation(project(":core:common"))
-
-    implementation(libs.kotlinx.datetime)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization.converter)
-
-    androidTestImplementation(project(":core:test"))
-
-    androidTestImplementation(libs.okhttp.mockwebserver)
+    implementation(libs.androidx.test.runner)
+    implementation(libs.hilt.android.testing)
 }

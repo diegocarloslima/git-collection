@@ -16,34 +16,23 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+package com.diegocarloslima.gitcollection.core.test.runner
+
+import android.app.Application
+import android.content.Context
+import androidx.test.runner.AndroidJUnitRunner
+import dagger.hilt.android.testing.HiltTestApplication
+
+/**
+ * Custom runner that uses [HiltTestApplication].
+ */
+class TestRunner : AndroidJUnitRunner() {
+
+    override fun newApplication(
+        cl: ClassLoader?,
+        className: String?,
+        context: Context?,
+    ): Application {
+        return super.newApplication(cl, HiltTestApplication::class.java.name, context)
     }
 }
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:common")
-include(":core:network")
-include(":core:preferences")
-include(":core:test")
-include(":data:project")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")

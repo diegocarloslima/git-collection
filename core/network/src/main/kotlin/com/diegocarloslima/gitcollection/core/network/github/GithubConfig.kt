@@ -16,34 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+package com.diegocarloslima.gitcollection.core.network.github
+
+/**
+ * This class holds configuration data for a [GithubService].
+ */
+data class GithubConfig(
+    val baseUrl: String = DEFAULT_BASE_URL,
+) {
+
+    companion object {
+        const val DEFAULT_BASE_URL = "https://api.github.com/"
     }
 }
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:common")
-include(":core:network")
-include(":core:preferences")
-include(":core:test")
-include(":data:project")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")

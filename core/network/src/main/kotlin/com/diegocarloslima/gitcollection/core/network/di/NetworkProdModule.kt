@@ -16,34 +16,23 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+package com.diegocarloslima.gitcollection.core.network.di
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:common")
-include(":core:network")
-include(":core:preferences")
-include(":core:test")
-include(":data:project")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+/**
+ * Production Hilt dependency configuration for the network module.
+ */
+@Module
+@InstallIn(SingletonComponent::class)
+internal object NetworkProdModule {
+
+    @Provides
+    @Singleton
+    fun provideGithubConfig(): GithubConfig = GithubConfig()
+}

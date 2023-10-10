@@ -19,6 +19,7 @@
 package com.diegocarloslima.gitcollection.core.network.di
 
 import com.diegocarloslima.gitcollection.core.network.BuildConfig
+import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
@@ -39,7 +40,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
- * Hilt dependency injection for the network module.
+ * Common Hilt dependency configuration for the network module.
  */
 @Module
 @InstallIn(SingletonComponent::class)
@@ -47,9 +48,9 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGithubService(json: Json): GithubService =
+    fun provideGithubService(json: Json, config: GithubConfig): GithubService =
         Retrofit.Builder()
-            .baseUrl(GithubService.BASE_URL)
+            .baseUrl(config.baseUrl)
             .addConverterFactory(json.toConverterFactory())
             .build()
             .create(GithubServiceRetrofit::class.java)
