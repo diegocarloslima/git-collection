@@ -41,7 +41,7 @@ internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, 
         }
 
         dependencies {
-            implementation(libs.getLibrary("android.desugar.jdk.libs"))
+            add("coreLibraryDesugaring", libs.getLibrary("android.desugar.jdk.libs"))
         }
     }
 }
