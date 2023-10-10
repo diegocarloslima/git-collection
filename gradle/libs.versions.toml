@@ -1,5 +1,6 @@
 [versions]
 accompanist = "0.30.1"
+androidDesugarJdkLibs = "1.2.2"
 androidGradlePlugin = "8.1.2"
 androidxActivity = "1.8.0"
 androidxComposeBom = "2023.10.00"
@@ -29,6 +30,7 @@ spotless = "6.22.0"
 
 [libraries]
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
+android-desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }

@@ -20,6 +20,7 @@ package com.diegocarloslima.gitcollection.buildlogic
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, *, *, *, *>) {
     commonExtension.apply {
@@ -32,10 +33,15 @@ internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, 
         compileOptions {
             sourceCompatibility = BuildConfig.Java.VERSION
             targetCompatibility = BuildConfig.Java.VERSION
+            isCoreLibraryDesugaringEnabled = true
         }
 
         kotlinOptions {
             jvmTarget = BuildConfig.Java.VERSION.toString()
+        }
+
+        dependencies {
+            implementation(libs.getLibrary("android.desugar.jdk.libs"))
         }
     }
 }
