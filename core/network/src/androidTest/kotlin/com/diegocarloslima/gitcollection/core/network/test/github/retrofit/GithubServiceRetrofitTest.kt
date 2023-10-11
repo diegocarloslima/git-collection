@@ -39,7 +39,7 @@ import kotlin.test.assertEquals
 internal class GithubServiceRetrofitTest {
 
     @get:Rule
-    var hiltRule = HiltAndroidRule(this)
+    val hiltRule = HiltAndroidRule(this)
 
     @Inject
     lateinit var mockWebServer: MockWebServer
@@ -47,19 +47,41 @@ internal class GithubServiceRetrofitTest {
     @Inject
     lateinit var githubServiceRetrofit: GithubService
 
+//    @get:Rule
+//    val testResource: TestResource = TestResource()
+
+//    val testtest: ExternalResource = object: ExternalResource() {
+//        override fun before() {
+//            android.util.Log.i("GITTEST", "before Called")
+//            println("GITTEST - before called")
+//            super.before()
+//        }
+//
+//        override fun after() {
+//            android.util.Log.i("GITTEST", "after Called")
+//            println("GITTEST - after called")
+//            super.after()
+//        }
+//    }
+
     @Before
     fun setup() {
+        android.util.Log.i("GITTEST", "setup Called")
+        println("GITTEST - setup called")
         hiltRule.inject()
+    }
 
-        try {
-            mockWebServer.start()
-        } catch (t: Throwable) {
-        }
+    @After
+    fun tearDown() {
+        android.util.Log.i("GITTEST", "tearDown Called")
+        println("GITTEST - tearDown called")
+        mockWebServer.shutdown()
     }
 
     @Test
     fun test_search_repositories_success() {
         runBlocking {
+//            testResource.hello()
             mockWebServer.enqueue(
                 MockResponse()
                     .setResponseCode(200)
@@ -78,8 +100,25 @@ internal class GithubServiceRetrofitTest {
         }
     }
 
-    @After
-    fun clear() {
-        mockWebServer.shutdown()
+    @Test
+    fun test_search_repositories_success2() {
+        runBlocking {
+//            testResource.hello()
+            mockWebServer.enqueue(
+                MockResponse()
+                    .setResponseCode(200)
+                    .setBody(SearchRepositories.BODY_SUCCESS),
+            )
+
+            val results = githubServiceRetrofit.searchRepositories(
+                SearchRepositories.QUERY,
+                SearchRepositories.SORT,
+                SearchRepositories.ORDER,
+                SearchRepositories.PER_PAGE,
+                SearchRepositories.PAGE,
+            )
+
+            assertEquals(956765L, results.totalCount)
+        }
     }
 }

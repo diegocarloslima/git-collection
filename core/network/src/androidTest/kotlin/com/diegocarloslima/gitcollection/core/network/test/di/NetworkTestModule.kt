@@ -20,6 +20,7 @@ package com.diegocarloslima.gitcollection.core.network.test.di
 
 import com.diegocarloslima.gitcollection.core.network.di.NetworkProdModule
 import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
+import com.diegocarloslima.gitcollection.core.network.test.github.retrofit.TestResource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -44,8 +45,9 @@ internal object NetworkTestModule {
 
     @Provides
     @Singleton
-    fun provideMockWebServer(): MockWebServer =
-        MockWebServer().apply {
-//        useHttps(SSLSocketFactory.getDefault() as SSLSocketFactory, false)
-        }
+    fun provideMockWebServer(): MockWebServer = MockWebServer()
+
+    @Provides
+    @Singleton
+    fun provideTestResource(): TestResource = TestResource()
 }
