@@ -18,11 +18,12 @@
 
 package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.test.util.safeStart
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
+import kotlinx.datetime.toInstant
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -45,43 +46,22 @@ internal class GithubServiceRetrofitTest {
     lateinit var mockWebServer: MockWebServer
 
     @Inject
-    lateinit var githubServiceRetrofit: GithubService
-
-//    @get:Rule
-//    val testResource: TestResource = TestResource()
-
-//    val testtest: ExternalResource = object: ExternalResource() {
-//        override fun before() {
-//            android.util.Log.i("GITTEST", "before Called")
-//            println("GITTEST - before called")
-//            super.before()
-//        }
-//
-//        override fun after() {
-//            android.util.Log.i("GITTEST", "after Called")
-//            println("GITTEST - after called")
-//            super.after()
-//        }
-//    }
+    lateinit var githubServiceRetrofit: GithubServiceRetrofit
 
     @Before
     fun setup() {
-        android.util.Log.i("GITTEST", "setup Called")
-        println("GITTEST - setup called")
         hiltRule.inject()
+        mockWebServer.safeStart()
     }
 
     @After
     fun tearDown() {
-        android.util.Log.i("GITTEST", "tearDown Called")
-        println("GITTEST - tearDown called")
         mockWebServer.shutdown()
     }
 
     @Test
-    fun test_search_repositories_success() {
+    fun test_search_repositories_success_parsing() {
         runBlocking {
-//            testResource.hello()
             mockWebServer.enqueue(
                 MockResponse()
                     .setResponseCode(200)
@@ -95,30 +75,12 @@ internal class GithubServiceRetrofitTest {
                 SearchRepositories.PER_PAGE,
                 SearchRepositories.PAGE,
             )
-
+            val repository = results.items[0]
             assertEquals(956765L, results.totalCount)
-        }
-    }
-
-    @Test
-    fun test_search_repositories_success2() {
-        runBlocking {
-//            testResource.hello()
-            mockWebServer.enqueue(
-                MockResponse()
-                    .setResponseCode(200)
-                    .setBody(SearchRepositories.BODY_SUCCESS),
-            )
-
-            val results = githubServiceRetrofit.searchRepositories(
-                SearchRepositories.QUERY,
-                SearchRepositories.SORT,
-                SearchRepositories.ORDER,
-                SearchRepositories.PER_PAGE,
-                SearchRepositories.PAGE,
-            )
-
-            assertEquals(956765L, results.totalCount)
+            assertEquals("react-native", repository.name)
+            assertEquals("2015-01-09T18:10:16Z".toInstant(), repository.createdAt)
+            assertEquals("facebook", repository.owner.login)
+            assertEquals("MIT License", repository.license!!.name)
         }
     }
 }

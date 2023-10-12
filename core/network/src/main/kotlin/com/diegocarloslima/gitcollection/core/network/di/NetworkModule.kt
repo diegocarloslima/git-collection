@@ -25,6 +25,7 @@ import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServ
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
 import com.diegocarloslima.gitcollection.core.network.util.HttpMediaType
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,39 +45,44 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-internal object NetworkModule {
+internal abstract class NetworkModule {
 
-    @Provides
-    @Singleton
-    fun provideGithubService(json: Json, config: GithubConfig): GithubService =
-        Retrofit.Builder()
-            .baseUrl(config.baseUrl)
-            .addConverterFactory(json.toConverterFactory())
-            .build()
-            .create(GithubServiceRetrofit::class.java)
+    @Binds
+    abstract fun bindGithubService(githubServiceRetrofit: GithubServiceRetrofit): GithubService
 
-    @Provides
-    @Singleton
-    fun provideJson(): Json =
-        Json {
-            ignoreUnknownKeys = true
-        }
+    companion object {
+        @Provides
+        @Singleton
+        fun provideGithubServiceRetrofit(json: Json, config: GithubConfig): GithubServiceRetrofit =
+            Retrofit.Builder()
+                .baseUrl(config.baseUrl)
+                .addConverterFactory(json.toConverterFactory())
+                .build()
+                .create(GithubServiceRetrofit::class.java)
 
-    @Provides
-    @Singleton
-    fun provideCallFactory(): Call.Factory =
-        OkHttpClient.Builder()
-            .addInterceptor(interceptor())
-            .build()
-
-    private fun interceptor(): Interceptor =
-        HttpLoggingInterceptor().apply {
-            redactHeader(HttpHeader.AUTHORIZATION)
-            if (BuildConfig.DEBUG) {
-                setLevel(HttpLoggingInterceptor.Level.BODY)
+        @Provides
+        @Singleton
+        fun provideJson(): Json =
+            Json {
+                ignoreUnknownKeys = true
             }
-        }
 
-    private fun Json.toConverterFactory(): Converter.Factory =
-        this.asConverterFactory(HttpMediaType.APPLICATION_JSON.toMediaType())
+        @Provides
+        @Singleton
+        fun provideCallFactory(): Call.Factory =
+            OkHttpClient.Builder()
+                .addInterceptor(interceptor())
+                .build()
+    }
 }
+
+private fun interceptor(): Interceptor =
+    HttpLoggingInterceptor().apply {
+        redactHeader(HttpHeader.AUTHORIZATION)
+        if (BuildConfig.DEBUG) {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+    }
+
+private fun Json.toConverterFactory(): Converter.Factory =
+    this.asConverterFactory(HttpMediaType.APPLICATION_JSON.toMediaType())

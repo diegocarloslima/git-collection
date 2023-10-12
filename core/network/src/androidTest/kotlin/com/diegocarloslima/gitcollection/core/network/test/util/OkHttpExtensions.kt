@@ -16,25 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
+package com.diegocarloslima.gitcollection.core.network.test.util
 
-import org.junit.rules.ExternalResource
+import okhttp3.mockwebserver.MockWebServer
 
-class TestResource : ExternalResource() {
-    override fun before() {
-        android.util.Log.i("GITTEST", "before Called")
-        println("GITTEST - before called")
-        super.before()
+/**
+ * This avoids throwing [IllegalArgumentException] if the [MockWebServer] has already been started.
+ */
+fun MockWebServer.safeStart() =
+    try {
+        this.start()
+    } catch (_: IllegalArgumentException) {
     }
-
-    override fun after() {
-        android.util.Log.i("GITTEST", "after Called")
-        println("GITTEST - after called")
-        super.after()
-    }
-
-    fun hello() {
-        android.util.Log.i("GITTEST", "hello Called")
-        println("GITTEST - hello called")
-    }
-}
