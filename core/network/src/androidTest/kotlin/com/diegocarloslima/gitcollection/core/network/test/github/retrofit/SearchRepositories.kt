@@ -24,6 +24,7 @@ package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 internal object SearchRepositories {
 
     const val QUERY = "android language:kotlin OR android language:java"
+    const val EMPTY_QUERY = ""
     const val SORT = "stars"
     const val ORDER = "desc"
     const val PER_PAGE = 2
@@ -265,6 +266,22 @@ internal object SearchRepositories {
             "score": 1
         }
     ]
+}
+    """.trimIndent()
+
+    // From:
+    // https://api.github.com/search/repositories?q=&sort=stars&order=desc&per_page=2&page=1
+    val BODY_EMPTY_QUERY = """
+{
+  "message": "Validation Failed",
+  "errors": [
+    {
+      "resource": "Search",
+      "field": "q",
+      "code": "missing"
+    }
+  ],
+  "documentation_url": "https://docs.github.com/v3/search"
 }
     """.trimIndent()
 }

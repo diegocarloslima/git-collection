@@ -30,8 +30,10 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.HttpException
 import javax.inject.Inject
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 /**
  * Tests for [GithubServiceRetrofit].
@@ -60,7 +62,7 @@ internal class GithubServiceRetrofitTest {
     }
 
     @Test
-    fun test_search_repositories_success_parsing() {
+    fun test_search_repositories_results_parsing() {
         runBlocking {
             mockWebServer.enqueue(
                 MockResponse()
@@ -81,6 +83,27 @@ internal class GithubServiceRetrofitTest {
             assertEquals("2015-01-09T18:10:16Z".toInstant(), repository.createdAt)
             assertEquals("facebook", repository.owner.login)
             assertEquals("MIT License", repository.license!!.name)
+        }
+    }
+
+    @Test
+    fun test_search_repositories_empty_query() {
+        runBlocking {
+            mockWebServer.enqueue(
+                MockResponse()
+                    .setResponseCode(422)
+                    .setBody(SearchRepositories.BODY_EMPTY_QUERY),
+            )
+            val httpException = assertFailsWith<HttpException> {
+                githubServiceRetrofit.searchRepositories(
+                    SearchRepositories.EMPTY_QUERY,
+                    SearchRepositories.SORT,
+                    SearchRepositories.ORDER,
+                    SearchRepositories.PER_PAGE,
+                    SearchRepositories.PAGE,
+                )
+            }
+            assertEquals(422, httpException.response()!!.code())
         }
     }
 }
