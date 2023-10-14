@@ -59,7 +59,7 @@ internal class DiscoverViewModel @Inject constructor(
 
 // private const val QUERY_TRENDING = "android in:name,description,topics,readme language:kotlin OR android in:name,description,topics,readme language:java"
 // private const val QUERY_TRENDING = "android in:name,description,topics,readme language:kotlin"
-private const val QUERY_TRENDING = ""
+private const val QUERY_TRENDING = "android"
 private const val SORT_STARS = "stars"
 private const val ORDER_DESC = "desc"
 private const val PER_PAGE = 20

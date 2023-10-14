@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.test.util.safeStart
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -26,11 +27,13 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.toInstant
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import okhttp3.mockwebserver.SocketPolicy
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.HttpException
+import java.net.SocketTimeoutException
 import javax.inject.Inject
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -70,13 +73,9 @@ internal class GithubServiceRetrofitTest {
                     .setBody(SearchRepositories.BODY_SUCCESS),
             )
 
-            val results = githubServiceRetrofit.searchRepositories(
-                SearchRepositories.QUERY,
-                SearchRepositories.SORT,
-                SearchRepositories.ORDER,
-                SearchRepositories.PER_PAGE,
-                SearchRepositories.PAGE,
-            )
+            val results =
+                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.QUERY)
+
             val repository = results.items[0]
             assertEquals(956765L, results.totalCount)
             assertEquals("react-native", repository.name)
@@ -95,15 +94,31 @@ internal class GithubServiceRetrofitTest {
                     .setBody(SearchRepositories.BODY_EMPTY_QUERY),
             )
             val httpException = assertFailsWith<HttpException> {
-                githubServiceRetrofit.searchRepositories(
-                    SearchRepositories.EMPTY_QUERY,
-                    SearchRepositories.SORT,
-                    SearchRepositories.ORDER,
-                    SearchRepositories.PER_PAGE,
-                    SearchRepositories.PAGE,
-                )
+                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.EMPTY_QUERY)
             }
             assertEquals(422, httpException.response()!!.code())
         }
     }
+
+    @Test
+    fun test_search_repositories_timeout_error() {
+        runBlocking {
+            val response = MockResponse().setSocketPolicy(SocketPolicy.NO_RESPONSE)
+            mockWebServer.enqueue(response)
+            assertFailsWith<SocketTimeoutException> {
+                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.QUERY)
+            }
+        }
+    }
 }
+
+private suspend fun GithubServiceRetrofit.searchRepositoriesTestQuery(
+    query: String,
+): RepositoryResults =
+    this.searchRepositories(
+        query,
+        SearchRepositories.SORT,
+        SearchRepositories.ORDER,
+        SearchRepositories.PER_PAGE,
+        SearchRepositories.PAGE,
+    )
