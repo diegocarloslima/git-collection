@@ -21,6 +21,7 @@ package com.diegocarloslima.gitcollection.buildlogic
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.kotlin
 
 internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, *, *, *, *>) {
     commonExtension.apply {
@@ -28,6 +29,7 @@ internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, 
 
         defaultConfig {
             minSdk = BuildConfig.Android.MIN_SDK
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
 
         compileOptions {
@@ -41,7 +43,13 @@ internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, 
         }
 
         dependencies {
-            add("coreLibraryDesugaring", libs.getLibrary("android.desugar.jdk.libs"))
+            val kotlinTest = kotlin("test")
+            coreLibraryDesugaring(libs.getLibrary("android.desugar.jdk.libs"))
+
+            testImplementation(kotlinTest)
+
+            androidTestImplementation(kotlinTest)
+            androidTestImplementation(libs.getLibrary("androidx.test.runner"))
         }
     }
 }

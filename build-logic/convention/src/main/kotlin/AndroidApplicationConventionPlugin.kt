@@ -38,7 +38,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetSdk = BuildConfig.Android.TARGET_SDK
                 }
 
-                packagingOptions {
+                packaging {
                     resources {
                         excludes.add("/META-INF/{AL2.0,LGPL2.1}")
                     }

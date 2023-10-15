@@ -17,15 +17,10 @@
  */
 
 import com.android.build.gradle.LibraryExtension
-import com.diegocarloslima.gitcollection.buildlogic.BuildConfig
-import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
 import com.diegocarloslima.gitcollection.buildlogic.configureCommonAndroid
-import com.diegocarloslima.gitcollection.buildlogic.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.kotlin
 
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -37,15 +32,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureCommonAndroid(this)
-
-                defaultConfig {
-                    targetSdk = BuildConfig.Android.TARGET_SDK
-                }
-            }
-
-            dependencies {
-                testImplementation(kotlin("test"))
-                androidTestImplementation(kotlin("test"))
             }
         }
     }

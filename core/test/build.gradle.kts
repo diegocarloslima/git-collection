@@ -18,7 +18,6 @@
 
 plugins {
     id("gitcollection.android.library")
-//    id("gitcollection.android.hilt")
 }
 
 android {

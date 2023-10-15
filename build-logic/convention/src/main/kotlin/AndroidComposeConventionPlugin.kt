@@ -18,6 +18,7 @@
 
 import com.android.build.api.dsl.CommonExtension
 import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
+import com.diegocarloslima.gitcollection.buildlogic.debugImplementation
 import com.diegocarloslima.gitcollection.buildlogic.getLibrary
 import com.diegocarloslima.gitcollection.buildlogic.getVersion
 import com.diegocarloslima.gitcollection.buildlogic.implementation
@@ -40,9 +41,19 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
                 }
 
                 dependencies {
-                    val bom = libs.getLibrary("androidx.compose.bom")
-                    implementation(platform(bom))
-                    androidTestImplementation(platform(bom))
+                    val composeBom = platform(libs.getLibrary("androidx.compose.bom"))
+                    implementation(composeBom)
+                    // Material Design 3
+                    implementation(libs.getLibrary("androidx.compose.material3"))
+
+                    // Android Studio Preview support
+                    implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))
+                    debugImplementation(libs.getLibrary("androidx.compose.ui.tooling"))
+
+                    androidTestImplementation(composeBom)
+                    // UI Tests
+                    androidTestImplementation(libs.getLibrary("androidx.compose.ui.test.junit4"))
+                    debugImplementation(libs.getLibrary("androidx.compose.ui.test.manifest"))
                 }
             }
         }

@@ -48,8 +48,14 @@ internal fun VersionCatalog.getPlugin(alias: String): Provider<PluginDependency>
 internal fun DependencyHandler.implementation(dependencyNotation: Any): Dependency? =
     add("implementation", dependencyNotation)
 
+internal fun DependencyHandler.debugImplementation(dependencyNotation: Any): Dependency? =
+    add("debugImplementation", dependencyNotation)
+
 internal fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
     add("testImplementation", dependencyNotation)
 
 internal fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
     add("kapt", dependencyNotation)
+
+internal fun DependencyHandler.coreLibraryDesugaring(dependencyNotation: Any): Dependency? =
+    add("coreLibraryDesugaring", dependencyNotation)
