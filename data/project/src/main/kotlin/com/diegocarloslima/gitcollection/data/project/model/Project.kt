@@ -18,6 +18,16 @@
 
 package com.diegocarloslima.gitcollection.data.project.model
 
+import kotlinx.datetime.Instant
+
 data class Project(
+    val name: String,
     val description: String,
+    val url: String,
+    val iconUrl: String,
+    val stars: Long,
+    val forks: Long,
+    val language: String,
+    val topics: List<String>,
+    val updated: Instant,
 )
