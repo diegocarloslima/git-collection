@@ -18,20 +18,21 @@
 
 package com.diegocarloslima.gitcollection.data.project.model
 
-import kotlinx.datetime.Instant
+import com.diegocarloslima.gitcollection.core.network.github.model.Repository
 
 /**
- * This class holds information about a Git repository project.
+ * Converts a [Repository] into a [Project].
  */
-data class Project(
-    val id: Long,
-    val name: String,
-    val description: String,
-    val url: String,
-    val iconUrl: String,
-    val stars: Long,
-    val forks: Long,
-    val language: String,
-    val topics: List<String>,
-    val updated: Instant,
-)
+fun Repository.toProject(): Project =
+    Project(
+        this.id,
+        this.fullName,
+        this.description ?: "",
+        this.htmlUrl,
+        this.owner.avatarUrl,
+        this.stargazersCount,
+        this.forksCount,
+        this.language ?: "",
+        this.topics,
+        this.updatedAt,
+    )
