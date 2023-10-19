@@ -16,23 +16,17 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
+package com.diegocarloslima.gitcollection.data.project
 
-import com.diegocarloslima.gitcollection.core.network.github.model.Repository
+import com.diegocarloslima.gitcollection.data.project.model.Project
+import javax.inject.Inject
 
 /**
- * Converts a [Repository] into a [Project].
+ * Default implementation for a repository of git projects.
  */
-internal fun Repository.toProject(): Project =
-    Project(
-        this.id,
-        this.fullName,
-        this.description ?: "",
-        this.htmlUrl,
-        this.owner.avatarUrl,
-        this.stargazersCount,
-        this.forksCount,
-        this.language ?: "",
-        this.topics,
-        this.updatedAt,
-    )
+internal class ProjectRepositoryDefault @Inject constructor(
+    private val remoteDataSource: ProjectDataSourceRemote,
+) : ProjectRepository {
+    override suspend fun getPopularProjects(page: Int): List<Project> =
+        remoteDataSource.getPopularProjects(ProjectRepository.RESULTS_PER_PAGE, page)
+}

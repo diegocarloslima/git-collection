@@ -18,7 +18,15 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
+import com.diegocarloslima.gitcollection.data.project.model.Project
+
 /**
  * Interface that establishes a contract for a repository o git projects.
  */
-interface ProjectRepository
+interface ProjectRepository {
+    suspend fun getPopularProjects(page: Int = 1): List<Project>
+
+    companion object {
+        internal const val RESULTS_PER_PAGE = 25
+    }
+}
