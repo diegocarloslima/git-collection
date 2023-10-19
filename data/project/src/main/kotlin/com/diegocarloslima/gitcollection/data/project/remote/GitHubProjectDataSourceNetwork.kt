@@ -16,22 +16,31 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.retrofit.remote
+package com.diegocarloslima.gitcollection.data.project.remote
 
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
+import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.data.project.model.toProject
 import javax.inject.Inject
 
-class GitHubProjectDataSourceRetrofit @Inject constructor(
+/**
+ * Data source for retrieving GitHub repository projects using network.
+ */
+internal class GitHubProjectDataSourceNetwork @Inject constructor(
     private val service: GithubService,
-) {
+) : ProjectDataSourceRemote {
 
-    // TODO: Adjust return type
-    suspend fun getPopularRepositories(page: Int): RepositoryResults =
-        service.searchRepositories(QUERY_TRENDING, SORT_STARS, ORDER_DESC, PER_PAGE, page)
+    override suspend fun getPopularProjects(perPage: Int, page: Int): List<Project> =
+        service.searchRepositories(
+            QUERY_TRENDING,
+            SORT_STARS,
+            ORDER_DESC,
+            perPage,
+            page,
+        ).items.map { it.toProject() }
 }
 
 private const val QUERY_TRENDING = "android+language:java,android+language:kotlin"
 private const val SORT_STARS = "stars"
 private const val ORDER_DESC = "desc"
-private const val PER_PAGE = 25

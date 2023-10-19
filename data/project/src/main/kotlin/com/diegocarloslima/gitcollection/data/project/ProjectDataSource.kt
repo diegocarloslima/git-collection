@@ -20,7 +20,10 @@ package com.diegocarloslima.gitcollection.data.project
 
 import com.diegocarloslima.gitcollection.data.project.model.Project
 
+/**
+ * Interface that establishes a contract for a git repository projects data source.
+ */
 internal interface ProjectDataSource {
 
-    suspend fun getPopularProjects(page: Int = 1): Result<Project>
+    suspend fun getPopularProjects(perPage: Int, page: Int): List<Project>
 }

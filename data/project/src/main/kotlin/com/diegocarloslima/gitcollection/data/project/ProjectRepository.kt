@@ -18,4 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
+/**
+ * Interface that establishes a contract for a repository o git projects.
+ */
 interface ProjectRepository

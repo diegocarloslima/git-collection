@@ -18,4 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
+/**
+ * Interface that establishes a contract for a git repository projects remote data source.
+ */
 internal interface ProjectDataSourceRemote : ProjectDataSource
