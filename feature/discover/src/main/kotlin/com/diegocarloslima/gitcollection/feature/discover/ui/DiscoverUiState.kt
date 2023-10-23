@@ -16,11 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.app.ui
+package com.diegocarloslima.gitcollection.feature.discover.ui
 
-import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.data.project.model.Project
 
-internal sealed interface MainUiState {
-    data object Loading : MainUiState
-    data class Success(val appPreferences: AppPreferences) : MainUiState
+internal sealed interface DiscoverUiState {
+    data object Loading : DiscoverUiState
+    data class Success(val projects: List<Project>) : DiscoverUiState
+    data object NetworkError : DiscoverUiState
 }

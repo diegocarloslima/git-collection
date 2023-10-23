@@ -21,6 +21,6 @@ package com.diegocarloslima.gitcollection.feature.settings.ui
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 
 internal sealed interface SettingsUiState {
-    object Loading : SettingsUiState
+    data object Loading : SettingsUiState
     data class Success(val appPreferences: AppPreferences) : SettingsUiState
 }
