@@ -16,35 +16,13 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-pluginManagement {
-    includeBuild("build-logic")
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+plugins {
+    id("gitcollection.android.library")
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+android {
+    namespace = "com.diegocarloslima.gitcollection.ui.common"
 }
 
-rootProject.name = "Git Collection"
-include(":app")
-include(":core:common")
-include(":core:network")
-include(":core:preferences")
-include(":core:test")
-include(":data:project")
-include(":feature:discover")
-include(":feature:saved")
-include(":feature:search")
-include(":feature:settings")
-include(":ui:common")
-include(":ui:compose")
-include(":ui:strings")
-include(":shortkuts")
+dependencies {
+}

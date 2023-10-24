@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":data:project"))
+    implementation(project(":ui:common"))
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))
 
