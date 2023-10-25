@@ -18,12 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
-import com.diegocarloslima.gitcollection.data.project.model.Project
-
 /**
  * Interface that establishes a contract for a git repository projects data source.
  */
-internal interface ProjectDataSource {
-
-    suspend fun getPopularProjects(perPage: Int, page: Int): List<Project>
-}
+internal interface ProjectDataSource

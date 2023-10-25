@@ -18,10 +18,32 @@
 
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.diegocarloslima.gitcollection.data.project.model.Project
+import kotlinx.coroutines.flow.Flow
 
 @Composable
-internal fun DiscoverScreen() {
-    Text("Discover Screen")
+internal fun DiscoverScreen(
+    projects: Flow<PagingData<Project>>,
+) {
+    val pagingItems: LazyPagingItems<Project> = projects.collectAsLazyPagingItems()
+    LazyColumn {
+        items(
+            count = pagingItems.itemCount,
+            key = { index ->
+                val project = pagingItems[index]
+                "${project?.id ?: ""}$index"
+            },
+        ) { index ->
+            val project = pagingItems[index] ?: return@items
+            Text(text = project.name)
+            Divider()
+        }
+    }
 }

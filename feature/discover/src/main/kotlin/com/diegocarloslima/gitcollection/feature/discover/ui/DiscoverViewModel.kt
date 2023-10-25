@@ -18,32 +18,21 @@
 
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.diegocarloslima.gitcollection.data.project.ProjectRepository
+import com.diegocarloslima.gitcollection.data.project.model.Project
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 internal class DiscoverViewModel @Inject constructor(
-    private val projectRepository: ProjectRepository,
+    projectRepository: ProjectRepository,
 ) : ViewModel() {
 
-    init {
-        Log.i("GITTEST", "searchRepositories V1")
-        viewModelScope.launch {
-            try {
-                projectRepository.getPopularProjects(1).forEach { project ->
-                    Log.i("GITTEST", "project: ${project.name} ==> ${project.stars}")
-                }
-            } catch (t: Throwable) {
-                Log.e(
-                    "GITTEST",
-                    "${t::class.java.name} error happened: ${Log.getStackTraceString(t)}",
-                )
-            }
-        }
-    }
+    val popularProjects: Flow<PagingData<Project>> =
+        projectRepository.getPopularProjects().cachedIn(viewModelScope)
 }

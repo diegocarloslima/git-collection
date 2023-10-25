@@ -41,5 +41,7 @@ fun NavGraphBuilder.discoverGraph() {
 private fun DiscoverRoute(
     viewModel: DiscoverViewModel = hiltViewModel(),
 ) {
-    DiscoverScreen()
+    DiscoverScreen(
+        projects = viewModel.popularProjects,
+    )
 }

@@ -18,7 +18,12 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.data.project.paging.ProjectPagingSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -27,6 +32,8 @@ import javax.inject.Inject
 internal class ProjectRepositoryDefault @Inject constructor(
     private val remoteDataSource: ProjectDataSourceRemote,
 ) : ProjectRepository {
-    override suspend fun getPopularProjects(page: Int): List<Project> =
-        remoteDataSource.getPopularProjects(ProjectRepository.RESULTS_PER_PAGE, page)
+    override fun getPopularProjects(): Flow<PagingData<Project>> = Pager(
+        config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+        pagingSourceFactory = { ProjectPagingSource(remoteDataSource) },
+    ).flow
 }
