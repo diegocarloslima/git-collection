@@ -26,7 +26,8 @@ import com.diegocarloslima.gitcollection.core.network.github.model.Repository
 internal fun Repository.toProject(): Project =
     Project(
         this.id,
-        this.fullName,
+        this.owner.login,
+        this.name,
         this.description ?: "",
         this.htmlUrl,
         this.owner.avatarUrl,

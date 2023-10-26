@@ -18,29 +18,33 @@
 
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.paging.PagingData
-import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.compose.ui.unit.dp
 import com.diegocarloslima.gitcollection.data.project.model.Project
-import kotlinx.coroutines.flow.Flow
+import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
 
 @Composable
-internal fun DiscoverScreen(
-    projects: Flow<PagingData<Project>>,
+internal fun DiscoverProjectCard(
+    project: Project,
 ) {
-    val pagingItems: LazyPagingItems<Project> = projects.collectAsLazyPagingItems()
-    LazyColumn {
-        items(
-            count = pagingItems.itemCount,
-            key = { index ->
-                val project = pagingItems[index]
-                "${project?.id ?: ""}$index"
-            },
-        ) { index ->
-            val project = pagingItems[index] ?: return@items
-            DiscoverProjectCard(project = project)
+    Card(
+        shape = RoundedCornerShape(16.dp),
+    ) {
+        Column {
+            Row {
+                Icon(imageVector = DefaultIcons.Home, contentDescription = "TODO")
+                Column {
+                    Text(text = project.owner)
+                    Text(text = project.name)
+                }
+                Icon(imageVector = DefaultIcons.FavoriteOutlined, contentDescription = "TODO")
+            }
         }
     }
 }

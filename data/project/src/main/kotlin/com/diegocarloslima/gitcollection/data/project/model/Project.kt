@@ -25,6 +25,7 @@ import kotlinx.datetime.Instant
  */
 data class Project(
     val id: Long,
+    val owner: String,
     val name: String,
     val description: String,
     val url: String,
