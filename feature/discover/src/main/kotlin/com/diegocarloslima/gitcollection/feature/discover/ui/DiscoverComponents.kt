@@ -20,11 +20,17 @@ package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.diegocarloslima.gitcollection.data.project.model.Project
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
@@ -33,17 +39,27 @@ import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
 internal fun DiscoverProjectCard(
     project: Project,
 ) {
-    Card(
+    ElevatedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
         shape = RoundedCornerShape(16.dp),
     ) {
-        Column {
+        Column(
+            modifier = Modifier.padding(8.dp),
+        ) {
             Row {
-                Icon(imageVector = DefaultIcons.Home, contentDescription = "TODO")
+                Icon(
+                    imageVector = DefaultIcons.Home,
+                    contentDescription = "TODO",
+                )
+                Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text(text = project.owner)
-                    Text(text = project.name)
+                    Text(text = project.name, fontWeight = FontWeight.Bold)
                 }
-                Icon(imageVector = DefaultIcons.FavoriteOutlined, contentDescription = "TODO")
+                Spacer(modifier = Modifier.weight(1f))
+                Icon(imageVector = DefaultIcons.BookmarkBorder, contentDescription = "TODO")
             }
         }
     }

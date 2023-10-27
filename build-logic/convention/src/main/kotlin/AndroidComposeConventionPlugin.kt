@@ -45,6 +45,7 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
                     implementation(composeBom)
                     // Material Design 3
                     implementation(libs.getLibrary("androidx.compose.material3"))
+                    implementation(libs.getLibrary("androidx.compose.material.icons.extended"))
 
                     // Android Studio Preview support
                     implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))

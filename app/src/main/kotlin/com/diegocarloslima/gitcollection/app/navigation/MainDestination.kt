@@ -31,13 +31,13 @@ enum class MainDestination(
 ) {
     DISCOVER(
         DefaultIcons.Home,
-        DefaultIcons.HomeOutlined,
+        DefaultIcons.HomeBorder,
         stringsR.string.discover_title,
         titleStringRes = stringsR.string.app_name,
     ),
     SAVED(
         DefaultIcons.Favorite,
-        DefaultIcons.FavoriteOutlined,
+        DefaultIcons.FavoriteBorder,
         stringsR.string.saved_title,
     ),
     SEARCH(
