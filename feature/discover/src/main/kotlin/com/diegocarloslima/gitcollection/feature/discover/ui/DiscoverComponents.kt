@@ -19,7 +19,10 @@
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,16 +34,25 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.diegocarloslima.gitcollection.data.project.model.Project
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import kotlinx.datetime.Instant
+import kotlinx.datetime.toJavaInstant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
+// TODO: Move
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun DiscoverProjectCard(
     project: Project,
@@ -119,6 +131,31 @@ internal fun DiscoverProjectCard(
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = stringResource(
+                    id = stringsR.string.project_updated_on,
+                    project.updated.format(),
+                ),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                project.topics.forEach { topic ->
+                    SuggestionChip(onClick = { /*TODO*/ }, label = {
+                        Text(
+                            text = topic,
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    })
+                }
+            }
         }
     }
 }
+
+// TODO: Adjust and move
+private fun Instant.format(): String =
+    DateTimeFormatter.ofPattern("MMM d, yyyy").withZone(ZoneId.systemDefault())
+        .format(this.toJavaInstant())
