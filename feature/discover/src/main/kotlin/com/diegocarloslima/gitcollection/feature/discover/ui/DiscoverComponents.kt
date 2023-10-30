@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,7 +33,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.diegocarloslima.gitcollection.data.project.model.Project
@@ -77,10 +80,44 @@ internal fun DiscoverProjectCard(
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 3,
             )
+            Spacer(modifier = Modifier.height(8.dp))
             Row {
-                Text(text = project.stars.toString())
-                Text(text = project.language)
-                Text(text = project.forks.toString())
+                Canvas(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .align(Alignment.CenterVertically),
+                ) {
+                    drawCircle(color = Color.Blue)
+                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = project.language,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Icon(
+                    imageVector = DefaultIcons.Star,
+                    contentDescription = "TODO",
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                )
+                Text(
+                    text = project.stars.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Icon(
+                    imageVector = DefaultIcons.AccountTree,
+                    contentDescription = "TODO",
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                )
+                Text(
+                    text = project.forks.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
             }
         }
     }
