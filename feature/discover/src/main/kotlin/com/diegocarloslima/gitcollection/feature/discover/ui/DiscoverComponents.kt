@@ -51,6 +51,8 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
+private const val MAX_TOPICS = 5
+
 // TODO: Move
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -142,13 +144,16 @@ internal fun DiscoverProjectCard(
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                project.topics.forEach { topic ->
-                    SuggestionChip(onClick = { /*TODO*/ }, label = {
-                        Text(
-                            text = topic,
-                            style = MaterialTheme.typography.bodySmall,
-                        )
-                    })
+                project.topics.take(MAX_TOPICS).forEach { topic ->
+                    SuggestionChip(
+                        onClick = {},
+                        label = {
+                            Text(
+                                text = topic,
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        },
+                    )
                 }
             }
         }
