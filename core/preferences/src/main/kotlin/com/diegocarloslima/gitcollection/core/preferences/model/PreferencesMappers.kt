@@ -16,13 +16,28 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.datastore
+package com.diegocarloslima.gitcollection.core.preferences.model
 
+import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProto
+import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.DARK
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.LIGHT
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.SYSTEM_DEFAULT
 import com.diegocarloslima.gitcollection.core.preferences.datastore.ThemePreferenceProto.UNRECOGNIZED
-import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
+
+internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
+    AppPreferences(
+        this.useDynamicColor,
+        this.theme.mapToThemePreference(),
+        this.onboardingCompleted,
+    )
+
+internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
+    AppPreferencesProto.newBuilder()
+        .setUseDynamicColor(this.useDynamicColor)
+        .setTheme(this.theme.mapToThemePreferenceProto())
+        .setOnboardingCompleted(this.onboardingCompleted)
+        .build()
 
 internal fun ThemePreferenceProto.mapToThemePreference(): ThemePreference =
     when (this) {

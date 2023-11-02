@@ -23,6 +23,8 @@ import com.diegocarloslima.gitcollection.core.preferences.PreferencesDataSource
 import com.diegocarloslima.gitcollection.core.preferences.datastore.AppPreferencesProtoKt.Dsl
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
+import com.diegocarloslima.gitcollection.core.preferences.model.mapToAppPreferences
+import com.diegocarloslima.gitcollection.core.preferences.model.mapToThemePreferenceProto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

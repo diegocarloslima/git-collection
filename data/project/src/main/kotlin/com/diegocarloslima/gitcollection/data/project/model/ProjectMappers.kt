@@ -16,20 +16,24 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.preferences.datastore
+package com.diegocarloslima.gitcollection.data.project.model
 
-import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.core.network.github.model.Repository
 
-internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
-    AppPreferences(
-        this.useDynamicColor,
-        this.theme.mapToThemePreference(),
-        this.onboardingCompleted,
+/**
+ * Converts a [Repository] into a [Project].
+ */
+internal fun Repository.mapToProject(): Project =
+    Project(
+        this.id,
+        this.owner.login,
+        this.name,
+        this.description ?: "",
+        this.htmlUrl,
+        this.owner.avatarUrl,
+        this.stargazersCount,
+        this.forksCount,
+        this.language ?: "",
+        this.topics,
+        this.updatedAt,
     )
-
-internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
-    AppPreferencesProto.newBuilder()
-        .setUseDynamicColor(this.useDynamicColor)
-        .setTheme(this.theme.mapToThemePreferenceProto())
-        .setOnboardingCompleted(this.onboardingCompleted)
-        .build()

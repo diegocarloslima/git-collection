@@ -21,7 +21,7 @@ package com.diegocarloslima.gitcollection.data.project.remote
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.model.Project
-import com.diegocarloslima.gitcollection.data.project.model.toProject
+import com.diegocarloslima.gitcollection.data.project.model.mapToProject
 import javax.inject.Inject
 
 /**
@@ -38,7 +38,7 @@ internal class GitHubProjectDataSourceNetwork @Inject constructor(
             ORDER_DESC,
             perPage,
             page,
-        ).items.map { it.toProject() }
+        ).items.map { it.mapToProject() }
 }
 
 private const val QUERY_TRENDING = "android+language:java,android+language:kotlin"
