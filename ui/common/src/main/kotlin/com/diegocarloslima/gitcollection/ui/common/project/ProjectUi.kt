@@ -18,4 +18,21 @@
 
 package com.diegocarloslima.gitcollection.ui.common.project
 
-class ProjectItem
+import java.time.Instant
+
+/**
+ * This class holds information needed for the visual representation of a Git repository project.
+ */
+data class ProjectUi internal constructor(
+    val id: Long,
+    val owner: String,
+    val name: String,
+    val description: String,
+    val url: String,
+    val iconUrl: String,
+    val stars: Long,
+    val forks: Long,
+    val language: String,
+    val topics: List<String>,
+    val updated: Instant,
+)
