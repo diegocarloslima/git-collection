@@ -25,4 +25,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:preferences"))
+    implementation(project(":data:project"))
+
+    implementation(libs.kotlinx.datetime)
 }

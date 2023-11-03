@@ -30,6 +30,7 @@ internal fun AppPreferencesProto.mapToAppPreferences(): AppPreferences =
         this.useDynamicColor,
         this.theme.mapToThemePreference(),
         this.onboardingCompleted,
+        this.bookmarkedProjectIdsList.toSet(),
     )
 
 internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
@@ -37,6 +38,7 @@ internal fun AppPreferences.mapToAppPreferencesProto(): AppPreferencesProto =
         .setUseDynamicColor(this.useDynamicColor)
         .setTheme(this.theme.mapToThemePreferenceProto())
         .setOnboardingCompleted(this.onboardingCompleted)
+        .addAllBookmarkedProjectIds(this.bookmarkedProjectIds)
         .build()
 
 internal fun ThemePreferenceProto.mapToThemePreference(): ThemePreference =

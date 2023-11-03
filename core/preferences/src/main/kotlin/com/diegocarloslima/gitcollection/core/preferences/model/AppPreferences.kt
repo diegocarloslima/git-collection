@@ -24,12 +24,14 @@ data class AppPreferences(
     val useDynamicColor: Boolean,
     val theme: ThemePreference,
     val onboardingCompleted: Boolean,
+    val bookmarkedProjectIds: Set<Long>,
 ) {
     companion object {
         val DEFAULT = AppPreferences(
             true,
             SYSTEM_DEFAULT,
             false,
+            emptySet(),
         )
     }
 }

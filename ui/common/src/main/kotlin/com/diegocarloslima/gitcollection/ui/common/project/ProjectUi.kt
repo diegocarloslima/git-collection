@@ -18,7 +18,9 @@
 
 package com.diegocarloslima.gitcollection.ui.common.project
 
-import java.time.Instant
+import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
+import com.diegocarloslima.gitcollection.data.project.model.Project
+import kotlinx.datetime.Instant
 
 /**
  * This class holds information needed for the visual representation of a Git repository project.
@@ -35,4 +37,20 @@ data class ProjectUi internal constructor(
     val language: String,
     val topics: List<String>,
     val updated: Instant,
-)
+    val bookmarked: Boolean,
+) {
+    constructor(project: Project, preferences: AppPreferences) : this(
+        id = project.id,
+        owner = project.owner,
+        name = project.name,
+        description = project.description,
+        url = project.url,
+        iconUrl = project.iconUrl,
+        stars = project.stars,
+        forks = project.forks,
+        language = project.language,
+        topics = project.topics,
+        updated = project.updated,
+        bookmarked = preferences.bookmarkedProjectIds.contains(project.id),
+    )
+}
