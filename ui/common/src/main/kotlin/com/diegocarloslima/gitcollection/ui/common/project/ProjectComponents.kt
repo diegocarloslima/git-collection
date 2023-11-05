@@ -18,4 +18,10 @@
 
 package com.diegocarloslima.gitcollection.ui.common.project
 
-class ProjectComponents
+import androidx.compose.runtime.Composable
+
+@Composable
+fun ProjectCard(
+    project: ProjectUi,
+) {
+}
