@@ -13,6 +13,7 @@ androidxHiltNavigationCompose = "1.0.0"
 androidxLifecycle = "2.6.2"
 androidxNavigation = "2.7.4"
 androidxTestRunner = "1.5.2"
+coil = "2.4.0"
 hilt = "2.48.1"
 kotlin = "1.9.0"
 kotlinxCoroutines = "1.7.3"
@@ -48,6 +49,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidxEspresso" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
+coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
