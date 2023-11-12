@@ -28,6 +28,8 @@ android {
 dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":data:project"))
+    implementation(project(":ui:compose"))
+    implementation(project(":ui:strings"))
 
     implementation(libs.kotlinx.datetime)
 }

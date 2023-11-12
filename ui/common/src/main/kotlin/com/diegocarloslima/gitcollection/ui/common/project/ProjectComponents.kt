@@ -18,10 +18,147 @@
 
 package com.diegocarloslima.gitcollection.ui.common.project
 
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import kotlinx.datetime.Instant
+import kotlinx.datetime.toJavaInstant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
+private const val MAX_TOPICS = 5
+
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProjectCard(
     project: ProjectUi,
 ) {
+    ElevatedCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
+        shape = RoundedCornerShape(16.dp),
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+        ) {
+            Row {
+                Icon(
+                    imageVector = DefaultIcons.Home,
+                    contentDescription = "TODO",
+                    modifier = Modifier.size(32.dp),
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Column(
+                    modifier = Modifier.weight(1f),
+                ) {
+                    Text(text = project.owner, style = MaterialTheme.typography.bodySmall)
+                    Text(text = project.name, style = MaterialTheme.typography.titleSmall)
+                }
+                Spacer(modifier = Modifier.width(12.dp))
+                Icon(
+                    imageVector = DefaultIcons.BookmarkBorder,
+                    contentDescription = "TODO",
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = project.description,
+                style = MaterialTheme.typography.bodyMedium,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 3,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row {
+                Canvas(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .align(Alignment.CenterVertically),
+                ) {
+                    drawCircle(color = Color.Blue)
+                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = project.language,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Icon(
+                    imageVector = DefaultIcons.Star,
+                    contentDescription = "TODO",
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                )
+                Text(
+                    text = project.stars.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Icon(
+                    imageVector = DefaultIcons.AccountTree,
+                    contentDescription = "TODO",
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
+                )
+                Text(
+                    text = project.forks.toString(),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = stringResource(
+                    id = stringsR.string.project_updated_on,
+                    project.updated.format(),
+                ),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                project.topics.take(MAX_TOPICS).forEach { topic ->
+                    SuggestionChip(
+                        onClick = {},
+                        label = {
+                            Text(
+                                text = topic,
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        },
+                    )
+                }
+            }
+        }
+    }
 }
+
+// TODO: Adjust and move
+private fun Instant.format(): String =
+    DateTimeFormatter.ofPattern("MMM d, yyyy").withZone(ZoneId.systemDefault())
+        .format(this.toJavaInstant())
