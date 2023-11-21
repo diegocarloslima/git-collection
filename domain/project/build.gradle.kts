@@ -18,6 +18,7 @@
 
 plugins {
     id("gitcollection.android.library")
+    id("gitcollection.android.hilt")
 }
 
 android {
@@ -28,5 +29,6 @@ dependencies {
     implementation(project(":core:preferences"))
     implementation(project(":data:project"))
 
+    implementation(libs.androidx.paging.runtime)
     implementation(libs.kotlinx.datetime)
 }
