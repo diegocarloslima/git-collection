@@ -77,7 +77,7 @@ internal class GithubServiceRetrofitTest {
                 githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.QUERY)
 
             val repository = results.items[0]
-            assertEquals(956765L, results.totalCount)
+            assertEquals(964115L, results.totalCount)
             assertEquals("react-native", repository.name)
             assertEquals("2015-01-09T18:10:16Z".toInstant(), repository.createdAt)
             assertEquals("facebook", repository.owner.login)
