@@ -23,14 +23,14 @@ import androidx.compose.runtime.Composable
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import kotlinx.coroutines.flow.Flow
 
 @Composable
 internal fun DiscoverScreen(
-    projects: Flow<PagingData<Project>>,
+    projects: Flow<PagingData<UserProject>>,
 ) {
-    val pagingItems: LazyPagingItems<Project> = projects.collectAsLazyPagingItems()
+    val pagingItems: LazyPagingItems<UserProject> = projects.collectAsLazyPagingItems()
     LazyColumn {
         items(
             count = pagingItems.itemCount,

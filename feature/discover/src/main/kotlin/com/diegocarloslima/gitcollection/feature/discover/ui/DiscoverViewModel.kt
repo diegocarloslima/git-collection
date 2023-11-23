@@ -19,20 +19,21 @@
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.diegocarloslima.gitcollection.data.project.ProjectRepository
-import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.domain.project.GetPopularUserProjectsUseCase
+import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * ViewModel for the Discover screen.
+ */
 @HiltViewModel
 internal class DiscoverViewModel @Inject constructor(
-    projectRepository: ProjectRepository,
+    getPopularUserProjects: GetPopularUserProjectsUseCase,
 ) : ViewModel() {
 
-    val popularProjects: Flow<PagingData<Project>> =
-        projectRepository.getPopularProjects().cachedIn(viewModelScope)
+    val popularProjects: Flow<PagingData<UserProject>> =
+        getPopularUserProjects()
 }

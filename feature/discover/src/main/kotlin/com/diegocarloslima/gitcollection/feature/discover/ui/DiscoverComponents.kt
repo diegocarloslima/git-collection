@@ -43,7 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
@@ -57,7 +57,7 @@ private const val MAX_TOPICS = 5
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun DiscoverProjectCard(
-    project: Project,
+    project: UserProject,
 ) {
     ElevatedCard(
         modifier = Modifier

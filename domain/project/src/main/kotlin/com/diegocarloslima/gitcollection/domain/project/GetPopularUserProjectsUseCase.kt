@@ -30,7 +30,7 @@ import javax.inject.Inject
 /**
  * A use case to obtain a paginated list of bookmarked [UserProject].
  */
-class GetPopularUserProjectUseCase @Inject constructor(
+class GetPopularUserProjectsUseCase @Inject constructor(
     private val projectRepository: ProjectRepository,
     private val preferencesRepository: PreferencesRepository,
 ) {
