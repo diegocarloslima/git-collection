@@ -21,13 +21,14 @@ package com.diegocarloslima.gitcollection.ui.common.project
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences
 import com.diegocarloslima.gitcollection.data.project.model.Project
+import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import kotlinx.datetime.toInstant
 
 /**
  * Compose preview provider for a list of [ProjectUi].
  */
-internal class ProjectUiListPreviewProvider : PreviewParameterProvider<List<ProjectUi>> {
-    override val values: Sequence<List<ProjectUi>> = sequenceOf(PROJECT_UI_LIST)
+internal class UserProjectListPreviewProvider : PreviewParameterProvider<List<UserProject>> {
+    override val values: Sequence<List<UserProject>> = sequenceOf(PROJECT_UI_LIST)
 }
 
 private val APP_PREFERENCES = AppPreferences.DEFAULT.copy(
@@ -95,6 +96,6 @@ private val PROJECT_LIST = listOf(
 )
 
 private val PROJECT_UI_LIST = listOf(
-    ProjectUi(PROJECT_LIST[0], APP_PREFERENCES),
-    ProjectUi(PROJECT_LIST[1], APP_PREFERENCES),
+    UserProject(PROJECT_LIST[0], APP_PREFERENCES),
+    UserProject(PROJECT_LIST[1], APP_PREFERENCES),
 )
