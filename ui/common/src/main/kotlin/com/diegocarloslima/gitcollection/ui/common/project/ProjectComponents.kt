@@ -35,6 +35,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,9 +43,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.compose.theme.DefaultTheme
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
 import java.time.ZoneId
@@ -53,7 +57,9 @@ import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 private const val MAX_TOPICS = 5
 
-@OptIn(ExperimentalLayoutApi::class)
+/**
+ * A card that displays information about a [UserProject].
+ */
 @Composable
 fun ProjectCard(
     project: UserProject,
@@ -67,25 +73,7 @@ fun ProjectCard(
         Column(
             modifier = Modifier.padding(16.dp),
         ) {
-            Row {
-                Icon(
-                    imageVector = DefaultIcons.Home,
-                    contentDescription = "TODO",
-                    modifier = Modifier.size(32.dp),
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Column(
-                    modifier = Modifier.weight(1f),
-                ) {
-                    Text(text = project.owner, style = MaterialTheme.typography.bodySmall)
-                    Text(text = project.name, style = MaterialTheme.typography.titleSmall)
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-                Icon(
-                    imageVector = DefaultIcons.BookmarkBorder,
-                    contentDescription = "TODO",
-                )
-            }
+            ProjectCardTitleRow(project)
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = project.description,
@@ -94,44 +82,7 @@ fun ProjectCard(
                 maxLines = 3,
             )
             Spacer(modifier = Modifier.height(8.dp))
-            Row {
-                Canvas(
-                    modifier = Modifier
-                        .size(8.dp)
-                        .align(Alignment.CenterVertically),
-                ) {
-                    drawCircle(color = Color.Blue)
-                }
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = project.language,
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Icon(
-                    imageVector = DefaultIcons.Star,
-                    contentDescription = "TODO",
-                    modifier = Modifier
-                        .size(20.dp)
-                        .align(Alignment.CenterVertically),
-                )
-                Text(
-                    text = project.stars.toString(),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Icon(
-                    imageVector = DefaultIcons.AccountTree,
-                    contentDescription = "TODO",
-                    modifier = Modifier
-                        .size(20.dp)
-                        .align(Alignment.CenterVertically),
-                )
-                Text(
-                    text = project.forks.toString(),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
+            ProjectCardLanguageCountersRow(project)
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = stringResource(
@@ -140,21 +91,98 @@ fun ProjectCard(
                 ),
                 style = MaterialTheme.typography.bodyMedium,
             )
-            FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                project.topics.take(MAX_TOPICS).forEach { topic ->
-                    SuggestionChip(
-                        onClick = {},
-                        label = {
-                            Text(
-                                text = topic,
-                                style = MaterialTheme.typography.bodySmall,
-                            )
-                        },
+            ProjectCardTopicsRow(project)
+        }
+    }
+}
+
+@Composable
+private fun ProjectCardTitleRow(
+    project: UserProject,
+) {
+    Row {
+        Icon(
+            imageVector = DefaultIcons.Home,
+            contentDescription = "TODO",
+            modifier = Modifier.size(32.dp),
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Column(
+            modifier = Modifier.weight(1f),
+        ) {
+            Text(text = project.owner, style = MaterialTheme.typography.bodySmall)
+            Text(text = project.name, style = MaterialTheme.typography.titleSmall)
+        }
+        Spacer(modifier = Modifier.width(12.dp))
+        Icon(
+            imageVector = DefaultIcons.BookmarkBorder,
+            contentDescription = "TODO",
+        )
+    }
+}
+
+@Composable
+private fun ProjectCardLanguageCountersRow(
+    project: UserProject,
+) {
+    Row {
+        Canvas(
+            modifier = Modifier
+                .size(8.dp)
+                .align(Alignment.CenterVertically),
+        ) {
+            drawCircle(color = Color.Blue)
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = project.language,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Icon(
+            imageVector = DefaultIcons.Star,
+            contentDescription = "TODO",
+            modifier = Modifier
+                .size(20.dp)
+                .align(Alignment.CenterVertically),
+        )
+        Text(
+            text = project.stars.toString(),
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Spacer(modifier = Modifier.width(12.dp))
+        Icon(
+            imageVector = DefaultIcons.AccountTree,
+            contentDescription = "TODO",
+            modifier = Modifier
+                .size(20.dp)
+                .align(Alignment.CenterVertically),
+        )
+        Text(
+            text = project.forks.toString(),
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ProjectCardTopicsRow(
+    project: UserProject,
+) {
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        project.topics.take(MAX_TOPICS).forEach { topic ->
+            SuggestionChip(
+                onClick = {},
+                label = {
+                    Text(
+                        text = topic,
+                        style = MaterialTheme.typography.bodySmall,
                     )
-                }
-            }
+                },
+            )
         }
     }
 }
@@ -163,3 +191,16 @@ fun ProjectCard(
 private fun Instant.format(): String =
     DateTimeFormatter.ofPattern("MMM d, yyyy").withZone(ZoneId.systemDefault())
         .format(this.toJavaInstant())
+
+@Preview
+@Composable
+private fun ProjectCardPreview(
+    @PreviewParameter(UserProjectListPreviewProvider::class)
+    projects: List<UserProject>,
+) {
+    DefaultTheme {
+        Surface {
+            ProjectCard(project = projects[0])
+        }
+    }
+}

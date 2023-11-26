@@ -25,10 +25,10 @@ import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import kotlinx.datetime.toInstant
 
 /**
- * Compose preview provider for a list of [ProjectUi].
+ * Compose preview provider for a list of [UserProject].
  */
 internal class UserProjectListPreviewProvider : PreviewParameterProvider<List<UserProject>> {
-    override val values: Sequence<List<UserProject>> = sequenceOf(PROJECT_UI_LIST)
+    override val values: Sequence<List<UserProject>> = sequenceOf(USER_PROJECT_LIST)
 }
 
 private val APP_PREFERENCES = AppPreferences.DEFAULT.copy(
@@ -95,7 +95,7 @@ private val PROJECT_LIST = listOf(
     ),
 )
 
-private val PROJECT_UI_LIST = listOf(
+private val USER_PROJECT_LIST = listOf(
     UserProject(PROJECT_LIST[0], APP_PREFERENCES),
     UserProject(PROJECT_LIST[1], APP_PREFERENCES),
 )
