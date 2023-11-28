@@ -40,7 +40,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -126,19 +125,21 @@ private fun ProjectCardLanguageCountersRow(
     project: UserProject,
 ) {
     Row {
-        Canvas(
-            modifier = Modifier
-                .size(8.dp)
-                .align(Alignment.CenterVertically),
-        ) {
-            drawCircle(color = Color.Blue)
+        if (project.language.isNotEmpty()) {
+            Canvas(
+                modifier = Modifier
+                    .size(8.dp)
+                    .align(Alignment.CenterVertically),
+            ) {
+                drawCircle(color = project.languageColor)
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = project.language,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Spacer(modifier = Modifier.width(12.dp))
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = project.language,
-            style = MaterialTheme.typography.bodyMedium,
-        )
-        Spacer(modifier = Modifier.width(12.dp))
         Icon(
             imageVector = DefaultIcons.Star,
             contentDescription = "TODO",

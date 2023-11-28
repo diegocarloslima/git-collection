@@ -24,6 +24,7 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
+import com.diegocarloslima.gitcollection.ui.common.project.ProjectCard
 import kotlinx.coroutines.flow.Flow
 
 @Composable
@@ -40,7 +41,7 @@ internal fun DiscoverScreen(
             },
         ) { index ->
             val project = pagingItems[index] ?: return@items
-            DiscoverProjectCard(project = project)
+            ProjectCard(project = project)
         }
     }
 }
