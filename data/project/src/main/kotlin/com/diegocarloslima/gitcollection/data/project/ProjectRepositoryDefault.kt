@@ -33,7 +33,7 @@ internal class ProjectRepositoryDefault @Inject constructor(
     private val remoteDataSource: ProjectDataSourceRemote,
 ) : ProjectRepository {
     override fun getPopularProjects(): Flow<PagingData<Project>> = Pager(
-        config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+        config = PagingConfig(pageSize = ProjectPagingSource.PAGE_SIZE, enablePlaceholders = false),
         pagingSourceFactory = { ProjectPagingSource(remoteDataSource) },
     ).flow
 }

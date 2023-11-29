@@ -30,7 +30,7 @@ internal interface GithubServiceRetrofit : GithubService {
 
     @GET(value = "search/repositories")
     override suspend fun searchRepositories(
-        @Query("q") query: String,
+        @Query(value = "q", encoded = true) query: String,
         @Query("sort") sort: String,
         @Query("order") order: String,
         @Query("per_page") perPage: Int,

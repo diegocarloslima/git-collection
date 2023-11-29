@@ -32,7 +32,7 @@ internal class ProjectPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Project> {
         val page = params.key ?: START_PAGE
         return try {
-            val projects = remoteDataSource.getPopularProjects(params.loadSize, page)
+            val projects = remoteDataSource.getPopularProjects(PAGE_SIZE, page)
             LoadResult.Page(
                 data = projects,
                 prevKey = if (page == START_PAGE) null else page.dec(),
@@ -43,6 +43,7 @@ internal class ProjectPagingSource(
         }
     }
 
+    // TODO: Figure this out
     // The refresh key is used for subsequent refresh calls to PagingSource.load after the initial
     // load.
     override fun getRefreshKey(state: PagingState<Int, Project>): Int? {
@@ -53,5 +54,9 @@ internal class ProjectPagingSource(
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
+    }
+
+    companion object {
+        internal const val PAGE_SIZE = 25
     }
 }
