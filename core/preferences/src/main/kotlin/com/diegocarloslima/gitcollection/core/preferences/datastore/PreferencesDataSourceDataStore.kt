@@ -46,6 +46,19 @@ class PreferencesDataSourceDataStore @Inject constructor(
         }
     }
 
+    override suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+        updatePreferences {
+            val bookmarkedSet = this.bookmarkedProjectIds.toMutableSet()
+            if (bookmarked) {
+                bookmarkedSet.add(projectId)
+            } else {
+                bookmarkedSet.remove(projectId)
+            }
+            this.bookmarkedProjectIds.clear()
+            this.bookmarkedProjectIds.addAll(bookmarkedSet)
+        }
+    }
+
     private suspend fun updatePreferences(block: Dsl.() -> Unit) {
         dataStore.updateData { it.copy(block) }
     }

@@ -33,6 +33,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Surface
@@ -62,6 +63,7 @@ private const val MAX_TOPICS = 5
 @Composable
 fun ProjectCard(
     project: UserProject,
+    onBookmarkClick: (id: Long, bookmarked: Boolean) -> Unit,
 ) {
     ElevatedCard(
         modifier = Modifier
@@ -72,7 +74,11 @@ fun ProjectCard(
         Column(
             modifier = Modifier.padding(16.dp),
         ) {
-            ProjectCardTitleRow(project)
+            ProjectCardTitleRow(
+                project = project,
+                bookmarked = project.bookmarked,
+                onBookmarkClick = onBookmarkClick,
+            )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = project.description,
@@ -98,6 +104,8 @@ fun ProjectCard(
 @Composable
 private fun ProjectCardTitleRow(
     project: UserProject,
+    bookmarked: Boolean,
+    onBookmarkClick: (id: Long, bookmarked: Boolean) -> Unit,
 ) {
     Row {
         Icon(
@@ -113,9 +121,15 @@ private fun ProjectCardTitleRow(
             Text(text = project.name, style = MaterialTheme.typography.titleSmall)
         }
         Spacer(modifier = Modifier.width(12.dp))
-        Icon(
-            imageVector = DefaultIcons.BookmarkBorder,
-            contentDescription = "TODO",
+        IconToggleButton(
+            checked = bookmarked,
+            onCheckedChange = { checked -> onBookmarkClick(project.id, checked) },
+            content = {
+                Icon(
+                    imageVector = if (bookmarked) DefaultIcons.BookmarkBorder else DefaultIcons.Bookmark,
+                    contentDescription = "TODO",
+                )
+            },
         )
     }
 }
@@ -201,7 +215,10 @@ private fun ProjectCardPreview(
 ) {
     DefaultTheme {
         Surface {
-            ProjectCard(project = projects[0])
+            ProjectCard(
+                project = projects[0],
+                onBookmarkClick = { _, _ -> },
+            )
         }
     }
 }

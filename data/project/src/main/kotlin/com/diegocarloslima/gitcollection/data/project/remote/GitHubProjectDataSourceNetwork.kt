@@ -31,16 +31,14 @@ internal class GitHubProjectDataSourceNetwork @Inject constructor(
     private val service: GithubService,
 ) : ProjectDataSourceRemote {
 
-    override suspend fun getPopularProjects(perPage: Int, page: Int): List<Project> {
-        android.util.Log.i("GITTTEST", "perPage: $perPage page: $page")
-        return service.searchRepositories(
+    override suspend fun getPopularProjects(perPage: Int, page: Int): List<Project> =
+        service.searchRepositories(
             QUERY_TRENDING,
             SORT_STARS,
             ORDER_DESC,
             perPage,
             page,
         ).items.map { it.mapToProject() }
-    }
 }
 
 private const val QUERY_TRENDING = "android+language:kotlin%20OR%20android+language:java"

@@ -28,4 +28,6 @@ interface PreferencesRepository {
     suspend fun setUseDynamicColor(useDynamicColor: Boolean)
 
     suspend fun setTheme(theme: ThemePreference)
+
+    suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean)
 }

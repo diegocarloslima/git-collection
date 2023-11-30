@@ -43,5 +43,6 @@ private fun DiscoverRoute(
 ) {
     DiscoverScreen(
         projects = viewModel.popularProjects,
+        viewModel::updateProjectBookmarked,
     )
 }

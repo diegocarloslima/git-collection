@@ -20,6 +20,7 @@ package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
+import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepository
 import com.diegocarloslima.gitcollection.domain.project.GetPopularUserProjectsUseCase
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,9 +32,13 @@ import javax.inject.Inject
  */
 @HiltViewModel
 internal class DiscoverViewModel @Inject constructor(
+    private val preferencesRepository: PreferencesRepository,
     getPopularUserProjects: GetPopularUserProjectsUseCase,
 ) : ViewModel() {
 
     val popularProjects: Flow<PagingData<UserProject>> =
         getPopularUserProjects()
+
+    fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+    }
 }
