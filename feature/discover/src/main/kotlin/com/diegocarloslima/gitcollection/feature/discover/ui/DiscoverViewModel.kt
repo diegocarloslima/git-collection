@@ -19,12 +19,14 @@
 package com.diegocarloslima.gitcollection.feature.discover.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepository
 import com.diegocarloslima.gitcollection.domain.project.GetPopularUserProjectsUseCase
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -40,5 +42,9 @@ internal class DiscoverViewModel @Inject constructor(
         getPopularUserProjects()
 
     fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+        android.util.Log.i("GITTEST", "ViewModel bookmarked: $projectId $bookmarked")
+        viewModelScope.launch {
+            preferencesRepository.updateProjectBookmarked(projectId, bookmarked)
+        }
     }
 }

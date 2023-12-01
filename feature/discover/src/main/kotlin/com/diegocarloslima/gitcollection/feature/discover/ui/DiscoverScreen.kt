@@ -30,7 +30,7 @@ import kotlinx.coroutines.flow.Flow
 @Composable
 internal fun DiscoverScreen(
     projects: Flow<PagingData<UserProject>>,
-    onBookmarkClick: (id: Long, bookmarked: Boolean) -> Unit,
+    onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
 ) {
     val pagingItems: LazyPagingItems<UserProject> = projects.collectAsLazyPagingItems()
     LazyColumn {

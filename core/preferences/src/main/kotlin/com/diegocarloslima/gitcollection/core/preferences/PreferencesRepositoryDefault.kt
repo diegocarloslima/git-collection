@@ -38,6 +38,6 @@ class PreferencesRepositoryDefault @Inject constructor(
     }
 
     override suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
-        TODO("Not yet implemented")
+        preferencesDataSource.updateProjectBookmarked(projectId, bookmarked)
     }
 }

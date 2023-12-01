@@ -63,7 +63,7 @@ private const val MAX_TOPICS = 5
 @Composable
 fun ProjectCard(
     project: UserProject,
-    onBookmarkClick: (id: Long, bookmarked: Boolean) -> Unit,
+    onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
 ) {
     ElevatedCard(
         modifier = Modifier
@@ -105,7 +105,7 @@ fun ProjectCard(
 private fun ProjectCardTitleRow(
     project: UserProject,
     bookmarked: Boolean,
-    onBookmarkClick: (id: Long, bookmarked: Boolean) -> Unit,
+    onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
 ) {
     Row {
         Icon(
@@ -126,7 +126,7 @@ private fun ProjectCardTitleRow(
             onCheckedChange = { checked -> onBookmarkClick(project.id, checked) },
             content = {
                 Icon(
-                    imageVector = if (bookmarked) DefaultIcons.BookmarkBorder else DefaultIcons.Bookmark,
+                    imageVector = if (bookmarked) DefaultIcons.Bookmark else DefaultIcons.BookmarkBorder,
                     contentDescription = "TODO",
                 )
             },
