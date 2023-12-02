@@ -19,10 +19,12 @@
 package com.diegocarloslima.gitcollection.domain.project
 
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import androidx.paging.map
 import com.diegocarloslima.gitcollection.core.preferences.PreferencesRepository
 import com.diegocarloslima.gitcollection.data.project.ProjectRepository
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
@@ -34,9 +36,9 @@ class GetPopularUserProjectsUseCase @Inject constructor(
     private val projectRepository: ProjectRepository,
     private val preferencesRepository: PreferencesRepository,
 ) {
-    operator fun invoke(): Flow<PagingData<UserProject>> =
+    operator fun invoke(scope: CoroutineScope): Flow<PagingData<UserProject>> =
         combine(
-            projectRepository.getPopularProjects(),
+            projectRepository.getPopularProjects().cachedIn(scope),
             preferencesRepository.preferences,
         ) { pagingData, preferences ->
             pagingData.map { project ->
