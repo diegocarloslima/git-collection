@@ -35,8 +35,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.kotlinx.datetime)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.paging.compose)
+    implementation(libs.kotlinx.datetime)
 }

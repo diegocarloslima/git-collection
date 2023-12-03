@@ -28,6 +28,5 @@ android {
 dependencies {
     implementation(project(":ui:strings"))
 
-    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.core.ktx)
 }
