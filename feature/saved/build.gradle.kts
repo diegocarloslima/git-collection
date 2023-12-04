@@ -18,8 +18,8 @@
 
 plugins {
     id("gitcollection.android.library")
-    id("gitcollection.android.compose")
-    id("gitcollection.android.hilt")
+    id("gitcollection.compose")
+    id("gitcollection.hilt")
 }
 
 android {

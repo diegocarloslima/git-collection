@@ -43,17 +43,17 @@ gradlePlugin {
             id = "gitcollection.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
-        register("androidCompose") {
-            id = "gitcollection.android.compose"
-            implementationClass = "AndroidComposeConventionPlugin"
+        register("compose") {
+            id = "gitcollection.compose"
+            implementationClass = "ComposeConventionPlugin"
         }
-        register("androidDatastore") {
-            id = "gitcollection.android.datastore"
-            implementationClass = "AndroidDataStoreConventionPlugin"
+        register("datastore") {
+            id = "gitcollection.datastore"
+            implementationClass = "DataStoreConventionPlugin"
         }
-        register("androidHilt") {
-            id = "gitcollection.android.hilt"
-            implementationClass = "AndroidHiltConventionPlugin"
+        register("hilt") {
+            id = "gitcollection.hilt"
+            implementationClass = "HiltConventionPlugin"
         }
     }
 }

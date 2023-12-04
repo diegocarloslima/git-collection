@@ -18,7 +18,7 @@
 
 plugins {
     id("gitcollection.android.library")
-    id("gitcollection.android.hilt")
+    id("gitcollection.hilt")
     id("kotlinx-serialization")
 }
 
