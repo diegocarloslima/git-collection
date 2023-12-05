@@ -24,6 +24,10 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin
 
 internal fun Project.configureCommonAndroid(commonExtension: CommonExtension<*, *, *, *, *>) {
+    with(pluginManager) {
+        apply("org.jetbrains.kotlin.android")
+    }
+
     commonExtension.apply {
         compileSdk = BuildConfig.Android.COMPILE_SDK
 
