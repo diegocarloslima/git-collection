@@ -71,32 +71,34 @@ fun ProjectCard(
             .padding(4.dp),
         shape = RoundedCornerShape(16.dp),
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-        ) {
+        Column {
             ProjectCardTitleRow(
                 project = project,
                 bookmarked = project.bookmarked,
                 onBookmarkClick = onBookmarkClick,
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = project.description,
-                style = MaterialTheme.typography.bodyMedium,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 3,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            ProjectCardLanguageCountersRow(project)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = stringResource(
-                    id = stringsR.string.project_updated_on,
-                    project.updated.format(),
-                ),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            ProjectCardTopicsRow(project)
+            Column(
+                modifier = Modifier.padding(16.dp, 0.dp, 16.dp, 16.dp),
+            ) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = project.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 3,
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                ProjectCardLanguageCountersRow(project)
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = stringResource(
+                        id = stringsR.string.project_updated_on,
+                        project.updated.format(),
+                    ),
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+                ProjectCardTopicsRow(project)
+            }
         }
     }
 }
@@ -107,7 +109,10 @@ private fun ProjectCardTitleRow(
     bookmarked: Boolean,
     onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
 ) {
-    Row {
+    Row(
+        modifier = Modifier.padding(16.dp, 8.dp, 4.dp, 0.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         Icon(
             imageVector = DefaultIcons.Home,
             contentDescription = "TODO",
@@ -138,12 +143,12 @@ private fun ProjectCardTitleRow(
 private fun ProjectCardLanguageCountersRow(
     project: UserProject,
 ) {
-    Row {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         if (project.language.isNotEmpty()) {
             Canvas(
-                modifier = Modifier
-                    .size(8.dp)
-                    .align(Alignment.CenterVertically),
+                modifier = Modifier.size(8.dp),
             ) {
                 drawCircle(color = project.languageColor)
             }
@@ -157,10 +162,9 @@ private fun ProjectCardLanguageCountersRow(
         Icon(
             imageVector = DefaultIcons.Star,
             contentDescription = "TODO",
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.CenterVertically),
+            modifier = Modifier.size(20.dp),
         )
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = project.stars.toString(),
             style = MaterialTheme.typography.bodyMedium,
@@ -169,10 +173,9 @@ private fun ProjectCardLanguageCountersRow(
         Icon(
             imageVector = DefaultIcons.AccountTree,
             contentDescription = "TODO",
-            modifier = Modifier
-                .size(20.dp)
-                .align(Alignment.CenterVertically),
+            modifier = Modifier.size(20.dp),
         )
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = project.forks.toString(),
             style = MaterialTheme.typography.bodyMedium,
