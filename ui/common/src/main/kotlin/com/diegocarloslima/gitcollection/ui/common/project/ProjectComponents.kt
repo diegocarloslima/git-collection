@@ -46,6 +46,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
 import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
 import com.diegocarloslima.gitcollection.ui.compose.theme.DefaultTheme
@@ -113,8 +114,8 @@ private fun ProjectCardTitleRow(
         modifier = Modifier.padding(16.dp, 8.dp, 4.dp, 0.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(
-            imageVector = DefaultIcons.Home,
+        AsyncImage(
+            model = project.iconUrl,
             contentDescription = "TODO",
             modifier = Modifier.size(32.dp),
         )

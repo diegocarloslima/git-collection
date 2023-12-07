@@ -32,5 +32,6 @@ dependencies {
     implementation(project(":ui:compose"))
     implementation(project(":ui:strings"))
 
+    implementation(libs.coil.kt.compose)
     implementation(libs.kotlinx.datetime)
 }
