@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.common.project
+package com.diegocarloslima.gitcollection.ui.project
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.diegocarloslima.gitcollection.core.preferences.model.AppPreferences

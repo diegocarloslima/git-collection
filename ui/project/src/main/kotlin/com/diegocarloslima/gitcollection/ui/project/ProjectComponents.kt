@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.common.project
+package com.diegocarloslima.gitcollection.ui.project
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
