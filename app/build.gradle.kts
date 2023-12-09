@@ -52,7 +52,7 @@ dependencies {
     implementation(project(":feature:saved"))
     implementation(project(":feature:search"))
     implementation(project(":feature:settings"))
-    implementation(project(":ui:compose"))
+    implementation(project(":ui:common"))
     implementation(project(":ui:strings"))
 
     implementation(project(":shortkuts"))

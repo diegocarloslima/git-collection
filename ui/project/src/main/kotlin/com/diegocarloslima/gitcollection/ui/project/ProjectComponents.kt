@@ -48,8 +48,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.diegocarloslima.gitcollection.domain.project.model.UserProject
-import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
-import com.diegocarloslima.gitcollection.ui.compose.theme.DefaultTheme
+import com.diegocarloslima.gitcollection.ui.common.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.common.theme.DefaultTheme
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toJavaInstant
 import java.time.ZoneId

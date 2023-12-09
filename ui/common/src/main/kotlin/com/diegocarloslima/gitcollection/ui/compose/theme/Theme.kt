@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose.theme
+package com.diegocarloslima.gitcollection.ui.common.theme
 
 import android.app.Activity
 import android.os.Build

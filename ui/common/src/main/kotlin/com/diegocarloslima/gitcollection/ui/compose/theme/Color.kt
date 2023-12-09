@@ -16,25 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose.component
+package com.diegocarloslima.gitcollection.ui.common.theme
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
-@Composable
-fun BackgroundComponent(
-    modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.background,
-    content: @Composable () -> Unit,
-) {
-    Surface(
-        modifier = modifier.fillMaxSize(),
-        color = color,
-    ) {
-        content()
-    }
-}
+internal val Purple80 = Color(0xFFD0BCFF)
+internal val PurpleGrey80 = Color(0xFFCCC2DC)
+internal val Pink80 = Color(0xFFEFB8C8)
+
+internal val Purple40 = Color(0xFF6650a4)
+internal val PurpleGrey40 = Color(0xFF625b71)
+internal val Pink40 = Color(0xFF7D5260)

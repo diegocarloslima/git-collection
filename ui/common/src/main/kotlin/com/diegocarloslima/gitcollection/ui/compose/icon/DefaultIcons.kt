@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose.icon
+package com.diegocarloslima.gitcollection.ui.common.icon
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Home

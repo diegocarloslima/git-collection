@@ -16,17 +16,25 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.compose")
-}
+package com.diegocarloslima.gitcollection.ui.common.component
 
-android {
-    namespace = "com.diegocarloslima.gitcollection.ui.compose"
-}
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
-dependencies {
-    implementation(project(":ui:strings"))
-
-    implementation(libs.androidx.core.ktx)
+@Composable
+fun BackgroundComponent(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.background,
+    content: @Composable () -> Unit,
+) {
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = color,
+    ) {
+        content()
+    }
 }

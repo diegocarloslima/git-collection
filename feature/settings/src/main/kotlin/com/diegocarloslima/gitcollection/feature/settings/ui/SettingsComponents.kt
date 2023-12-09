@@ -31,7 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
-import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
+import com.diegocarloslima.gitcollection.ui.common.component.TopAppBarComponent
 
 private const val SETTINGS_ITEM_PADDING = 16
 private const val SETTINGS_HALF_PADDING = SETTINGS_ITEM_PADDING / 2

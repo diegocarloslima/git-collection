@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
-import com.diegocarloslima.gitcollection.ui.compose.theme.supportsDynamicColor
+import com.diegocarloslima.gitcollection.ui.common.theme.supportsDynamicColor
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @OptIn(ExperimentalFoundationApi::class)

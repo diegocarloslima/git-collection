@@ -28,7 +28,7 @@ android {
 
 dependencies {
     implementation(project(":core:preferences"))
-    implementation(project(":ui:compose"))
+    implementation(project(":ui:common"))
     implementation(project(":ui:strings"))
 
     implementation(libs.androidx.core.ktx)

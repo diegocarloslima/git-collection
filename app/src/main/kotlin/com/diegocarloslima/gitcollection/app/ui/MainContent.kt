@@ -43,11 +43,11 @@ import com.diegocarloslima.gitcollection.app.navigation.MainNavHost
 import com.diegocarloslima.gitcollection.app.navigation.navigateToMainDestination
 import com.diegocarloslima.gitcollection.core.preferences.model.ThemePreference
 import com.diegocarloslima.gitcollection.feature.settings.ui.navigateToSettings
-import com.diegocarloslima.gitcollection.ui.compose.component.BackgroundComponent
-import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarAction
-import com.diegocarloslima.gitcollection.ui.compose.component.TopAppBarComponent
-import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
-import com.diegocarloslima.gitcollection.ui.compose.theme.DefaultTheme
+import com.diegocarloslima.gitcollection.ui.common.component.BackgroundComponent
+import com.diegocarloslima.gitcollection.ui.common.component.TopAppBarAction
+import com.diegocarloslima.gitcollection.ui.common.component.TopAppBarComponent
+import com.diegocarloslima.gitcollection.ui.common.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.common.theme.DefaultTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 

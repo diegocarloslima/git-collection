@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.ui.compose.component
+package com.diegocarloslima.gitcollection.ui.common.component
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
-import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.common.icon.DefaultIcons
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 @OptIn(ExperimentalMaterial3Api::class)

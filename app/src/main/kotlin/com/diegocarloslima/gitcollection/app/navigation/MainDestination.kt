@@ -20,7 +20,7 @@ package com.diegocarloslima.gitcollection.app.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.diegocarloslima.gitcollection.ui.compose.icon.DefaultIcons
+import com.diegocarloslima.gitcollection.ui.common.icon.DefaultIcons
 import com.diegocarloslima.gitcollection.ui.strings.R as stringsR
 
 enum class MainDestination(
