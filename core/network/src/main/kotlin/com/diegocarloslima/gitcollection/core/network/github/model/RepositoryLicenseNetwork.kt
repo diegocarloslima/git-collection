@@ -16,24 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
-
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+package com.diegocarloslima.gitcollection.core.network.github.model
 
 /**
- * Converts a [RepositoryNetwork] into a [Project].
+ * This interface represents the data structure of a repository license in GitHub.
  */
-internal fun RepositoryNetwork.mapToProject(): Project =
-    Project(
-        this.id,
-        this.owner.login,
-        this.name,
-        this.description ?: "",
-        this.htmlUrl,
-        this.owner.avatarUrl,
-        this.stargazersCount,
-        this.forksCount,
-        this.language ?: "",
-        this.topics,
-        this.updatedAt,
-    )
+interface RepositoryLicenseNetwork {
+    val name: String
+    val url: String?
+}

@@ -19,7 +19,7 @@
 package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -35,5 +35,5 @@ internal interface GithubServiceRetrofit : GithubService {
         @Query("order") order: String,
         @Query("per_page") perPage: Int,
         @Query("page") page: Int,
-    ): RepositoryResults
+    ): RepositoryResultsNetwork
 }

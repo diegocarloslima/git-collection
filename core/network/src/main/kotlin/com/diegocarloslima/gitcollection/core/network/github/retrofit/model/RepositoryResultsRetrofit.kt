@@ -16,15 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data for a repository license in GitHub.
+ * This class holds the data of for the results of a repository search in GitHub.
  */
 @Serializable
-data class RepositoryLicense(
-    val name: String,
-    val url: String?,
+internal data class RepositoryResultsRetrofit(
+    @SerialName("total_count") val totalCount: Long,
+    val items: List<RepositoryRetrofit>,
 )

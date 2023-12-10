@@ -16,24 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
-
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+package com.diegocarloslima.gitcollection.core.network.github.model
 
 /**
- * Converts a [RepositoryNetwork] into a [Project].
+ * This interface represents the data structure of the results of a repository search in GitHub.
+ *
+ * @see <a href="https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories>Search repositories</a>
  */
-internal fun RepositoryNetwork.mapToProject(): Project =
-    Project(
-        this.id,
-        this.owner.login,
-        this.name,
-        this.description ?: "",
-        this.htmlUrl,
-        this.owner.avatarUrl,
-        this.stargazersCount,
-        this.forksCount,
-        this.language ?: "",
-        this.topics,
-        this.updatedAt,
-    )
+interface RepositoryResultsNetwork {
+    val totalCount: Long
+    val items: List<RepositoryNetwork>
+}

@@ -16,24 +16,19 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
+package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryOwnerNetwork
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
- * Converts a [RepositoryNetwork] into a [Project].
+ * This class holds the data for a repository owner in GitHub.
  */
-internal fun RepositoryNetwork.mapToProject(): Project =
-    Project(
-        this.id,
-        this.owner.login,
-        this.name,
-        this.description ?: "",
-        this.htmlUrl,
-        this.owner.avatarUrl,
-        this.stargazersCount,
-        this.forksCount,
-        this.language ?: "",
-        this.topics,
-        this.updatedAt,
-    )
+@Serializable
+internal data class RepositoryOwnerRetrofit(
+    override val id: Long,
+    override val login: String,
+    @SerialName("avatar_url") override val avatarUrl: String,
+    @SerialName("html_url") override val htmlUrl: String,
+) : RepositoryOwnerNetwork

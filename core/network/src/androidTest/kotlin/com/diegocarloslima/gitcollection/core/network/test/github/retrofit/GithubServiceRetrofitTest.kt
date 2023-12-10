@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.test.util.safeStart
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -114,7 +114,7 @@ internal class GithubServiceRetrofitTest {
 
 private suspend fun GithubServiceRetrofit.searchRepositoriesTestQuery(
     query: String,
-): RepositoryResults =
+): RepositoryResultsNetwork =
     this.searchRepositories(
         query,
         SearchRepositories.SORT,

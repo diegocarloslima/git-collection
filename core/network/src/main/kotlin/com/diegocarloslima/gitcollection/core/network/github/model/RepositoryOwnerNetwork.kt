@@ -18,16 +18,12 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.model
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
 /**
- * This class represents the results of repositories search in GitHub.
- *
- * @see <a href="https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories>Search repositories</a>
+ * This interface represents the data structure of a repository owner in GitHub.
  */
-@Serializable
-data class RepositoryResults(
-    @SerialName("total_count") val totalCount: Long,
-    val items: List<Repository>,
-)
+interface RepositoryOwnerNetwork {
+    val id: Long
+    val login: String
+    val avatarUrl: String
+    val htmlUrl: String
+}

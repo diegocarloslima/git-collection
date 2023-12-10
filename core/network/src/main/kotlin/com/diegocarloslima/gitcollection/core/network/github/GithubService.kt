@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.github
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResults
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 
 /**
  * Interface that establishes a contract for the GitHub REST API service.
@@ -33,5 +33,5 @@ interface GithubService {
         order: String,
         perPage: Int,
         page: Int,
-    ): RepositoryResults
+    ): RepositoryResultsNetwork
 }

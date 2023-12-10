@@ -16,18 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import kotlinx.serialization.SerialName
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryLicenseNetwork
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data for a repository owner in GitHub.
+ * This class holds the data for a repository license in GitHub.
  */
 @Serializable
-data class RepositoryOwner(
-    val id: Long,
-    val login: String,
-    @SerialName("avatar_url") val avatarUrl: String,
-    @SerialName("html_url") val htmlUrl: String,
-)
+internal data class RepositoryLicenseRetrofit(
+    override val name: String,
+    override val url: String?,
+) : RepositoryLicenseNetwork

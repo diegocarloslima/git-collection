@@ -16,24 +16,31 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
+package com.diegocarloslima.gitcollection.core.network.github.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+import kotlinx.datetime.Instant
 
 /**
- * Converts a [RepositoryNetwork] into a [Project].
+ * This interface represents the data structure of a repository in GitHub.
  */
-internal fun RepositoryNetwork.mapToProject(): Project =
-    Project(
-        this.id,
-        this.owner.login,
-        this.name,
-        this.description ?: "",
-        this.htmlUrl,
-        this.owner.avatarUrl,
-        this.stargazersCount,
-        this.forksCount,
-        this.language ?: "",
-        this.topics,
-        this.updatedAt,
-    )
+interface RepositoryNetwork {
+    val id: Long
+    val name: String
+    val fullName: String
+    val owner: RepositoryOwnerNetwork
+    val htmlUrl: String
+    val description: String?
+    val fork: Boolean
+    val createdAt: Instant
+    val updatedAt: Instant
+    val pushedAt: Instant
+    val homepage: String?
+    val stargazersCount: Long
+    val watchersCount: Long
+    val language: String?
+    val forksCount: Long
+    val openIssuesCount: Long
+    val license: RepositoryLicenseNetwork?
+    val topics: List<String>
+    val defaultBranch: String
+}
