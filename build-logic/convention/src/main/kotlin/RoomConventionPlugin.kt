@@ -16,32 +16,28 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.android.build.api.dsl.ApplicationExtension
-import com.diegocarloslima.gitcollection.buildlogic.BuildConfig
-import com.diegocarloslima.gitcollection.buildlogic.configureCommonAndroid
+import com.diegocarloslima.gitcollection.buildlogic.getLibrary
+import com.diegocarloslima.gitcollection.buildlogic.implementation
+import com.diegocarloslima.gitcollection.buildlogic.kapt
+import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 
-internal class AndroidApplicationConventionPlugin : Plugin<Project> {
+internal class RoomConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.application")
+                // KAPT must go last to avoid build warnings
+                apply("org.jetbrains.kotlin.kapt")
             }
 
-            extensions.configure<ApplicationExtension> {
-                configureCommonAndroid(this)
+            dependencies {
+                implementation(libs.getLibrary("room.runtime"))
+                kapt(libs.getLibrary("room.compiler"))
 
-                defaultConfig {
-                    targetSdk = BuildConfig.Android.TARGET_SDK
-                }
-
-                packaging {
-                    resources {
-                        excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-                    }
-                }
+                // Kotlin extensions and coroutines support
+                implementation(libs.getLibrary("room.ktx"))
             }
         }
     }

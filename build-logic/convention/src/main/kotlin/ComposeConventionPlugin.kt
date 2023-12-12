@@ -27,7 +27,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class ComposeConventionPlugin : Plugin<Project> {
+internal class ComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             extensions.configure<CommonExtension<*, *, *, *, *>>("android") {
@@ -47,12 +47,12 @@ class ComposeConventionPlugin : Plugin<Project> {
                     implementation(libs.getLibrary("androidx.compose.material3"))
                     implementation(libs.getLibrary("androidx.compose.material.icons.extended"))
 
-                    // Android Studio Preview support
+                    // Android Studio preview support
                     implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))
                     debugImplementation(libs.getLibrary("androidx.compose.ui.tooling"))
 
                     androidTestImplementation(composeBom)
-                    // UI Tests
+                    // UI tests
                     androidTestImplementation(libs.getLibrary("androidx.compose.ui.test.junit4"))
                     debugImplementation(libs.getLibrary("androidx.compose.ui.test.manifest"))
                 }

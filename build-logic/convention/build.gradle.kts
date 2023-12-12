@@ -55,5 +55,9 @@ gradlePlugin {
             id = "gitcollection.hilt"
             implementationClass = "HiltConventionPlugin"
         }
+        register("room") {
+            id = "gitcollection.room"
+            implementationClass = "RoomConventionPlugin"
+        }
     }
 }

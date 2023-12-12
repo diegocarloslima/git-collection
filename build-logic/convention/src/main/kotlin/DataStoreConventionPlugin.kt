@@ -25,7 +25,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
-class DataStoreConventionPlugin : Plugin<Project> {
+internal class DataStoreConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
