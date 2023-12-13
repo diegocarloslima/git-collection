@@ -38,6 +38,8 @@ internal class DataStoreConventionPlugin : Plugin<Project> {
                     artifact = libs.getLibrary("protobuf.protoc").get().toString()
                 }
 
+                // Lite runtime has a much smaller code size which makes it more suitable to be
+                // used on Android
                 generateProtoTasks {
                     all().forEach { task ->
                         task.builtins {

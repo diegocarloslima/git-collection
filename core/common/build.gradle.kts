@@ -18,7 +18,6 @@
 
 plugins {
     id("gitcollection.android.library")
-//    id("kotlinx-serialization")
 }
 
 android {
@@ -26,5 +25,4 @@ android {
 }
 
 dependencies {
-//    implementation(libs.kotlinx.serialization.json)
 }
