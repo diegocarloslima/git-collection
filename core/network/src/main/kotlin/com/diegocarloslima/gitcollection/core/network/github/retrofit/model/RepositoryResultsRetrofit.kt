@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -26,6 +27,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class RepositoryResultsRetrofit(
-    @SerialName("total_count") val totalCount: Long,
-    val items: List<RepositoryRetrofit>,
-)
+    @SerialName("total_count") override val totalCount: Long,
+    override val items: List<RepositoryRetrofit>,
+) : RepositoryResultsNetwork
