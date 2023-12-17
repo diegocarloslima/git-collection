@@ -19,8 +19,8 @@
 import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
 import com.diegocarloslima.gitcollection.buildlogic.getLibrary
 import com.diegocarloslima.gitcollection.buildlogic.implementation
-import com.diegocarloslima.gitcollection.buildlogic.kapt
-import com.diegocarloslima.gitcollection.buildlogic.kaptAndroidTest
+import com.diegocarloslima.gitcollection.buildlogic.ksp
+import com.diegocarloslima.gitcollection.buildlogic.kspAndroidTest
 import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -30,18 +30,25 @@ internal class HiltConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
+                apply("com.google.devtools.ksp")
                 apply("dagger.hilt.android.plugin")
-                // KAPT must go last to avoid build warnings
-                apply("org.jetbrains.kotlin.kapt")
             }
 
             dependencies {
+                val hiltAndroidCompiler = libs.getLibrary("hilt.android.compiler")
+                val hiltAndroidTesting = libs.getLibrary("hilt.android.testing")
+
                 implementation(libs.getLibrary("hilt.android"))
-                kapt(libs.getLibrary("hilt.android.compiler"))
+                ksp(hiltAndroidCompiler)
+
+                // TODO: Use it or remove it
+                // Robolectric tests with Kotlin
+                // testImplementation(hiltAndroidTesting)
+                // kspTest(hiltAndroidTesting)
 
                 // Instrumented tests with Kotlin
-                androidTestImplementation(libs.getLibrary("hilt.android.testing"))
-                kaptAndroidTest(libs.getLibrary("hilt.android.compiler"))
+                androidTestImplementation(hiltAndroidTesting)
+                kspAndroidTest(hiltAndroidCompiler)
             }
         }
     }

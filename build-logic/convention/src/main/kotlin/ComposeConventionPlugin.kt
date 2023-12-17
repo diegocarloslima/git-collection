@@ -41,8 +41,9 @@ internal class ComposeConventionPlugin : Plugin<Project> {
                 }
 
                 dependencies {
-                    val composeBom = platform(libs.getLibrary("androidx.compose.bom"))
-                    implementation(composeBom)
+                    val androidXComposeBom = platform(libs.getLibrary("androidx.compose.bom"))
+
+                    implementation(androidXComposeBom)
                     // Material Design 3
                     implementation(libs.getLibrary("androidx.compose.material3"))
                     implementation(libs.getLibrary("androidx.compose.material.icons.extended"))
@@ -51,7 +52,7 @@ internal class ComposeConventionPlugin : Plugin<Project> {
                     implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))
                     debugImplementation(libs.getLibrary("androidx.compose.ui.tooling"))
 
-                    androidTestImplementation(composeBom)
+                    androidTestImplementation(androidXComposeBom)
                     // UI tests
                     androidTestImplementation(libs.getLibrary("androidx.compose.ui.test.junit4"))
                     debugImplementation(libs.getLibrary("androidx.compose.ui.test.manifest"))

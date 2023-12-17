@@ -31,5 +31,5 @@ internal fun CommonExtension<*, *, *, *, *>.kotlinOptions(block: KotlinJvmOption
 internal fun DependencyHandler.androidTestImplementation(dependencyNotation: Any): Dependency? =
     add("androidTestImplementation", dependencyNotation)
 
-internal fun DependencyHandler.kaptAndroidTest(dependencyNotation: Any): Dependency? =
-    add("kaptAndroidTest", dependencyNotation)
+internal fun DependencyHandler.kspAndroidTest(dependencyNotation: Any): Dependency? =
+    add("kspAndroidTest", dependencyNotation)

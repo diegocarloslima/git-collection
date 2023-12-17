@@ -53,9 +53,11 @@ internal fun DependencyHandler.debugImplementation(dependencyNotation: Any): Dep
 
 internal fun DependencyHandler.testImplementation(dependencyNotation: Any): Dependency? =
     add("testImplementation", dependencyNotation)
+internal fun DependencyHandler.ksp(dependencyNotation: Any): Dependency? =
+    add("ksp", dependencyNotation)
 
-internal fun DependencyHandler.kapt(dependencyNotation: Any): Dependency? =
-    add("kapt", dependencyNotation)
+internal fun DependencyHandler.kspTest(dependencyNotation: Any): Dependency? =
+    add("kspTest", dependencyNotation)
 
 internal fun DependencyHandler.coreLibraryDesugaring(dependencyNotation: Any): Dependency? =
     add("coreLibraryDesugaring", dependencyNotation)

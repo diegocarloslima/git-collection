@@ -18,7 +18,7 @@
 
 import com.diegocarloslima.gitcollection.buildlogic.getLibrary
 import com.diegocarloslima.gitcollection.buildlogic.implementation
-import com.diegocarloslima.gitcollection.buildlogic.kapt
+import com.diegocarloslima.gitcollection.buildlogic.ksp
 import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -28,13 +28,12 @@ internal class RoomConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                // KAPT must go last to avoid build warnings
-                apply("org.jetbrains.kotlin.kapt")
+                apply("com.google.devtools.ksp")
             }
 
             dependencies {
                 implementation(libs.getLibrary("room.runtime"))
-                kapt(libs.getLibrary("room.compiler"))
+                ksp(libs.getLibrary("room.compiler"))
 
                 // Kotlin extensions and coroutines support
                 implementation(libs.getLibrary("room.ktx"))
