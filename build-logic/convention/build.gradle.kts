@@ -56,6 +56,10 @@ gradlePlugin {
             id = "gitcollection.hilt"
             implementationClass = "HiltConventionPlugin"
         }
+        register("retrofit") {
+            id = "gitcollection.retrofit"
+            implementationClass = "RetrofitConventionPlugin"
+        }
         register("room") {
             id = "gitcollection.room"
             implementationClass = "RoomConventionPlugin"

@@ -19,7 +19,7 @@
 plugins {
     id("gitcollection.android.library")
     id("gitcollection.hilt")
-    id("kotlinx-serialization")
+    id("gitcollection.retrofit")
 }
 
 android {
@@ -38,12 +38,6 @@ dependencies {
     implementation(project(":core:common"))
 
     implementation(libs.kotlinx.datetime)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp.logging.interceptor)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization.converter)
 
     androidTestImplementation(project(":core:test"))
-
-    androidTestImplementation(libs.okhttp.mockwebserver)
 }
