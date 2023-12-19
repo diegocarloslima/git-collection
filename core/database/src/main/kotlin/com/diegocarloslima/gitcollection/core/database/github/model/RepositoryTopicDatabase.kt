@@ -16,16 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.hilt")
-    id("gitcollection.room")
-}
+package com.diegocarloslima.gitcollection.core.database.github.model
 
-android {
-    namespace = "com.diegocarloslima.gitcollection.core.database"
-}
-
-dependencies {
-    implementation(libs.kotlinx.datetime)
+/**
+ * This interface represents the data structure of a GitHub repository topic stored in a database.
+ */
+interface RepositoryTopicDatabase {
+    val id: Long
+    val name: String
 }

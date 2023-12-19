@@ -16,16 +16,28 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.hilt")
-    id("gitcollection.room")
-}
+package com.diegocarloslima.gitcollection.core.database.github.model
 
-android {
-    namespace = "com.diegocarloslima.gitcollection.core.database"
-}
+import kotlinx.datetime.Instant
 
-dependencies {
-    implementation(libs.kotlinx.datetime)
+interface RepositoryDatabase {
+    val id: Long
+    val name: String
+    val fullName: String
+    val owner: RepositoryOwnerDatabase
+    val htmlUrl: String
+    val description: String?
+    val fork: Boolean
+    val createdAt: Instant
+    val updatedAt: Instant
+    val pushedAt: Instant
+    val homepage: String?
+    val stargazersCount: Long
+    val watchersCount: Long
+    val language: String?
+    val forksCount: Long
+    val openIssuesCount: Long
+    val license: RepositoryLicenseDatabase?
+    val topics: List<RepositoryTopicDatabase>
+    val defaultBranch: String
 }

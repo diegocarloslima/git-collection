@@ -16,16 +16,15 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id("gitcollection.android.library")
-    id("gitcollection.hilt")
-    id("gitcollection.room")
-}
+package com.diegocarloslima.gitcollection.core.database.di
 
-android {
-    namespace = "com.diegocarloslima.gitcollection.core.database"
-}
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-dependencies {
-    implementation(libs.kotlinx.datetime)
-}
+/**
+ * Hilt dependency configuration for the database module.
+ */
+@Module
+@InstallIn(SingletonComponent::class)
+internal abstract class DatabaseModule
