@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.database.github.room
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.diegocarloslima.gitcollection.core.database.github.model.RepositoryOwnerDatabase
@@ -32,6 +33,8 @@ import com.diegocarloslima.gitcollection.core.database.github.model.RepositoryOw
 internal data class RepositoryOwnerRoom(
     @PrimaryKey override val id: Long,
     override val login: String,
+    @ColumnInfo(name = "avatar_url")
     override val avatarUrl: String,
+    @ColumnInfo(name = "html_url")
     override val htmlUrl: String,
 ) : RepositoryOwnerDatabase
