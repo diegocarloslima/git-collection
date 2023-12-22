@@ -16,25 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.database.github.room
+package com.diegocarloslima.gitcollection.core.database.github.room.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.diegocarloslima.gitcollection.core.database.github.model.RepositoryOwnerDatabase
+import com.diegocarloslima.gitcollection.core.database.github.model.RepositoryLicenseDatabase
 
 /**
  * This class holds data for a GitHub repository license stored using Room.
  * It has a one to many relationship with [RepositoryRoom].
  */
 @Entity(
-    tableName = "github_repository_owners",
+    tableName = "github_repository_licenses",
 )
-internal data class RepositoryOwnerRoom(
+internal data class RepositoryLicenseRoom(
     @PrimaryKey override val id: Long,
-    override val login: String,
-    @ColumnInfo(name = "avatar_url")
-    override val avatarUrl: String,
-    @ColumnInfo(name = "html_url")
-    override val htmlUrl: String,
-) : RepositoryOwnerDatabase
+    override val name: String,
+    override val url: String?,
+) : RepositoryLicenseDatabase

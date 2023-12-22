@@ -16,7 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.database.github.room
+package com.diegocarloslima.gitcollection.core.database.github.room.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
