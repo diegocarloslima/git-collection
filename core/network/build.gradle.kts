@@ -18,6 +18,7 @@
 
 plugins {
     id("gitcollection.android.library")
+    id("gitcollection.apollo")
     id("gitcollection.hilt")
     id("gitcollection.retrofit")
 }
@@ -31,6 +32,12 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+}
+
+apollo {
+    service("github") {
+        packageName.set("com.diegocarloslima.gitcollection.core.network.github")
     }
 }
 

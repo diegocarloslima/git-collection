@@ -29,6 +29,7 @@ java {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.apollo.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.protobuf.gradlePlugin)
@@ -43,6 +44,10 @@ gradlePlugin {
         register("androidLibrary") {
             id = "gitcollection.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("apollo") {
+            id = "gitcollection.apollo"
+            implementationClass = "ApolloConventionPlugin"
         }
         register("compose") {
             id = "gitcollection.compose"

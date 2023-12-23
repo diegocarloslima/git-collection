@@ -16,39 +16,22 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import com.diegocarloslima.gitcollection.buildlogic.androidTestImplementation
 import com.diegocarloslima.gitcollection.buildlogic.getLibrary
 import com.diegocarloslima.gitcollection.buildlogic.implementation
-import com.diegocarloslima.gitcollection.buildlogic.ksp
-import com.diegocarloslima.gitcollection.buildlogic.kspAndroidTest
 import com.diegocarloslima.gitcollection.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-internal class HiltConventionPlugin : Plugin<Project> {
+class ApolloConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.google.dagger.hilt.android")
-                apply("com.google.devtools.ksp")
+                apply("com.apollographql.apollo3")
             }
 
             dependencies {
-                val hiltAndroidCompiler = libs.getLibrary("hilt.android.compiler")
-                val hiltAndroidTesting = libs.getLibrary("hilt.android.testing")
-
-                implementation(libs.getLibrary("hilt.android"))
-                ksp(hiltAndroidCompiler)
-
-                // TODO: Use it or remove it
-                // Robolectric tests with Kotlin
-                // testImplementation(hiltAndroidTesting)
-                // kspTest(hiltAndroidTesting)
-
-                // Instrumented tests with Kotlin
-                androidTestImplementation(hiltAndroidTesting)
-                kspAndroidTest(hiltAndroidCompiler)
+                implementation(libs.getLibrary("apollo.runtime"))
             }
         }
     }

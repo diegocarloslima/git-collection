@@ -39,24 +39,24 @@ internal class ComposeConventionPlugin : Plugin<Project> {
                     kotlinCompilerExtensionVersion =
                         libs.getVersion("androidxComposeCompiler").toString()
                 }
+            }
 
-                dependencies {
-                    val androidXComposeBom = platform(libs.getLibrary("androidx.compose.bom"))
+            dependencies {
+                val androidXComposeBom = platform(libs.getLibrary("androidx.compose.bom"))
 
-                    implementation(androidXComposeBom)
-                    // Material Design 3
-                    implementation(libs.getLibrary("androidx.compose.material3"))
-                    implementation(libs.getLibrary("androidx.compose.material.icons.extended"))
+                implementation(androidXComposeBom)
+                // Material Design 3
+                implementation(libs.getLibrary("androidx.compose.material3"))
+                implementation(libs.getLibrary("androidx.compose.material.icons.extended"))
 
-                    // Android Studio preview support
-                    implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))
-                    debugImplementation(libs.getLibrary("androidx.compose.ui.tooling"))
+                // Android Studio preview support
+                implementation(libs.getLibrary("androidx.compose.ui.tooling.preview"))
+                debugImplementation(libs.getLibrary("androidx.compose.ui.tooling"))
 
-                    androidTestImplementation(androidXComposeBom)
-                    // UI tests
-                    androidTestImplementation(libs.getLibrary("androidx.compose.ui.test.junit4"))
-                    debugImplementation(libs.getLibrary("androidx.compose.ui.test.manifest"))
-                }
+                androidTestImplementation(androidXComposeBom)
+                // UI tests
+                androidTestImplementation(libs.getLibrary("androidx.compose.ui.test.junit4"))
+                debugImplementation(libs.getLibrary("androidx.compose.ui.test.manifest"))
             }
         }
     }
