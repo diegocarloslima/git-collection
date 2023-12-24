@@ -33,6 +33,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.protobuf.gradlePlugin)
+    compileOnly(libs.secrets.gradlePlugin)
 }
 
 gradlePlugin {
@@ -68,6 +69,10 @@ gradlePlugin {
         register("room") {
             id = "gitcollection.room"
             implementationClass = "RoomConventionPlugin"
+        }
+        register("secrets") {
+            id = "gitcollection.secrets"
+            implementationClass = "SecretsConventionPlugin"
         }
     }
 }

@@ -21,6 +21,7 @@ plugins {
     id("gitcollection.apollo")
     id("gitcollection.hilt")
     id("gitcollection.retrofit")
+    id("gitcollection.secrets")
 }
 
 android {
@@ -28,10 +29,6 @@ android {
 
     defaultConfig {
         testInstrumentationRunner = "com.diegocarloslima.gitcollection.core.test.runner.TestRunner"
-    }
-
-    buildFeatures {
-        buildConfig = true
     }
 }
 

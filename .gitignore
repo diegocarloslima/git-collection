@@ -47,3 +47,6 @@ lint/tmp/
 
 # macOS
 .DS_Store
+
+# Properties containing project secrets
+secrets.properties
