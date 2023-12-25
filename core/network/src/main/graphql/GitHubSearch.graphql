@@ -1,0 +1,62 @@
+query GitHubSearchRepositories($after: String, $first: Int!, $query: String!) {
+    search(after: $after, first: $first, query: $query, type: REPOSITORY) {
+        nodes {
+            ...RepositoryParts
+        }
+        pageInfo {
+            endCursor
+            hasNextPage
+        }
+        repositoryCount
+    }
+}
+
+fragment RepositoryParts on Repository {
+    createdAt
+    defaultBranchRef {
+        name
+    }
+    description
+    forkCount
+    homepageUrl
+    id
+    isArchived
+    isFork
+    isMirror
+    issues {
+        totalCount
+    }
+    licenseInfo {
+        name
+        url
+    }
+    name
+    nameWithOwner
+    owner {
+        avatarUrl
+        id
+        login
+        url
+    }
+    primaryLanguage {
+        color
+        name
+    }
+    pushedAt
+    repositoryTopics(first: 10) {
+        nodes {
+            id
+            topic {
+                id
+                name
+            }
+            url
+        }
+    }
+    stargazerCount
+    updatedAt
+    url
+    watchers {
+        totalCount
+    }
+}
