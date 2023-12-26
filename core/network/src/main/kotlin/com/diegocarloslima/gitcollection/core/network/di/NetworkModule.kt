@@ -18,10 +18,13 @@
 
 package com.diegocarloslima.gitcollection.core.network.di
 
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpCallFactory
 import com.diegocarloslima.gitcollection.core.network.BuildConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.util.AuthorizationInterceptor
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
 import com.diegocarloslima.gitcollection.core.network.util.HttpMediaType
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -53,9 +56,25 @@ internal abstract class NetworkModule {
     companion object {
         @Provides
         @Singleton
-        fun provideGithubServiceRetrofit(json: Json, config: GithubConfig): GithubServiceRetrofit =
+        fun provideApolloClient(
+            config: GithubConfig,
+            callFactory: Call.Factory,
+        ): ApolloClient =
+            ApolloClient.Builder()
+                .serverUrl(config.baseUrl)
+                .okHttpCallFactory(callFactory)
+                .build()
+
+        @Provides
+        @Singleton
+        fun provideGithubServiceRetrofit(
+            config: GithubConfig,
+            callFactory: Call.Factory,
+            json: Json,
+        ): GithubServiceRetrofit =
             Retrofit.Builder()
                 .baseUrl(config.baseUrl)
+                .callFactory(callFactory)
                 .addConverterFactory(json.toConverterFactory())
                 .build()
                 .create(GithubServiceRetrofit::class.java)
@@ -70,13 +89,23 @@ internal abstract class NetworkModule {
         @Provides
         @Singleton
         fun provideCallFactory(): Call.Factory =
-            OkHttpClient.Builder()
-                .addInterceptor(interceptor())
-                .build()
+            OkHttpClient.Builder().run {
+                addInterceptor(loggingInterceptor())
+                @Suppress("KotlinConstantConditions")
+                if (BuildConfig.GITHUB_PAT != INVALID_TOKEN) {
+                    addInterceptor(authInterceptor())
+                }
+                build()
+            }
     }
 }
 
-private fun interceptor(): Interceptor =
+private const val INVALID_TOKEN: String = "INVALID_TOKEN"
+
+private fun authInterceptor(): Interceptor =
+    AuthorizationInterceptor(BuildConfig.GITHUB_PAT)
+
+private fun loggingInterceptor(): Interceptor =
     HttpLoggingInterceptor().apply {
         redactHeader(HttpHeader.AUTHORIZATION)
         if (BuildConfig.DEBUG) {

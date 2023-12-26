@@ -18,17 +18,15 @@
 
 package com.diegocarloslima.gitcollection.core.network.util
 
-/**
- * Object that holds constants for HTTP header fields.
- */
-internal object HttpHeader {
-    const val AUTHORIZATION = "Authorization"
-    const val BEARER = "Bearer"
-}
+import okhttp3.Interceptor
+import okhttp3.Interceptor.Chain
+import okhttp3.Response
 
-/**
- * Object that holds constants for HTTP media types.
- */
-internal object HttpMediaType {
-    const val APPLICATION_JSON = "application/json"
+class AuthorizationInterceptor(private val token: String) : Interceptor {
+    override fun intercept(chain: Chain): Response {
+        val newRequest = chain.request().newBuilder()
+            .addHeader(HttpHeader.AUTHORIZATION, "${HttpHeader.BEARER} $token")
+            .build()
+        return chain.proceed(newRequest)
+    }
 }
