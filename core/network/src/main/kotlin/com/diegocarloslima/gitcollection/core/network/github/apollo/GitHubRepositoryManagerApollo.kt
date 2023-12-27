@@ -16,20 +16,22 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.util
+package com.diegocarloslima.gitcollection.core.network.github.apollo
 
-import okhttp3.Interceptor
-import okhttp3.Interceptor.Chain
-import okhttp3.Response
+import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
 
 /**
- * An OkHttp interceptor which adds an authorization token to the requests.
+ * Using Apollo GraphQL to manage GitHub repositories.
  */
-internal class AuthorizationInterceptor(private val token: String) : Interceptor {
-    override fun intercept(chain: Chain): Response {
-        val newRequest = chain.request().newBuilder()
-            .addHeader(HttpHeader.AUTHORIZATION, "${HttpHeader.BEARER} $token")
-            .build()
-        return chain.proceed(newRequest)
+internal class GitHubRepositoryManagerApollo : GitHubRepositoryManagerNetwork {
+    override suspend fun searchRepositories(
+        query: String,
+        sortOrder: SortOrder,
+        pagination: Pagination,
+    ): RepositoryResultsNetwork {
+        TODO("Not yet implemented")
     }
 }

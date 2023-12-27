@@ -16,20 +16,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.util
-
-import okhttp3.Interceptor
-import okhttp3.Interceptor.Chain
-import okhttp3.Response
+package com.diegocarloslima.gitcollection.core.network.github.model
 
 /**
- * An OkHttp interceptor which adds an authorization token to the requests.
+ * This class holds information about GitHub sort order.
  */
-internal class AuthorizationInterceptor(private val token: String) : Interceptor {
-    override fun intercept(chain: Chain): Response {
-        val newRequest = chain.request().newBuilder()
-            .addHeader(HttpHeader.AUTHORIZATION, "${HttpHeader.BEARER} $token")
-            .build()
-        return chain.proceed(newRequest)
-    }
+enum class SortOrder {
+    STARS_DESC,
 }
