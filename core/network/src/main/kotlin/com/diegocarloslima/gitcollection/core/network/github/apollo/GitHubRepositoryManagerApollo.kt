@@ -18,20 +18,39 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.apollo
 
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.api.Optional
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
+import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
 import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
+import javax.inject.Inject
 
 /**
  * Using Apollo GraphQL to manage GitHub repositories.
  */
-internal class GitHubRepositoryManagerApollo : GitHubRepositoryManagerNetwork {
+internal class GitHubRepositoryManagerApollo @Inject constructor(
+    private val apolloClient: ApolloClient,
+) : GitHubRepositoryManagerNetwork {
     override suspend fun searchRepositories(
         query: String,
         sortOrder: SortOrder,
         pagination: Pagination,
     ): RepositoryResultsNetwork {
-        TODO("Not yet implemented")
+        val graphQLQuery = "$query ${sortOrder.queryValue}"
+        val searchRepositories = GitHubSearchRepositoriesQuery(
+            Optional.presentIfNotNull(pagination.key),
+            pagination.size,
+            graphQLQuery,
+        )
+        val data = apolloClient.query(searchRepositories).execute().dataAssertNoErrors
+        TODO()
     }
 }
+
+private val SortOrder.queryValue: String
+    get() = when (this) {
+        STARS_DESC -> "sort:stars-desc"
+    }

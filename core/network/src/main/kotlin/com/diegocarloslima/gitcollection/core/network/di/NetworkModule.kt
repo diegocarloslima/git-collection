@@ -24,7 +24,7 @@ import com.diegocarloslima.gitcollection.core.network.BuildConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
 import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
-import com.diegocarloslima.gitcollection.core.network.util.AuthorizationInterceptor
+import com.diegocarloslima.gitcollection.core.network.okhttp.AuthorizationInterceptor
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
 import com.diegocarloslima.gitcollection.core.network.util.HttpMediaType
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory

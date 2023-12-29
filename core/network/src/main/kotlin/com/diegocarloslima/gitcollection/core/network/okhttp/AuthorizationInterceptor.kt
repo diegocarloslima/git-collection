@@ -16,8 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.util
+package com.diegocarloslima.gitcollection.core.network.okhttp
 
+import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain
 import okhttp3.Response

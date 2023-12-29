@@ -21,4 +21,4 @@ package com.diegocarloslima.gitcollection.core.network.github.model
 /**
  * This class holds information about GitHub pagination.
  */
-data class Pagination(val count: Int, val fromId: String)
+data class Pagination(val size: Int, val key: String? = null)
