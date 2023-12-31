@@ -18,17 +18,16 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryOwnerNetwork
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data for a repository owner in GitHub.
+ * This class holds information about a repository owner in GitHub loaded using Retrofit.
  */
 @Serializable
 internal data class RepositoryOwnerRetrofit(
-    override val id: Long,
-    override val login: String,
-    @SerialName("avatar_url") override val avatarUrl: String,
-    @SerialName("html_url") override val htmlUrl: String,
-) : RepositoryOwnerNetwork
+    val id: Long,
+    val login: String,
+    @SerialName("avatar_url") val avatarUrl: String,
+    @SerialName("html_url") val htmlUrl: String,
+)

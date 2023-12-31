@@ -18,15 +18,14 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data of for the results of a repository search in GitHub.
+ * This class holds information about a repository search in GitHub using Retrofit.
  */
 @Serializable
 internal data class RepositoryResultsRetrofit(
-    @SerialName("total_count") override val totalCount: Long,
-    override val items: List<RepositoryRetrofit>,
-) : RepositoryResultsNetwork
+    @SerialName("total_count") val totalCount: Long,
+    val items: List<RepositoryRetrofit>,
+)

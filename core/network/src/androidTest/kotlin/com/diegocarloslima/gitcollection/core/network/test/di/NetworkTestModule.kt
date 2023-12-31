@@ -19,7 +19,7 @@
 package com.diegocarloslima.gitcollection.core.network.test.di
 
 import com.diegocarloslima.gitcollection.core.network.di.NetworkProdModule
-import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
+import com.diegocarloslima.gitcollection.core.network.github.GitHubConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -39,8 +39,8 @@ internal object NetworkTestModule {
 
     @Provides
     @Singleton
-    fun provideGithubConfig(mockWebServer: MockWebServer): GithubConfig =
-        GithubConfig(mockWebServer.url("/").toString())
+    fun provideGithubConfig(mockWebServer: MockWebServer): GitHubConfig =
+        GitHubConfig(mockWebServer.url("/").toString())
 
     @Provides
     @Singleton

@@ -18,19 +18,20 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.RepositoryResultsRetrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 /**
- * Using Retrofit for generating the implementation of the GitHub REST API service.
+ * Interface that establishes a contract for the GitHub REST API service using Retrofit.
+ *
+ * @see <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28>GitHub REST API documentation</a>
  */
-internal interface GithubServiceRetrofit : GithubService {
+internal interface GitHubServiceRetrofit {
 
     @GET(value = "search/repositories")
-    override suspend fun searchRepositories(
-        @Query(value = "q", encoded = true) query: String,
+    suspend fun searchRepositories(
+        @Query(value = "q") query: String,
         @Query("sort") sort: String,
         @Query("order") order: String,
         @Query("per_page") perPage: Int,

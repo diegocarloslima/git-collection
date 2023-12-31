@@ -16,12 +16,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.core.network.github
 
 /**
- * This class holds information about a repository license in GitHub.
+ * This class holds configuration data for a [GithubService].
  */
-data class RepositoryLicenseNetwork(
-    val name: String,
-    val url: String? = null,
-)
+data class GitHubConfig(
+    val baseUrl: String = DEFAULT_BASE_URL,
+) {
+
+    companion object {
+        const val DEFAULT_BASE_URL = "https://api.github.com/"
+    }
+}

@@ -1,0 +1,68 @@
+/*
+ * This file is part of Git Collection.
+ * Copyright (C) 2023-present Diego Carlos Lima <https://diegocarloslima.com/>
+ *
+ * Git Collection is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * Git Collection is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
+
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryLicenseNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryOwnerNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
+
+internal fun RepositoryResultsRetrofit.mapToNetwork(nextKey: String?): RepositoryResultsNetwork =
+    RepositoryResultsNetwork(
+        totalCount = this.totalCount,
+        items = this.items.map { it.mapToNetwork() },
+        nextKey = nextKey,
+    )
+
+private fun RepositoryRetrofit.mapToNetwork(): RepositoryNetwork =
+    RepositoryNetwork(
+        id = this.id,
+        name = this.name,
+        fullName = this.fullName,
+        owner = this.owner.mapToNetwork(),
+        htmlUrl = this.htmlUrl,
+        description = this.description,
+        fork = this.fork,
+        language = this.language,
+        createdAt = this.createdAt,
+        updatedAt = this.updatedAt,
+        pushedAt = this.pushedAt,
+        homepage = this.homepage,
+        stargazersCount = this.stargazersCount,
+        watchersCount = this.watchersCount,
+        forksCount = this.forksCount,
+        openIssuesCount = this.openIssuesCount,
+        license = this.license?.mapToNetwork(),
+        topics = this.topics,
+        defaultBranch = this.defaultBranch,
+    )
+
+private fun RepositoryOwnerRetrofit.mapToNetwork(): RepositoryOwnerNetwork =
+    RepositoryOwnerNetwork(
+        id = this.id,
+        login = this.login,
+        avatarUrl = this.avatarUrl,
+        htmlUrl = this.htmlUrl,
+    )
+
+private fun RepositoryLicenseRetrofit.mapToNetwork(): RepositoryLicenseNetwork =
+    RepositoryLicenseNetwork(
+        name = this.name,
+        url = this.url,
+    )

@@ -18,14 +18,13 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryLicenseNetwork
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data for a repository license in GitHub.
+ * This class holds information about a repository license in GitHub loaded using Retrofit.
  */
 @Serializable
 internal data class RepositoryLicenseRetrofit(
-    override val name: String,
-    override val url: String?,
-) : RepositoryLicenseNetwork
+    val name: String,
+    val url: String?,
+)

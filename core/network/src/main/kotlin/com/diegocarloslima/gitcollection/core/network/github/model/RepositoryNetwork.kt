@@ -21,26 +21,26 @@ package com.diegocarloslima.gitcollection.core.network.github.model
 import kotlinx.datetime.Instant
 
 /**
- * This interface represents the data structure of a repository in GitHub.
+ * This class holds information about a repository in GitHub.
  */
-interface RepositoryNetwork {
-    val id: Long
-    val name: String
-    val fullName: String
-    val owner: RepositoryOwnerNetwork
-    val htmlUrl: String
-    val description: String?
-    val fork: Boolean
-    val createdAt: Instant
-    val updatedAt: Instant
-    val pushedAt: Instant
-    val homepage: String?
-    val stargazersCount: Long
-    val watchersCount: Long
-    val language: String?
-    val forksCount: Long
-    val openIssuesCount: Long
-    val license: RepositoryLicenseNetwork?
-    val topics: List<String>
-    val defaultBranch: String
-}
+data class RepositoryNetwork(
+    val id: Long,
+    val name: String,
+    val fullName: String,
+    val owner: RepositoryOwnerNetwork,
+    val htmlUrl: String,
+    val description: String?,
+    val fork: Boolean,
+    val createdAt: Instant,
+    val updatedAt: Instant,
+    val pushedAt: Instant,
+    val homepage: String?,
+    val stargazersCount: Long,
+    val watchersCount: Long,
+    val forksCount: Long,
+    val openIssuesCount: Long,
+    val language: String?,
+    val license: RepositoryLicenseNetwork?,
+    val topics: List<String>,
+    val defaultBranch: String,
+)

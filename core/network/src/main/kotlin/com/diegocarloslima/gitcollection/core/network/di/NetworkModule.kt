@@ -21,9 +21,10 @@ package com.diegocarloslima.gitcollection.core.network.di
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.okHttpCallFactory
 import com.diegocarloslima.gitcollection.core.network.BuildConfig
-import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
-import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.GitHubConfig
+import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubRepositoryManagerRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.okhttp.AuthorizationInterceptor
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
 import com.diegocarloslima.gitcollection.core.network.util.HttpMediaType
@@ -51,33 +52,36 @@ import javax.inject.Singleton
 internal abstract class NetworkModule {
 
     @Binds
-    abstract fun bindGithubService(githubServiceRetrofit: GithubServiceRetrofit): GithubService
+    abstract fun bindGitHubRepositoryManagerNetwork(
+        gitHubRepositoryManagerRetrofit: GitHubRepositoryManagerRetrofit,
+    ): GitHubRepositoryManagerNetwork
 
     companion object {
         @Provides
         @Singleton
-        fun provideApolloClient(
-            config: GithubConfig,
+        @GitHub
+        fun provideGitHubApolloClient(
+            gitHubConfig: GitHubConfig,
             callFactory: Call.Factory,
         ): ApolloClient =
             ApolloClient.Builder()
-                .serverUrl(config.baseUrl)
+                .serverUrl(gitHubConfig.baseUrl)
                 .okHttpCallFactory(callFactory)
                 .build()
 
         @Provides
         @Singleton
-        fun provideGithubServiceRetrofit(
-            config: GithubConfig,
+        fun provideGitHubServiceRetrofit(
+            gitHubConfig: GitHubConfig,
             callFactory: Call.Factory,
             json: Json,
-        ): GithubServiceRetrofit =
+        ): GitHubServiceRetrofit =
             Retrofit.Builder()
-                .baseUrl(config.baseUrl)
+                .baseUrl(gitHubConfig.baseUrl)
                 .callFactory(callFactory)
                 .addConverterFactory(json.toConverterFactory())
                 .build()
-                .create(GithubServiceRetrofit::class.java)
+                .create(GitHubServiceRetrofit::class.java)
 
         @Provides
         @Singleton

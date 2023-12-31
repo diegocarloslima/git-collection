@@ -16,22 +16,21 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github
+package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
 
-/**
- * Interface that establishes a contract for the GitHub REST API service.
- *
- * @see <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28>GitHub REST API documentation</a>
- */
-interface GithubService {
+internal val SortOrder.sortValue: String
+    get() = when (this) {
+        STARS_DESC -> "stars"
+    }
 
-    suspend fun searchRepositories(
-        query: String,
-        sort: String,
-        order: String,
-        perPage: Int,
-        page: Int,
-    ): RepositoryResultsNetwork
-}
+internal val SortOrder.orderValue: String
+    get() = when (this) {
+        STARS_DESC -> "desc"
+    }
+
+internal val Pagination.pageNumber: Int
+    get() = this.key?.toIntOrNull() ?: 1

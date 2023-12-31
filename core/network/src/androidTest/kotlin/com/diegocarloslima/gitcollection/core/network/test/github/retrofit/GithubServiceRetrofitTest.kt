@@ -18,8 +18,8 @@
 
 package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
-import com.diegocarloslima.gitcollection.core.network.github.retrofit.GithubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubServiceRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.RepositoryResultsRetrofit
 import com.diegocarloslima.gitcollection.core.network.test.util.safeStart
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -39,7 +39,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 /**
- * Tests for [GithubServiceRetrofit].
+ * Tests for [GitHubServiceRetrofit].
  */
 @HiltAndroidTest
 internal class GithubServiceRetrofitTest {
@@ -51,7 +51,7 @@ internal class GithubServiceRetrofitTest {
     lateinit var mockWebServer: MockWebServer
 
     @Inject
-    lateinit var githubServiceRetrofit: GithubServiceRetrofit
+    lateinit var service: GitHubServiceRetrofit
 
     @Before
     fun setup() {
@@ -74,7 +74,7 @@ internal class GithubServiceRetrofitTest {
             )
 
             val results =
-                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.QUERY)
+                service.searchRepositoriesTestQuery(SearchRepositories.QUERY)
 
             val repository = results.items[0]
             assertEquals(964115L, results.totalCount)
@@ -94,7 +94,7 @@ internal class GithubServiceRetrofitTest {
                     .setBody(SearchRepositories.BODY_EMPTY_QUERY),
             )
             val httpException = assertFailsWith<HttpException> {
-                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.EMPTY_QUERY)
+                service.searchRepositoriesTestQuery(SearchRepositories.EMPTY_QUERY)
             }
             assertEquals(422, httpException.response()!!.code())
         }
@@ -106,15 +106,15 @@ internal class GithubServiceRetrofitTest {
             val response = MockResponse().setSocketPolicy(SocketPolicy.NO_RESPONSE)
             mockWebServer.enqueue(response)
             assertFailsWith<SocketTimeoutException> {
-                githubServiceRetrofit.searchRepositoriesTestQuery(SearchRepositories.QUERY)
+                service.searchRepositoriesTestQuery(SearchRepositories.QUERY)
             }
         }
     }
 }
 
-private suspend fun GithubServiceRetrofit.searchRepositoriesTestQuery(
+private suspend fun GitHubServiceRetrofit.searchRepositoriesTestQuery(
     query: String,
-): RepositoryResultsNetwork =
+): RepositoryResultsRetrofit =
     this.searchRepositories(
         query,
         SearchRepositories.SORT,

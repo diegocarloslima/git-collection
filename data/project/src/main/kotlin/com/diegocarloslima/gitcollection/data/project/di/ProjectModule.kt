@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project.di
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
+import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.ProjectRepository
 import com.diegocarloslima.gitcollection.data.project.ProjectRepositoryDefault
@@ -43,6 +43,8 @@ internal object ProjectModule {
 
     @Provides
     @Singleton
-    fun provideProjectDataSourceRemote(githubService: GithubService): ProjectDataSourceRemote =
-        GitHubProjectDataSourceNetwork(githubService)
+    fun provideProjectDataSourceRemote(
+        githubRepositoryManager: GitHubRepositoryManagerNetwork,
+    ): ProjectDataSourceRemote =
+        GitHubProjectDataSourceNetwork(githubRepositoryManager)
 }

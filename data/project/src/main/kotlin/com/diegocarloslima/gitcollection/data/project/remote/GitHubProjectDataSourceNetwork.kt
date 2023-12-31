@@ -18,29 +18,26 @@
 
 package com.diegocarloslima.gitcollection.data.project.remote
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubService
+import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
-import com.diegocarloslima.gitcollection.data.project.model.Project
-import com.diegocarloslima.gitcollection.data.project.model.mapToProject
+import com.diegocarloslima.gitcollection.data.project.model.ProjectPage
+import com.diegocarloslima.gitcollection.data.project.model.mapToProjectPage
 import javax.inject.Inject
 
 /**
  * Data source for retrieving GitHub repository projects using network.
  */
 internal class GitHubProjectDataSourceNetwork @Inject constructor(
-    private val service: GithubService,
+    private val repositoryManager: GitHubRepositoryManagerNetwork,
 ) : ProjectDataSourceRemote {
-
-    override suspend fun getPopularProjects(perPage: Int, page: Int): List<Project> =
-        service.searchRepositories(
-            QUERY_TRENDING,
-            SORT_STARS,
-            ORDER_DESC,
-            perPage,
-            page,
-        ).items.map { it.mapToProject() }
+    override suspend fun getPopularProjects(pagination: Pagination): ProjectPage =
+        repositoryManager.searchRepositories(
+            QUERY_ANDROID,
+            STARS_DESC,
+            pagination,
+        ).mapToProjectPage()
 }
 
-private const val QUERY_TRENDING = "android+language:kotlin%20OR%20android+language:java"
-private const val SORT_STARS = "stars"
-private const val ORDER_DESC = "desc"
+private const val QUERY_ANDROID = "android language:kotlin OR android language:java"

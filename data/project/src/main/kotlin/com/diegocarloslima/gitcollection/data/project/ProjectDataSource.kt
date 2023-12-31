@@ -18,7 +18,12 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.data.project.model.ProjectPage
+
 /**
  * Interface that establishes a contract for a git repository projects data source.
  */
-internal interface ProjectDataSource
+internal interface ProjectDataSource {
+    suspend fun getPopularProjects(pagination: Pagination): ProjectPage
+}

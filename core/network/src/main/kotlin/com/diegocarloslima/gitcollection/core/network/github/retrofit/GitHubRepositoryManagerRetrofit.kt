@@ -16,36 +16,42 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.apollo
+package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
-import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.api.Optional
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
-import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
-import com.diegocarloslima.gitcollection.core.network.github.apollo.model.queryValue
 import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.mapToNetwork
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.orderValue
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.pageNumber
+import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.sortValue
 import javax.inject.Inject
 
 /**
- * Using Apollo GraphQL to manage GitHub repositories.
+ * Using Retrofit to manage GitHub repositories.
  */
-internal class GitHubRepositoryManagerApollo @Inject constructor(
-    private val client: ApolloClient,
+internal class GitHubRepositoryManagerRetrofit @Inject constructor(
+    private val service: GitHubServiceRetrofit,
 ) : GitHubRepositoryManagerNetwork {
     override suspend fun searchRepositories(
         query: String,
         sortOrder: SortOrder,
         pagination: Pagination,
     ): RepositoryResultsNetwork {
-        val graphQLQuery = "$query ${sortOrder.queryValue}"
-        val searchRepositories = GitHubSearchRepositoriesQuery(
-            Optional.presentIfNotNull(pagination.key),
+        val result = service.searchRepositories(
+            query,
+            sortOrder.sortValue,
+            sortOrder.orderValue,
             pagination.size,
-            graphQLQuery,
+            pagination.pageNumber,
         )
-        val data = client.query(searchRepositories).execute().dataAssertNoErrors
-        TODO()
+        val nextPageNumber =
+            if (result.totalCount > pagination.pageNumber * pagination.size) {
+                pagination.pageNumber.inc()
+            } else {
+                null
+            }
+        return result.mapToNetwork(nextPageNumber.toString())
     }
 }

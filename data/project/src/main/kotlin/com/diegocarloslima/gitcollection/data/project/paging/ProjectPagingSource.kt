@@ -20,23 +20,21 @@ package com.diegocarloslima.gitcollection.data.project.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.model.Project
 
-private const val START_PAGE = 1
-
 internal class ProjectPagingSource(
     private val remoteDataSource: ProjectDataSourceRemote,
-) : PagingSource<Int, Project>() {
+) : PagingSource<String, Project>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Project> {
-        val page = params.key ?: START_PAGE
+    override suspend fun load(params: LoadParams<String>): LoadResult<String, Project> {
         return try {
-            val projects = remoteDataSource.getPopularProjects(PAGE_SIZE, page)
+            val projectPage = remoteDataSource.getPopularProjects(Pagination(PAGE_SIZE, params.key))
             LoadResult.Page(
-                data = projects,
-                prevKey = if (page == START_PAGE) null else page.dec(),
-                nextKey = if (projects.isEmpty()) null else page.inc(),
+                data = projectPage.projects,
+                prevKey = params.key,
+                nextKey = projectPage.nextKey,
             )
         } catch (exception: Exception) {
             LoadResult.Error(exception)
@@ -44,17 +42,7 @@ internal class ProjectPagingSource(
     }
 
     // TODO: Figure this out
-    // The refresh key is used for subsequent refresh calls to PagingSource.load after the initial
-    // load.
-    override fun getRefreshKey(state: PagingState<Int, Project>): Int? {
-        // We need to get the previous key (or next key if previous is null) of the page that was
-        // closest to the most recently accessed index.
-        // Anchor position is the most recently accessed index
-        return state.anchorPosition?.let { anchorPosition ->
-            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }
-    }
+    override fun getRefreshKey(state: PagingState<String, Project>): String? = null
 
     companion object {
         internal const val PAGE_SIZE = 25

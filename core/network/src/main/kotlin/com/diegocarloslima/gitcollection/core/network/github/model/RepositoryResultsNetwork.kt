@@ -19,11 +19,12 @@
 package com.diegocarloslima.gitcollection.core.network.github.model
 
 /**
- * This interface represents the data structure of the results of a repository search in GitHub.
+ * This class holds information about a repository search result in GitHub.
  *
  * @see <a href="https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories>Search repositories</a>
  */
-interface RepositoryResultsNetwork {
-    val totalCount: Long
-    val items: List<RepositoryNetwork>
-}
+data class RepositoryResultsNetwork(
+    val totalCount: Long,
+    val items: List<RepositoryNetwork>,
+    val nextKey: String? = null,
+)

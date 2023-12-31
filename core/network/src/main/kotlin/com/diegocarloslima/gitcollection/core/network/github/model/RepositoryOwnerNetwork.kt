@@ -19,11 +19,11 @@
 package com.diegocarloslima.gitcollection.core.network.github.model
 
 /**
- * This interface represents the data structure of a repository owner in GitHub.
+ * This class holds information about a repository owner in GitHub.
  */
-interface RepositoryOwnerNetwork {
-    val id: Long
-    val login: String
-    val avatarUrl: String
-    val htmlUrl: String
-}
+data class RepositoryOwnerNetwork(
+    val id: Long,
+    val login: String,
+    val avatarUrl: String,
+    val htmlUrl: String,
+)

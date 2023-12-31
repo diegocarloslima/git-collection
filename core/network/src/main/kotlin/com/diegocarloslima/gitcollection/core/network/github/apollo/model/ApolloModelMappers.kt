@@ -16,34 +16,23 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.data.project.model
+package com.diegocarloslima.gitcollection.core.network.github.apollo.model
 
+import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
+import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 
-/**
- * Converts a [RepositoryResultsNetwork] into a [ProjectPage].
- */
-internal fun RepositoryResultsNetwork.mapToProjectPage(): ProjectPage =
-    ProjectPage(
-        projects = this.items.map { it.mapToProject() },
-        nextKey = this.nextKey,
+internal fun GitHubSearchRepositoriesQuery.Data.mapToNetwork(
+    pagination: Pagination,
+): RepositoryResultsNetwork =
+    RepositoryResultsNetwork(
+        totalCount = this.search.repositoryCount.toLong(),
+        items = this.search.nodes?.mapNotNull { it?.mapToNetwork() } ?: emptyList(),
+        nextKey = this.search.pageInfo.endCursor,
     )
 
-/**
- * Converts a [RepositoryNetwork] into a [Project].
- */
-private fun RepositoryNetwork.mapToProject(): Project =
-    Project(
-        id = this.id,
-        owner = this.owner.login,
-        name = this.name,
-        description = this.description ?: "",
-        url = this.htmlUrl,
-        iconUrl = this.owner.avatarUrl,
-        stars = this.stargazersCount,
-        forks = this.forksCount,
-        language = this.language ?: "",
-        topics = this.topics,
-        updated = this.updatedAt,
-    )
+private fun GitHubSearchRepositoriesQuery.Node.mapToNetwork(): RepositoryNetwork = TODO()
+//    RepositoryNetwork(
+//        id = this.repositoryParts!!.id,
+//    )

@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.di
 
-import com.diegocarloslima.gitcollection.core.network.github.GithubConfig
+import com.diegocarloslima.gitcollection.core.network.github.GitHubConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,5 +34,5 @@ internal object NetworkProdModule {
 
     @Provides
     @Singleton
-    fun provideGithubConfig(): GithubConfig = GithubConfig()
+    fun provideGithubConfig(): GitHubConfig = GitHubConfig()
 }

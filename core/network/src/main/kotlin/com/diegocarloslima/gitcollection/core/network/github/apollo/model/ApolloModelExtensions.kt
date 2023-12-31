@@ -16,16 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github
+package com.diegocarloslima.gitcollection.core.network.github.apollo.model
 
-/**
- * This class holds configuration data for a [GithubService].
- */
-data class GithubConfig(
-    val baseUrl: String = DEFAULT_BASE_URL,
-) {
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
 
-    companion object {
-        const val DEFAULT_BASE_URL = "https://api.github.com/"
+internal val SortOrder.queryValue: String
+    get() = when (this) {
+        STARS_DESC -> "sort:stars-desc"
     }
-}

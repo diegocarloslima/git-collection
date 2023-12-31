@@ -18,33 +18,32 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * This class holds the data for a repository in GitHub.
+ * This class holds information about a repository in GitHub loaded using Retrofit.
  */
 @Serializable
 internal data class RepositoryRetrofit(
-    override val id: Long,
-    override val name: String,
-    @SerialName("full_name") override val fullName: String,
-    override val owner: RepositoryOwnerRetrofit,
-    @SerialName("html_url") override val htmlUrl: String,
-    override val description: String?,
-    override val fork: Boolean,
-    @SerialName("created_at") override val createdAt: Instant,
-    @SerialName("updated_at") override val updatedAt: Instant,
-    @SerialName("pushed_at") override val pushedAt: Instant,
-    override val homepage: String?,
-    @SerialName("stargazers_count") override val stargazersCount: Long,
-    @SerialName("watchers_count") override val watchersCount: Long,
-    override val language: String?,
-    @SerialName("forks_count") override val forksCount: Long,
-    @SerialName("open_issues_count") override val openIssuesCount: Long,
-    override val license: RepositoryLicenseRetrofit?,
-    override val topics: List<String>,
-    @SerialName("default_branch") override val defaultBranch: String,
-) : RepositoryNetwork
+    val id: Long,
+    val name: String,
+    @SerialName("full_name") val fullName: String,
+    val owner: RepositoryOwnerRetrofit,
+    @SerialName("html_url") val htmlUrl: String,
+    val description: String?,
+    val fork: Boolean,
+    @SerialName("created_at") val createdAt: Instant,
+    @SerialName("updated_at") val updatedAt: Instant,
+    @SerialName("pushed_at") val pushedAt: Instant,
+    val homepage: String?,
+    @SerialName("stargazers_count") val stargazersCount: Long,
+    @SerialName("watchers_count") val watchersCount: Long,
+    @SerialName("forks_count") val forksCount: Long,
+    @SerialName("open_issues_count") val openIssuesCount: Long,
+    val language: String?,
+    val license: RepositoryLicenseRetrofit?,
+    val topics: List<String>,
+    @SerialName("default_branch") val defaultBranch: String,
+)

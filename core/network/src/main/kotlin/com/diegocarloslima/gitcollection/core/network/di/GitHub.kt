@@ -16,12 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.core.network.di
 
-/**
- * This class holds information about a repository license in GitHub.
- */
-data class RepositoryLicenseNetwork(
-    val name: String,
-    val url: String? = null,
-)
+import javax.inject.Qualifier
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+internal annotation class GitHub

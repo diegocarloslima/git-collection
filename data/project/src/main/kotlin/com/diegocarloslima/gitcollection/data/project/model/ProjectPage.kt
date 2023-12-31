@@ -16,12 +16,12 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.data.project.model
 
 /**
- * This class holds information about a repository license in GitHub.
+ * This class holds information about a page result containing Git repository projects.
  */
-data class RepositoryLicenseNetwork(
-    val name: String,
-    val url: String? = null,
+data class ProjectPage(
+    val projects: List<Project>,
+    val nextKey: String? = null,
 )
