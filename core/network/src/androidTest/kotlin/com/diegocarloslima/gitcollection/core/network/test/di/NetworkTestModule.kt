@@ -36,7 +36,6 @@ import javax.inject.Singleton
     replaces = [NetworkProdModule::class],
 )
 internal object NetworkTestModule {
-
     @Provides
     @Singleton
     fun provideGithubConfig(mockWebServer: MockWebServer): GitHubConfig =

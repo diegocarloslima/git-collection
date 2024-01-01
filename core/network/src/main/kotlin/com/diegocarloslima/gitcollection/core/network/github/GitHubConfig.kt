@@ -21,7 +21,7 @@ package com.diegocarloslima.gitcollection.core.network.github
 /**
  * This class holds configuration data for a [GithubService].
  */
-data class GitHubConfig(
+internal data class GitHubConfig(
     val baseUrl: String = DEFAULT_BASE_URL,
 ) {
 

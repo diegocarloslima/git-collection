@@ -18,7 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project
 
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import com.diegocarloslima.gitcollection.data.project.model.ProjectPage
 
 /**

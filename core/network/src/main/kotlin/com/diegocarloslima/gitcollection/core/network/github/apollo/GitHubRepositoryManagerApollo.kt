@@ -20,19 +20,20 @@ package com.diegocarloslima.gitcollection.core.network.github.apollo
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
+import com.diegocarloslima.gitcollection.core.network.di.GitHub
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
 import com.diegocarloslima.gitcollection.core.network.github.apollo.model.queryValue
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import javax.inject.Inject
 
 /**
  * Using Apollo GraphQL to manage GitHub repositories.
  */
 internal class GitHubRepositoryManagerApollo @Inject constructor(
-    private val client: ApolloClient,
+    @GitHub private val client: ApolloClient,
 ) : GitHubRepositoryManagerNetwork {
     override suspend fun searchRepositories(
         query: String,

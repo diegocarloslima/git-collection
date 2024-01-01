@@ -18,9 +18,9 @@
 
 package com.diegocarloslima.gitcollection.core.network.github
 
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 
 /**
  * Interface that establishes a contract for managing GitHub repositories through the network.

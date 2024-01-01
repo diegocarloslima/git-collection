@@ -50,7 +50,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal abstract class NetworkModule {
-
     @Binds
     abstract fun bindGitHubRepositoryManagerNetwork(
         gitHubRepositoryManagerRetrofit: GitHubRepositoryManagerRetrofit,

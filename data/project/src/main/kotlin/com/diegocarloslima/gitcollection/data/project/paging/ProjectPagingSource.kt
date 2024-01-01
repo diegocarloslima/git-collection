@@ -20,7 +20,7 @@ package com.diegocarloslima.gitcollection.data.project.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.model.Project
 

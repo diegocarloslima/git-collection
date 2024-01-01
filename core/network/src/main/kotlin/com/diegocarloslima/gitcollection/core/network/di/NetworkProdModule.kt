@@ -31,7 +31,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkProdModule {
-
     @Provides
     @Singleton
     fun provideGithubConfig(): GitHubConfig = GitHubConfig()

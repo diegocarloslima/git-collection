@@ -20,7 +20,7 @@ package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
 
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.RepositoryResultsRetrofit
-import com.diegocarloslima.gitcollection.core.network.test.util.safeStart
+import com.diegocarloslima.gitcollection.core.network.test.okhttp.safeStart
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
@@ -43,7 +43,6 @@ import kotlin.test.assertFailsWith
  */
 @HiltAndroidTest
 internal class GithubServiceRetrofitTest {
-
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 

@@ -22,12 +22,11 @@ package com.diegocarloslima.gitcollection.core.network.test.github.retrofit
  * HTTP Body responses for GitHub search/repositories endpoint.
  */
 internal object SearchRepositories {
-
     const val QUERY = "android language:kotlin OR android language:java"
     const val EMPTY_QUERY = ""
     const val SORT = "stars"
     const val ORDER = "desc"
-    const val PER_PAGE = 2
+    const val PER_PAGE = 3
     const val PAGE = 1
 
     // From:
@@ -381,7 +380,7 @@ internal object SearchRepositories {
     """.trimIndent()
 
     // From:
-    // https://api.github.com/search/repositories?q=&sort=stars&order=desc&per_page=2&page=1
+    // https://api.github.com/search/repositories?q=&sort=stars&order=desc&per_page=3&page=1
     val BODY_EMPTY_QUERY = """
 {
   "message": "Validation Failed",

@@ -19,13 +19,13 @@
 package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.mapToNetwork
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.orderValue
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.pageNumber
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.sortValue
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import javax.inject.Inject
 
 /**
@@ -46,12 +46,13 @@ internal class GitHubRepositoryManagerRetrofit @Inject constructor(
             pagination.size,
             pagination.pageNumber,
         )
-        val nextPageNumber =
-            if (result.totalCount > pagination.pageNumber * pagination.size) {
-                pagination.pageNumber.inc()
-            } else {
-                null
-            }
+
+        val nextPageNumber = if (result.totalCount > pagination.pageNumber * pagination.size) {
+            pagination.pageNumber.inc()
+        } else {
+            null
+        }
+
         return result.mapToNetwork(nextPageNumber.toString())
     }
 }

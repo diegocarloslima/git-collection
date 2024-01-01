@@ -18,9 +18,9 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
+import com.diegocarloslima.gitcollection.core.network.model.Pagination
 
 internal val SortOrder.sortValue: String
     get() = when (this) {

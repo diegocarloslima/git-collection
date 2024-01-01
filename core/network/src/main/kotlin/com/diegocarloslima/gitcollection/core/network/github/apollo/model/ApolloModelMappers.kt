@@ -19,13 +19,10 @@
 package com.diegocarloslima.gitcollection.core.network.github.apollo.model
 
 import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
-import com.diegocarloslima.gitcollection.core.network.github.model.Pagination
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 
-internal fun GitHubSearchRepositoriesQuery.Data.mapToNetwork(
-    pagination: Pagination,
-): RepositoryResultsNetwork =
+internal fun GitHubSearchRepositoriesQuery.Data.mapToNetwork(): RepositoryResultsNetwork =
     RepositoryResultsNetwork(
         totalCount = this.search.repositoryCount.toLong(),
         items = this.search.nodes?.mapNotNull { it?.mapToNetwork() } ?: emptyList(),

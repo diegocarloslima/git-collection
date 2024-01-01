@@ -28,7 +28,6 @@ import retrofit2.http.Query
  * @see <a href="https://docs.github.com/en/rest?apiVersion=2022-11-28>GitHub REST API documentation</a>
  */
 internal interface GitHubServiceRetrofit {
-
     @GET(value = "search/repositories")
     suspend fun searchRepositories(
         @Query(value = "q") query: String,

@@ -16,14 +16,14 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.test.util
+package com.diegocarloslima.gitcollection.core.network.test.okhttp
 
 import okhttp3.mockwebserver.MockWebServer
 
 /**
  * This avoids throwing [IllegalArgumentException] if the [MockWebServer] has already been started.
  */
-fun MockWebServer.safeStart() =
+internal fun MockWebServer.safeStart() =
     try {
         this.start()
     } catch (_: IllegalArgumentException) {

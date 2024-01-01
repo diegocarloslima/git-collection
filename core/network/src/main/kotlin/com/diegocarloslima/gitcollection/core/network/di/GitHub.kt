@@ -22,4 +22,7 @@ import javax.inject.Qualifier
 
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
+/**
+ * Qualifier used to specify GitHub implementations.
+ */
 internal annotation class GitHub

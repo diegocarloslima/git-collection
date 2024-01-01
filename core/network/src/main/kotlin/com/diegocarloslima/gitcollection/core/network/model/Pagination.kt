@@ -16,9 +16,9 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.diegocarloslima.gitcollection.core.network.github.model
+package com.diegocarloslima.gitcollection.core.network.model
 
 /**
- * This class holds information about GitHub pagination.
+ * This class holds information about pagination.
  */
 data class Pagination(val size: Int, val key: String? = null)
