@@ -19,17 +19,50 @@
 package com.diegocarloslima.gitcollection.core.network.github.apollo.model
 
 import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
+import com.diegocarloslima.gitcollection.core.network.github.fragment.RepositoryParts
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryLicenseNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryNetwork
+import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryOwnerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
+import kotlinx.datetime.toInstant
 
 internal fun GitHubSearchRepositoriesQuery.Data.mapToNetwork(): RepositoryResultsNetwork =
     RepositoryResultsNetwork(
         totalCount = this.search.repositoryCount.toLong(),
-        items = this.search.nodes?.mapNotNull { it?.mapToNetwork() } ?: emptyList(),
+        items = this.search.nodes?.mapNotNull { it?.repositoryParts?.mapToNetwork() }
+            ?: emptyList(),
         nextKey = this.search.pageInfo.endCursor,
     )
 
-private fun GitHubSearchRepositoriesQuery.Node.mapToNetwork(): RepositoryNetwork = TODO()
-//    RepositoryNetwork(
-//        id = this.repositoryParts!!.id,
-//    )
+private fun RepositoryParts.mapToNetwork(): RepositoryNetwork =
+    RepositoryNetwork(
+        id = this.id,
+        name = this.name,
+        fullName = this.nameWithOwner,
+        owner = this.owner.mapToNetwork(),
+        htmlUrl = this.url.toString(),
+        description = this.description,
+        fork = this.isFork,
+        createdAt = this.createdAt.toString().toInstant(),
+        updatedAt = this.updatedAt.toString().toInstant(),
+        pushedAt = this.pushedAt?.toString()?.toInstant(),
+        homepage = this.homepageUrl?.toString(),
+        stargazersCount = this.stargazerCount.toLong(),
+        watchersCount = this.watchers.totalCount.toLong(),
+        forksCount = this.forkCount.toLong(),
+        openIssuesCount = this.issues.totalCount.toLong(),
+        language = this.primaryLanguage?.name,
+        license = this.licenseInfo?.mapToNetwork(),
+        topics = emptyList(),
+        defaultBranch = this.defaultBranchRef?.name,
+    )
+
+private fun RepositoryParts.Owner.mapToNetwork(): RepositoryOwnerNetwork =
+    RepositoryOwnerNetwork(
+        id = this.id,
+        login = this.login,
+        avatarUrl = this.avatarUrl.toString(),
+        htmlUrl = this.url.toString(),
+    )
+
+private fun RepositoryParts.LicenseInfo.mapToNetwork(): RepositoryLicenseNetwork = TODO()

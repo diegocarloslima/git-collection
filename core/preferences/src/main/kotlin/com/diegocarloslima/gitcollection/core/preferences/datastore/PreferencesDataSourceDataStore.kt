@@ -46,7 +46,7 @@ class PreferencesDataSourceDataStore @Inject constructor(
         }
     }
 
-    override suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+    override suspend fun updateProjectBookmarked(projectId: String, bookmarked: Boolean) {
         updatePreferences {
             // TODO: Check if there's a better way of doing that
             val bookmarkedSet = this.bookmarkedProjectIds.toMutableSet()

@@ -24,7 +24,7 @@ import kotlinx.datetime.Instant
  * This class holds information about a repository in GitHub.
  */
 data class RepositoryNetwork(
-    val id: Long,
+    val id: String,
     val name: String,
     val fullName: String,
     val owner: RepositoryOwnerNetwork,
@@ -33,7 +33,7 @@ data class RepositoryNetwork(
     val fork: Boolean,
     val createdAt: Instant,
     val updatedAt: Instant,
-    val pushedAt: Instant,
+    val pushedAt: Instant?,
     val homepage: String?,
     val stargazersCount: Long,
     val watchersCount: Long,
@@ -42,5 +42,5 @@ data class RepositoryNetwork(
     val language: String?,
     val license: RepositoryLicenseNetwork?,
     val topics: List<String>,
-    val defaultBranch: String,
+    val defaultBranch: String?,
 )

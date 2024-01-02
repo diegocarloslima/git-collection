@@ -29,5 +29,5 @@ interface PreferencesDataSource {
 
     suspend fun setTheme(theme: ThemePreference)
 
-    suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean)
+    suspend fun updateProjectBookmarked(projectId: String, bookmarked: Boolean)
 }

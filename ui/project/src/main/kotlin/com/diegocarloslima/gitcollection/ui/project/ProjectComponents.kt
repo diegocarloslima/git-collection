@@ -64,7 +64,7 @@ private const val MAX_TOPICS = 5
 @Composable
 fun ProjectCard(
     project: UserProject,
-    onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
+    onBookmarkClick: (projectId: String, bookmarked: Boolean) -> Unit,
 ) {
     ElevatedCard(
         modifier = Modifier
@@ -108,7 +108,7 @@ fun ProjectCard(
 private fun ProjectCardTitleRow(
     project: UserProject,
     bookmarked: Boolean,
-    onBookmarkClick: (projectId: Long, bookmarked: Boolean) -> Unit,
+    onBookmarkClick: (projectId: String, bookmarked: Boolean) -> Unit,
 ) {
     Row(
         modifier = Modifier.padding(16.dp, 8.dp, 4.dp, 0.dp),

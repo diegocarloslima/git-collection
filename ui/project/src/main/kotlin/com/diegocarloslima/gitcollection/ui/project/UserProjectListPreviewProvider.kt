@@ -32,12 +32,12 @@ internal class UserProjectListPreviewProvider : PreviewParameterProvider<List<Us
 }
 
 private val APP_PREFERENCES = AppPreferences.DEFAULT.copy(
-    bookmarkedProjectIds = setOf(1L, 3L),
+    bookmarkedProjectIds = setOf("29028775", "51148780"),
 )
 
 private val PROJECT_LIST = listOf(
     Project(
-        id = 29028775L,
+        id = "29028775",
         owner = "facebook",
         name = "react-native",
         description = "A framework for building native applications using React",
@@ -59,7 +59,7 @@ private val PROJECT_LIST = listOf(
         updated = "2023-11-10T09:58:51Z".toInstant(),
     ),
     Project(
-        id = 5152285L,
+        id = "29028775",
         owner = "square",
         name = "okhttp",
         description = "Square’s meticulous HTTP client for the JVM, Android, and GraalVM.",
@@ -77,7 +77,7 @@ private val PROJECT_LIST = listOf(
         updated = "2023-11-10T08:18:46Z".toInstant(),
     ),
     Project(
-        id = 51148780L,
+        id = "51148780",
         owner = "android",
         name = "architecture-samples",
         description = "A collection of samples to discuss and showcase different architectural tools and patterns for Android apps.",

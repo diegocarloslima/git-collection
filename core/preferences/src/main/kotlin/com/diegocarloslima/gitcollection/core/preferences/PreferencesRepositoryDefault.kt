@@ -37,7 +37,7 @@ class PreferencesRepositoryDefault @Inject constructor(
         preferencesDataSource.setTheme(theme)
     }
 
-    override suspend fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+    override suspend fun updateProjectBookmarked(projectId: String, bookmarked: Boolean) {
         preferencesDataSource.updateProjectBookmarked(projectId, bookmarked)
     }
 }

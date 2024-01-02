@@ -27,5 +27,5 @@ message AppPreferencesProto {
   bool use_dynamic_color = 1;
   ThemePreferenceProto theme = 2;
   bool onboarding_completed = 3;
-  repeated int64 bookmarked_project_ids = 4;
+  repeated string bookmarked_project_ids = 4;
 }

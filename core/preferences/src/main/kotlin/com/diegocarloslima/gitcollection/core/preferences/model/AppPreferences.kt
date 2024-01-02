@@ -24,7 +24,7 @@ data class AppPreferences(
     val useDynamicColor: Boolean,
     val theme: ThemePreference,
     val onboardingCompleted: Boolean,
-    val bookmarkedProjectIds: Set<Long>,
+    val bookmarkedProjectIds: Set<String>,
 ) {
     companion object {
         val DEFAULT = AppPreferences(

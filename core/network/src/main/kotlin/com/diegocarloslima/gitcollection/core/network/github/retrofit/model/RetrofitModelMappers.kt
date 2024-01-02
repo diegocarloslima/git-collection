@@ -32,7 +32,7 @@ internal fun RepositoryResultsRetrofit.mapToNetwork(nextKey: String?): Repositor
 
 private fun RepositoryRetrofit.mapToNetwork(): RepositoryNetwork =
     RepositoryNetwork(
-        id = this.id,
+        id = this.id.toString(),
         name = this.name,
         fullName = this.fullName,
         owner = this.owner.mapToNetwork(),
@@ -55,7 +55,7 @@ private fun RepositoryRetrofit.mapToNetwork(): RepositoryNetwork =
 
 private fun RepositoryOwnerRetrofit.mapToNetwork(): RepositoryOwnerNetwork =
     RepositoryOwnerNetwork(
-        id = this.id,
+        id = this.id.toString(),
         login = this.login,
         avatarUrl = this.avatarUrl,
         htmlUrl = this.htmlUrl,

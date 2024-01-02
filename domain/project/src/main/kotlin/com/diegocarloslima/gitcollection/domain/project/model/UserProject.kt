@@ -27,7 +27,7 @@ import kotlinx.datetime.Instant
  * it's bookmarked or not.
  */
 data class UserProject constructor(
-    val id: Long,
+    val id: String,
     val owner: String,
     val name: String,
     val description: String,

@@ -23,6 +23,7 @@ import com.apollographql.apollo3.api.Optional
 import com.diegocarloslima.gitcollection.core.network.di.GitHub
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
+import com.diegocarloslima.gitcollection.core.network.github.apollo.model.mapToNetwork
 import com.diegocarloslima.gitcollection.core.network.github.apollo.model.queryValue
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
@@ -47,6 +48,6 @@ internal class GitHubRepositoryManagerApollo @Inject constructor(
             graphQLQuery,
         )
         val data = client.query(searchRepositories).execute().dataAssertNoErrors
-        TODO()
+        return data.mapToNetwork()
     }
 }

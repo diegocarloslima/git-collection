@@ -41,7 +41,7 @@ internal class DiscoverViewModel @Inject constructor(
     val popularProjects: Flow<PagingData<UserProject>> =
         getPopularUserProjects(viewModelScope)
 
-    fun updateProjectBookmarked(projectId: Long, bookmarked: Boolean) {
+    fun updateProjectBookmarked(projectId: String, bookmarked: Boolean) {
         viewModelScope.launch {
             preferencesRepository.updateProjectBookmarked(projectId, bookmarked)
         }

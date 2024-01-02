@@ -24,7 +24,7 @@ import kotlinx.datetime.Instant
  * This class holds information about a Git repository project.
  */
 data class Project(
-    val id: Long,
+    val id: String,
     val owner: String,
     val name: String,
     val description: String,

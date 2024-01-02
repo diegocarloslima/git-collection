@@ -22,7 +22,7 @@ package com.diegocarloslima.gitcollection.core.network.github.model
  * This class holds information about a repository owner in GitHub.
  */
 data class RepositoryOwnerNetwork(
-    val id: Long,
+    val id: String,
     val login: String,
     val avatarUrl: String,
     val htmlUrl: String,
