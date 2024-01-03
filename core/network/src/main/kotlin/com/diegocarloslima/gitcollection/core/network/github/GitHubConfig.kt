@@ -22,10 +22,6 @@ package com.diegocarloslima.gitcollection.core.network.github
  * This class holds configuration data for a [GithubService].
  */
 internal data class GitHubConfig(
-    val baseUrl: String = DEFAULT_BASE_URL,
-) {
-
-    companion object {
-        const val DEFAULT_BASE_URL = "https://api.github.com/"
-    }
-}
+    val restUrl: String = "https://api.github.com/",
+    val graphQlUrl: String = "https://api.github.com/graphql",
+)

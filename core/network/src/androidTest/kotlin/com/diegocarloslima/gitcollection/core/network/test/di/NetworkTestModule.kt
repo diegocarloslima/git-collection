@@ -39,7 +39,9 @@ internal object NetworkTestModule {
     @Provides
     @Singleton
     fun provideGithubConfig(mockWebServer: MockWebServer): GitHubConfig =
-        GitHubConfig(mockWebServer.url("/").toString())
+        GitHubConfig(
+            restUrl = mockWebServer.url("/").toString(),
+        )
 
     @Provides
     @Singleton

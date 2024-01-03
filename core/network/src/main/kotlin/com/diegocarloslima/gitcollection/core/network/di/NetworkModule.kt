@@ -23,7 +23,7 @@ import com.apollographql.apollo3.network.okHttpCallFactory
 import com.diegocarloslima.gitcollection.core.network.BuildConfig
 import com.diegocarloslima.gitcollection.core.network.github.GitHubConfig
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
-import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubRepositoryManagerRetrofit
+import com.diegocarloslima.gitcollection.core.network.github.apollo.GitHubRepositoryManagerApollo
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.GitHubServiceRetrofit
 import com.diegocarloslima.gitcollection.core.network.okhttp.AuthorizationInterceptor
 import com.diegocarloslima.gitcollection.core.network.util.HttpHeader
@@ -52,7 +52,7 @@ import javax.inject.Singleton
 internal abstract class NetworkModule {
     @Binds
     abstract fun bindGitHubRepositoryManagerNetwork(
-        gitHubRepositoryManagerRetrofit: GitHubRepositoryManagerRetrofit,
+        manager: GitHubRepositoryManagerApollo,
     ): GitHubRepositoryManagerNetwork
 
     companion object {
@@ -64,7 +64,7 @@ internal abstract class NetworkModule {
             callFactory: Call.Factory,
         ): ApolloClient =
             ApolloClient.Builder()
-                .serverUrl(gitHubConfig.baseUrl)
+                .serverUrl(gitHubConfig.graphQlUrl)
                 .okHttpCallFactory(callFactory)
                 .build()
 
@@ -76,7 +76,7 @@ internal abstract class NetworkModule {
             json: Json,
         ): GitHubServiceRetrofit =
             Retrofit.Builder()
-                .baseUrl(gitHubConfig.baseUrl)
+                .baseUrl(gitHubConfig.restUrl)
                 .callFactory(callFactory)
                 .addConverterFactory(json.toConverterFactory())
                 .build()

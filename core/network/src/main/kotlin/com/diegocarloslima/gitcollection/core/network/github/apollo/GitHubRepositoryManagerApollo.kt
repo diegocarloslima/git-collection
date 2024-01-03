@@ -41,11 +41,11 @@ internal class GitHubRepositoryManagerApollo @Inject constructor(
         sortOrder: SortOrder,
         pagination: Pagination,
     ): RepositoryResultsNetwork {
-        val graphQLQuery = "$query ${sortOrder.queryValue}"
+        val fullQuery = "$query ${sortOrder.queryValue}"
         val searchRepositories = GitHubSearchRepositoriesQuery(
             Optional.presentIfNotNull(pagination.key),
             pagination.size,
-            graphQLQuery,
+            fullQuery,
         )
         val data = client.query(searchRepositories).execute().dataAssertNoErrors
         return data.mapToNetwork()

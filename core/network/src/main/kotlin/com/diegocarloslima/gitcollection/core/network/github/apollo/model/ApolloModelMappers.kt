@@ -53,7 +53,7 @@ private fun RepositoryParts.mapToNetwork(): RepositoryNetwork =
         openIssuesCount = this.issues.totalCount.toLong(),
         language = this.primaryLanguage?.name,
         license = this.licenseInfo?.mapToNetwork(),
-        topics = emptyList(),
+        topics = this.repositoryTopics.nodes?.mapNotNull { it?.topic?.name } ?: emptyList(),
         defaultBranch = this.defaultBranchRef?.name,
     )
 
@@ -65,4 +65,8 @@ private fun RepositoryParts.Owner.mapToNetwork(): RepositoryOwnerNetwork =
         htmlUrl = this.url.toString(),
     )
 
-private fun RepositoryParts.LicenseInfo.mapToNetwork(): RepositoryLicenseNetwork = TODO()
+private fun RepositoryParts.LicenseInfo.mapToNetwork(): RepositoryLicenseNetwork =
+    RepositoryLicenseNetwork(
+        name = this.name,
+        url = this.url?.toString(),
+    )
