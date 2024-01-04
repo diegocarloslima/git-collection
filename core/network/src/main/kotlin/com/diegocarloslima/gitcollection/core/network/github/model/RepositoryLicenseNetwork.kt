@@ -22,6 +22,7 @@ package com.diegocarloslima.gitcollection.core.network.github.model
  * This class holds information about a repository license in GitHub.
  */
 data class RepositoryLicenseNetwork(
+    val id: String,
     val name: String,
     val url: String? = null,
 )

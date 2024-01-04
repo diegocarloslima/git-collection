@@ -17,6 +17,7 @@ fragment RepositoryParts on Repository {
         name
     }
     description
+    diskUsage
     forkCount
     homepageUrl
     id
@@ -27,6 +28,7 @@ fragment RepositoryParts on Repository {
         totalCount
     }
     licenseInfo {
+        id
         name
         url
     }
@@ -40,17 +42,16 @@ fragment RepositoryParts on Repository {
     }
     primaryLanguage {
         color
+        id
         name
     }
     pushedAt
-    repositoryTopics(first: 10) {
+    repositoryTopics(first: 20) {
         nodes {
-            id
             topic {
                 id
                 name
             }
-            url
         }
     }
     stargazerCount

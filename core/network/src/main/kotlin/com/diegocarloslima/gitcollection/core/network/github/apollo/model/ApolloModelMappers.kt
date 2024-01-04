@@ -42,11 +42,14 @@ private fun RepositoryParts.mapToNetwork(): RepositoryNetwork =
         owner = this.owner.mapToNetwork(),
         htmlUrl = this.url.toString(),
         description = this.description,
+        archived = this.isArchived,
         fork = this.isFork,
+        mirror = this.isMirror,
         createdAt = this.createdAt.toString().toInstant(),
         updatedAt = this.updatedAt.toString().toInstant(),
         pushedAt = this.pushedAt?.toString()?.toInstant(),
         homepage = this.homepageUrl?.toString(),
+        size = this.diskUsage?.toLong(),
         stargazersCount = this.stargazerCount.toLong(),
         watchersCount = this.watchers.totalCount.toLong(),
         forksCount = this.forkCount.toLong(),
@@ -67,6 +70,7 @@ private fun RepositoryParts.Owner.mapToNetwork(): RepositoryOwnerNetwork =
 
 private fun RepositoryParts.LicenseInfo.mapToNetwork(): RepositoryLicenseNetwork =
     RepositoryLicenseNetwork(
+        id = this.id,
         name = this.name,
         url = this.url?.toString(),
     )

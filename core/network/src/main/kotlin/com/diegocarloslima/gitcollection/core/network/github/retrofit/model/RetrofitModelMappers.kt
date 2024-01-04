@@ -38,16 +38,19 @@ private fun RepositoryRetrofit.mapToNetwork(): RepositoryNetwork =
         owner = this.owner.mapToNetwork(),
         htmlUrl = this.htmlUrl,
         description = this.description,
+        archived = this.archived,
         fork = this.fork,
-        language = this.language,
+        mirror = this.mirrorUrl != null,
         createdAt = this.createdAt,
         updatedAt = this.updatedAt,
         pushedAt = this.pushedAt,
         homepage = this.homepage,
+        size = this.size,
         stargazersCount = this.stargazersCount,
         watchersCount = this.watchersCount,
         forksCount = this.forksCount,
         openIssuesCount = this.openIssuesCount,
+        language = this.language,
         license = this.license?.mapToNetwork(),
         topics = this.topics,
         defaultBranch = this.defaultBranch,
@@ -63,6 +66,7 @@ private fun RepositoryOwnerRetrofit.mapToNetwork(): RepositoryOwnerNetwork =
 
 private fun RepositoryLicenseRetrofit.mapToNetwork(): RepositoryLicenseNetwork =
     RepositoryLicenseNetwork(
+        id = this.id.toString(),
         name = this.name,
         url = this.url,
     )

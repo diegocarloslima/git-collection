@@ -25,6 +25,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class RepositoryLicenseRetrofit(
+    val id: Long,
     val name: String,
     val url: String?,
 )
