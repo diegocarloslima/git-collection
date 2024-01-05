@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class RepositoryRetrofit(
-    val id: Long,
+    @SerialName("node_id") val id: String,
     val name: String,
     @SerialName("full_name") val fullName: String,
     val owner: RepositoryOwnerRetrofit,

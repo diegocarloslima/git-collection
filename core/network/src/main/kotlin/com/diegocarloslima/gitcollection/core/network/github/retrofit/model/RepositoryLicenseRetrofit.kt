@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -25,7 +26,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 internal data class RepositoryLicenseRetrofit(
-    val id: Long,
+    @SerialName("node_id") val id: String,
     val name: String,
     val url: String?,
 )
