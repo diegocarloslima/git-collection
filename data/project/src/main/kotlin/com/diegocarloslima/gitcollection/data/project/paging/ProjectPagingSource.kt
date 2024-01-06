@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.data.project.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.diegocarloslima.gitcollection.core.network.model.Pagination
@@ -42,7 +43,16 @@ internal class ProjectPagingSource(
     }
 
     // TODO: Figure this out
-    override fun getRefreshKey(state: PagingState<String, Project>): String? = null
+    override fun getRefreshKey(state: PagingState<String, Project>): String? {
+        Log.i("GITTEST", "getRefreshKey")
+
+        state.anchorPosition?.let { anchorPosition ->
+            val index = state.pages.indexOf(state.closestPageToPosition(anchorPosition))
+            Log.i("GITTEST", "getRefreshKey anchorPosition: $anchorPosition indexPage: $index")
+        }
+
+        return null
+    }
 
     companion object {
         internal const val PAGE_SIZE = 25
