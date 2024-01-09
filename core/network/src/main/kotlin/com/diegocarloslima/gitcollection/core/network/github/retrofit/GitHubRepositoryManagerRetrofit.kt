@@ -18,6 +18,7 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit
 
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
@@ -25,7 +26,6 @@ import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.mapT
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.orderValue
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.pageNumber
 import com.diegocarloslima.gitcollection.core.network.github.retrofit.model.sortValue
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import javax.inject.Inject
 
 /**
@@ -37,18 +37,18 @@ internal class GitHubRepositoryManagerRetrofit @Inject constructor(
     override suspend fun searchRepositories(
         query: String,
         sortOrder: SortOrder,
-        pagination: Pagination,
+        page: Page,
     ): RepositoryResultsNetwork {
         val result = service.searchRepositories(
             query,
             sortOrder.sortValue,
             sortOrder.orderValue,
-            pagination.size,
-            pagination.pageNumber,
+            page.size,
+            page.pageNumber,
         )
 
-        val nextPageNumber = if (result.totalCount > pagination.pageNumber * pagination.size) {
-            pagination.pageNumber.inc()
+        val nextPageNumber = if (result.totalCount > page.pageNumber * page.size) {
+            page.pageNumber.inc()
         } else {
             null
         }

@@ -20,6 +20,7 @@ package com.diegocarloslima.gitcollection.core.network.github.apollo
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.Optional
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.core.network.di.GitHub
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.GitHubSearchRepositoriesQuery
@@ -27,7 +28,6 @@ import com.diegocarloslima.gitcollection.core.network.github.apollo.model.mapToN
 import com.diegocarloslima.gitcollection.core.network.github.apollo.model.queryValue
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import javax.inject.Inject
 
 /**
@@ -39,12 +39,12 @@ internal class GitHubRepositoryManagerApollo @Inject constructor(
     override suspend fun searchRepositories(
         query: String,
         sortOrder: SortOrder,
-        pagination: Pagination,
+        page: Page,
     ): RepositoryResultsNetwork {
         val fullQuery = "$query ${sortOrder.queryValue}"
         val searchRepositories = GitHubSearchRepositoriesQuery(
-            Optional.presentIfNotNull(pagination.key),
-            pagination.size,
+            Optional.presentIfNotNull(page.key),
+            page.size,
             fullQuery,
         )
         val data = client.query(searchRepositories).execute().dataAssertNoErrors

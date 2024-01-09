@@ -18,9 +18,9 @@
 
 package com.diegocarloslima.gitcollection.core.network.github.retrofit.model
 
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
 
 internal val SortOrder.sortValue: String
     get() = when (this) {
@@ -32,5 +32,5 @@ internal val SortOrder.orderValue: String
         STARS_DESC -> "desc"
     }
 
-internal val Pagination.pageNumber: Int
+internal val Page.pageNumber: Int
     get() = this.key?.toIntOrNull() ?: 1

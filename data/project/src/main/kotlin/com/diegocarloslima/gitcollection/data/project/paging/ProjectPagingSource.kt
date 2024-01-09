@@ -21,7 +21,7 @@ package com.diegocarloslima.gitcollection.data.project.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.model.Project
 
@@ -31,7 +31,12 @@ internal class ProjectPagingSource(
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Project> {
         return try {
-            val projectPage = remoteDataSource.getPopularProjects(Pagination(PAGE_SIZE, params.key))
+            val projectPage = remoteDataSource.getPopularProjects(
+                com.diegocarloslima.gitcollection.core.common.paging.Page(
+                    PAGE_SIZE,
+                    params.key,
+                ),
+            )
             LoadResult.Page(
                 data = projectPage.projects,
                 prevKey = params.key,

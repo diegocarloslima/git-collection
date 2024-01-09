@@ -18,9 +18,9 @@
 
 package com.diegocarloslima.gitcollection.data.project.remote
 
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.core.network.github.GitHubRepositoryManagerNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder.STARS_DESC
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
 import com.diegocarloslima.gitcollection.data.project.ProjectDataSourceRemote
 import com.diegocarloslima.gitcollection.data.project.model.ProjectPage
 import com.diegocarloslima.gitcollection.data.project.model.mapToProjectPage
@@ -32,11 +32,11 @@ import javax.inject.Inject
 internal class GitHubProjectDataSourceNetwork @Inject constructor(
     private val repositoryManager: GitHubRepositoryManagerNetwork,
 ) : ProjectDataSourceRemote {
-    override suspend fun getPopularProjects(pagination: Pagination): ProjectPage =
+    override suspend fun getPopularProjects(page: Page): ProjectPage =
         repositoryManager.searchRepositories(
             QUERY_ANDROID,
             STARS_DESC,
-            pagination,
+            page,
         ).mapToProjectPage()
 }
 

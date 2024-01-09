@@ -18,9 +18,9 @@
 
 package com.diegocarloslima.gitcollection.core.network.github
 
+import com.diegocarloslima.gitcollection.core.common.paging.Page
 import com.diegocarloslima.gitcollection.core.network.github.model.RepositoryResultsNetwork
 import com.diegocarloslima.gitcollection.core.network.github.model.SortOrder
-import com.diegocarloslima.gitcollection.core.network.model.Pagination
 
 /**
  * Interface that establishes a contract for managing GitHub repositories through the network.
@@ -29,6 +29,6 @@ interface GitHubRepositoryManagerNetwork {
     suspend fun searchRepositories(
         query: String,
         sortOrder: SortOrder,
-        pagination: Pagination,
+        page: Page,
     ): RepositoryResultsNetwork
 }
